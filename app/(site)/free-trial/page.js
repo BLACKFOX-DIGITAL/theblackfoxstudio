@@ -1,8 +1,7 @@
 import Form from "@/components/FreeTrail/Form";
-import { Sparkles, Shield, Clock, CheckCircle2, Star, ArrowRight } from "lucide-react";
+import { Sparkles, Shield, Clock, CheckCircle2, Star } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import Link from "next/link";
 
 export const metadata = {
   title: "Free Trial — Image Editing Service | Blackfox Digital",
@@ -57,18 +56,9 @@ export default function TakeFreeTrialPage() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-orange-500/5 blur-[120px] rounded-full" />
       </div>
 
-      {/* BREADCRUMB */}
-      <div className="bg-white border-b border-gray-100 py-3 relative z-30">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400">
-            <Link href="/" className="hover:text-[#EE3A39] transition-colors">Home</Link>
-            <ArrowRight size={10} className="text-gray-300" />
-            <span className="text-[#EE3A39]">Free Trial</span>
-          </nav>
-        </div>
-      </div>
 
-      <div className="container mx-auto px-4 relative z-10 pt-20 pb-24 max-w-7xl">
+
+      <div className="container mx-auto px-4 relative z-10 pt-32 pb-24 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Copy & Trust Signals */}

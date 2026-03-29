@@ -2,8 +2,6 @@
 import React from "react";
 import { ContactForm } from "@/components/About/Contact";
 import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib";
 
 export default function ContactInfoClient() {
   const contactCards = [
@@ -49,19 +47,10 @@ export default function ContactInfoClient() {
   return (
     <div className="min-h-screen bg-[#F8F8F8] text-[#011]">
 
-      {/* BREADCRUMB */}
-      <div className="bg-white border-b border-gray-100 py-3 relative z-30">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400">
-            <Link href="/" className="hover:text-[#EE3A39] transition-colors">Home</Link>
-            <ArrowRight size={10} className="text-gray-300" />
-            <span className="text-[#EE3A39]">Contact</span>
-          </nav>
-        </div>
-      </div>
+
 
       {/* HERO SECTION */}
-      <section className="relative pt-24 pb-20 border-b border-gray-200 overflow-hidden bg-white">
+      <section className="relative pt-32 pb-20 border-b border-gray-200 overflow-hidden bg-white">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
 
