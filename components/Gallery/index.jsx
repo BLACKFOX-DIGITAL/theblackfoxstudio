@@ -3,8 +3,9 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import React, { useState } from "react";
-import { MousePointer2, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { MousePointer2, Maximize2, X, ChevronLeft, ChevronRight, CheckCircle2, Globe, Zap, Clock, Star, ArrowRight } from "lucide-react";
 import { Compare } from "@/components/ui/compare";
+import Link from "next/link";
 
 const Gallery = ({ data = [] }) => {
   const [category, setCategory] = useState("all");
@@ -44,9 +45,10 @@ const Gallery = ({ data = [] }) => {
     },
   };
 
-  let filteredData = category === "all" 
-    ? data?.map((ele) => ele?.content).flat() || []
-    : data?.filter((ele) => ele.name === category).flatMap((ele) => ele.content) || [];
+  // Improved filtering to use the nested content correctly
+  const filteredData = category === "all" 
+    ? data?.flatMap((ele) => ele.content.map(item => ({ ...item, serviceName: ele.name }))) || []
+    : data?.filter((ele) => ele.name === category).flatMap((ele) => ele.content.map(item => ({ ...item, serviceName: ele.name }))) || [];
 
   return (
     <div className="min-h-screen bg-white pb-32">
@@ -56,13 +58,20 @@ const Gallery = ({ data = [] }) => {
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl">
+          {/* Breadcrumb */}
+          <nav className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-8">
+            <Link href="/" className="hover:text-[#EE3A39] transition-colors font-black">Home</Link>
+            <ArrowRight size={10} className="text-gray-300" />
+            <span className="text-[#EE3A39] font-black">Portfolio</span>
+          </nav>
+
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-xs font-black mb-6 uppercase tracking-[3px] shadow-sm"
+            className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
           >
-            Showcase Overview
+            Our Work
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -70,29 +79,44 @@ const Gallery = ({ data = [] }) => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase"
           >
-            Pixel Perfect <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Precision.</span>
+            Image Editing Portfolio — <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Before & After Results</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-[#011] leading-relaxed font-bold max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-[#011] leading-relaxed font-bold max-w-4xl mx-auto mb-6"
           >
-            Observe the technical transformation. Hover over any project to reveal the raw file, or click to enter our interactive high-resolution comparison suite.
+            Browse our work across all 20 image editing services. 500,000+ images edited since 2016. Filter by service category to see exactly what we can do for you.
           </motion.p>
+          <p className="text-[#626262] text-sm font-medium max-w-2xl mx-auto mb-12">
+            Real before and after results from our professional image editing services.
+          </p>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto py-8 border-y border-gray-200">
+            {[
+              { val: "500,000+", label: "Images Edited" },
+              { val: "20", label: "Service Categories" },
+              { val: "500+", label: "Global Clients" },
+              { val: "10+", label: "Years Experience" }
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl md:text-3xl font-black text-[#011] mb-1">{stat.val}</div>
+                <div className="text-[10px] font-black uppercase tracking-[2px] text-gray-500">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 2. FILTER TABS (ELITE NAVIGATION HUB) */}
+      {/* 2. FILTER TABS */}
       <section className="sticky top-[108px] z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100 shadow-sm py-5 mb-12 group/filter">
         <div className="container mx-auto px-4 relative">
           
-          {/* Smart Navigation Arrows: ONLY SHOW ON HOVER & IF SCROLLABLE */}
           {showLeftArrow && (
             <button 
-              onClick={() => {
-                if (scrollRef.current) scrollRef.current.scrollBy({ left: -350, behavior: "smooth" });
-              }}
+              onClick={() => { if (scrollRef.current) scrollRef.current.scrollBy({ left: -350, behavior: "smooth" }); }}
               className="absolute left-6 top-1/2 -translate-y-1/2 z-50 p-2.5 bg-white/60 backdrop-blur-lg border border-gray-100 rounded-full text-[#011] opacity-0 group-hover/filter:opacity-100 transition-all hover:bg-[#EE3A39] hover:text-white shadow-xl hover:-translate-x-1"
             >
               <ChevronLeft size={20} />
@@ -101,18 +125,12 @@ const Gallery = ({ data = [] }) => {
           
           {showRightArrow && (
             <button 
-              onClick={() => {
-                if (scrollRef.current) scrollRef.current.scrollBy({ left: 350, behavior: "smooth" });
-              }}
+              onClick={() => { if (scrollRef.current) scrollRef.current.scrollBy({ left: 350, behavior: "smooth" }); }}
               className="absolute right-6 top-1/2 -translate-y-1/2 z-50 p-2.5 bg-white/60 backdrop-blur-lg border border-gray-100 rounded-full text-[#011] opacity-0 group-hover/filter:opacity-100 transition-all hover:bg-[#EE3A39] hover:text-white shadow-xl hover:translate-x-1"
             >
               <ChevronRight size={20} />
             </button>
           )}
-
-          {/* Vignette Fades (The Boutique Edge) */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-30 bg-gradient-to-r from-white to-transparent"></div>
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-30 bg-gradient-to-l from-white to-transparent"></div>
 
           <div 
             ref={scrollRef}
@@ -121,7 +139,7 @@ const Gallery = ({ data = [] }) => {
               setShowLeftArrow(scrollLeft > 10);
               setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
             }}
-            className="flex overflow-x-auto no-scrollbar justify-start gap-2 md:gap-3 px-12 md:px-0 scroll-smooth"
+            className="flex overflow-x-auto no-scrollbar justify-start gap-2 md:gap-3 px-12 md:px-0 scroll-smooth items-center"
           >
             {categories.map((ele, ind) => (
               <button
@@ -141,7 +159,7 @@ const Gallery = ({ data = [] }) => {
         </div>
       </section>
 
-      {/* 3. STUDIO GRID (PERFECT ALIGNMENT) */}
+      {/* 3. STUDIO GRID */}
       <section className="container mx-auto px-4 relative z-10">
         {filteredData.length === 0 ? (
           <div className="text-center py-24 text-[#626262]">
@@ -158,6 +176,7 @@ const Gallery = ({ data = [] }) => {
             <AnimatePresence mode="popLayout">
               {filteredData?.map((ele, ind) => {
                 if (!ele?.before || !ele?.after) return null;
+                const altPrefix = ele.serviceName || "Image editing";
                 return (
                   <motion.div
                     key={`item-${ele.before}-${ind}`}
@@ -169,29 +188,28 @@ const Gallery = ({ data = [] }) => {
                     onClick={() => setSelectedImage(ele)}
                     className="relative w-full break-inside-avoid overflow-hidden rounded-[2.5rem] bg-[#F8F8F8] shadow-sm hover:shadow-2xl border border-gray-100 group cursor-zoom-in transition-all duration-500 mb-6"
                   >
-                    {/* Image Container (Bento Mosaic: Natural Aspect, No Dead Space) */}
+                    {/* Crimson Badge */}
+                    <div className="absolute top-5 left-5 z-20 bg-[#EE3A39] px-3 py-1.5 rounded-full text-white text-[9px] font-black uppercase tracking-[2px] shadow-lg pointer-events-none">
+                      {ele.serviceName || "Professional Edit"}
+                    </div>
+
                     <div className="relative w-full overflow-hidden">
-                       {/* Base Image (After) - Using relative Img to respect aspect ratio */}
                        <img
                         src={ele?.after}
-                        alt="Final Edited Image"
+                        alt={`${altPrefix} service after image editing result`}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                       />
-                      
-                      {/* Before Image (Hover Reveal) */}
                       <img
                         src={ele?.before}
-                        alt="Raw Unedited Image"
+                        alt={`${altPrefix} service before image editing result`}
                         className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out z-10"
                       />
                     </div>
 
-                    {/* Default View: Instructional Pill */}
                     <div className="absolute top-5 right-5 z-20 bg-white/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-[#011] text-[10px] font-black uppercase tracking-[2px] flex items-center gap-2 opacity-100 group-hover:opacity-0 transition-opacity duration-500 shadow-xl">
                       <MousePointer2 size={12} className="text-[#EE3A39]" /> Raw Comparison
                     </div>
  
-                    {/* Hover View: Action Overlay */}
                     <div className="absolute inset-x-5 bottom-5 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] bg-[#011]/80 backdrop-blur-xl px-5 py-5 rounded-[1.5rem] border border-white/5 shadow-2xl overflow-hidden">
                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE3A39]/10 blur-[40px] rounded-full pointer-events-none"></div>
                        <span className="relative z-10 text-white text-[11px] font-black uppercase tracking-[3px] flex items-center justify-center gap-3">
@@ -207,32 +225,37 @@ const Gallery = ({ data = [] }) => {
         )}
       </section>
 
-      {/* 4. LIGHTBOX ZOOM MODAL (Immersive) */}
+      {/* 4. CTA SECTION */}
+      <section className="py-24 bg-white border-t border-gray-100 mt-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none translate-x-1/4"></div>
+        <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
+          <div className="w-16 h-16 rounded-3xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center mx-auto mb-8 shadow-inner">
+            <Star size={32} className="fill-[#EE3A39]" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">Like what you see?</h2>
+          <p className="text-xl text-[#011] mb-10 font-bold">
+            Try our service with 10 free images — no credit card needed. Experience the quality difference today.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+             <Link href="/free-trial" className="px-12 py-5 bg-[#EE3A39] text-white font-black rounded-2xl text-sm uppercase tracking-[3px] hover:bg-black hover:-translate-y-1 transition-all shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
+               Start Free Trial
+             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. ZOOM MODAL */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 bg-black/95 overflow-hidden"
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-12 bg-black/95 overflow-hidden"
             onClick={() => setSelectedImage(null)}
           >
-            {/* Immersive Blurred Background */}
-            <motion.div 
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.4 }}
-              className="absolute inset-0 z-0 pointer-events-none"
-            >
-              <Image 
-                src={selectedImage.after} 
-                fill 
-                className="object-cover blur-[100px] grayscale brightness-50" 
-                alt="bg-blur"
-              />
-            </motion.div>
- 
             <button 
-              className="absolute top-8 right-8 z-[110] p-4 bg-white/5 hover:bg-[#EE3A39] text-white rounded-2xl transition-all duration-500 hover:rotate-90 shadow-2xl border border-white/10"
+              className="absolute top-8 right-8 z-[130] p-4 bg-white/5 hover:bg-[#EE3A39] text-white rounded-2xl transition-all duration-500 hover:rotate-90 shadow-2xl border border-white/10"
               onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
             >
               <X size={32} strokeWidth={3} />
@@ -257,7 +280,6 @@ const Gallery = ({ data = [] }) => {
                    secondImageClassname="object-contain w-full h-full !bg-transparent"
                 />
  
-                {/* Floating Labels Overlay (Stacked on mobile to prevent overlap) */}
                 <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50">
                   <div className="px-4 py-1.5 md:px-6 md:py-2 bg-[#000000]/40 backdrop-blur-md rounded-full border border-white/10 text-white/40 text-[9px] md:text-[10px] uppercase font-black tracking-[4px]">
                     Original Raw
