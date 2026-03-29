@@ -43,6 +43,13 @@ export default function TakeFreeTrialPage() {
     { label: "Keep All", sub: "Final Files", icon: CheckCircle2 },
   ];
 
+  const nextSteps = [
+    { step: "1", text: "We receive your files securely" },
+    { step: "2", text: "Our editors start within 2 hours" },
+    { step: "3", text: "Edited images delivered in 24hrs" },
+    { step: "4", text: "Review quality then decide" }
+  ];
+
   return (
     <main className="min-h-screen bg-[#F8F8F8] text-[#011] overflow-hidden">
       <script
@@ -55,8 +62,6 @@ export default function TakeFreeTrialPage() {
         <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-[#EE3A39]/10 blur-[150px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-orange-500/5 blur-[120px] rounded-full" />
       </div>
-
-
 
       <div className="container mx-auto px-4 relative z-10 pt-32 pb-24 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -92,7 +97,7 @@ export default function TakeFreeTrialPage() {
             </ul>
 
             {/* Social Proof Mini */}
-            <div className="p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm relative overflow-hidden group">
+            <div className="p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm relative overflow-hidden group mb-10">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE3A39]/5 blur-3xl rounded-full" />
               <div className="flex items-center gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map((_, i) => (
@@ -105,6 +110,21 @@ export default function TakeFreeTrialPage() {
               <h4 className="font-black text-[10px] mt-6 tracking-[2px] uppercase text-[#011] opacity-70">
                 — James R., E-Commerce Manager, United States
               </h4>
+            </div>
+
+            {/* Moving Next Steps Here */}
+            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-white shadow-sm">
+              <h4 className="text-sm font-black text-[#011] tracking-[2px] mb-6 uppercase">What Happens Next</h4>
+              <div className="space-y-6">
+                {nextSteps.map((s, i) => (
+                  <div key={i} className="flex items-center gap-4 group">
+                    <div className="w-8 h-8 rounded-full bg-[#EE3A39] text-white flex items-center justify-center font-black text-xs shrink-0 shadow-lg shadow-[#EE3A39]/20">
+                      {s.step}
+                    </div>
+                    <p className="text-xs font-bold text-[#626262] group-hover:text-[#011] transition-colors">{s.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -130,26 +150,6 @@ export default function TakeFreeTrialPage() {
               
               <div className="w-full">
                 <Form />
-              </div>
-            </div>
-
-            {/* What Happens Next - Important #8 */}
-            <div className="mt-12 bg-white p-10 rounded-[3rem] border border-gray-100 shadow-sm">
-              <h4 className="text-xl font-black text-[#011] tracking-tighter mb-8 uppercase text-center">What Happens After You Submit</h4>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                {[
-                  { step: "1", text: "We receive your files securely" },
-                  { step: "2", text: "Our editors start within 2 hours" },
-                  { step: "3", text: "Edited images delivered in 24hrs" },
-                  { step: "4", text: "Review quality then decide" }
-                ].map((s, i) => (
-                  <div key={i} className="text-center group">
-                    <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-[#EE3A39] font-black text-sm mb-4 mx-auto border border-gray-100 group-hover:bg-[#EE3A39] group-hover:text-white transition-all">
-                      {s.step}
-                    </div>
-                    <p className="text-xs font-bold text-[#626262] leading-relaxed">{s.text}</p>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
