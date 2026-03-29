@@ -33,10 +33,10 @@ export default function BlogListPage() {
           <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
             Blog & Resources
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Insights</span>
+          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Insights & Resources</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium mb-12 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-[#011] leading-relaxed font-bold mb-12 max-w-3xl mx-auto">
             Expert strategies, retouching tutorials, and business advice for scaling your visual content production.
           </p>
           

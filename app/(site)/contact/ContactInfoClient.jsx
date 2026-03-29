@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { ContactForm } from "@/components/About/Contact";
 import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
 

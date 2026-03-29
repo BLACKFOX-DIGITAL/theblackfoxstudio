@@ -30,11 +30,11 @@ export default function AboutPage() {
             <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
               Our Story
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-              Professional Image Post-Production <br className="hidden md:block"/> Studio Since 2016
+            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital</span> <br className="hidden md:block"/> Narrative Since 2016
             </h1>
-            <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium">
-              Professional image post-production services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect editing. 24-hour delivery. Serving clients worldwide from Dhaka, Bangladesh.
+            <p className="text-lg md:text-xl text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
+              Professional image post-production services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect editing. 24-hour delivery.
             </p>
           </motion.div>
         </div>
