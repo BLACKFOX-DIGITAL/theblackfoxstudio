@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Before & After" }) {
+export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Before & After", beforeAlt = "Before editing", afterAlt = "After editing" }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
   
@@ -29,7 +29,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Be
     >
       {/* After Image (Background) */}
       {hasImages ? (
-        <img src={afterImage} alt="After editing" draggable="false" className="w-full h-auto block select-none" />
+        <img src={afterImage} alt={afterAlt} draggable="false" className="w-full h-auto block select-none" />
       ) : (
         <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] flex items-center justify-end pr-8">
           <span className="text-white/30 font-bold text-4xl transform -rotate-90 origin-right">AFTER</span>
@@ -42,7 +42,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Be
         style={{ width: `${sliderPosition}%` }}
       >
         {hasImages ? (
-          <img src={beforeImage} alt="Before editing" draggable="false" className="absolute top-0 left-0 h-full object-cover max-w-none select-none" style={{ width: containerRef.current?.offsetWidth || '100vw' }} />
+          <img src={beforeImage} alt={beforeAlt} draggable="false" className="absolute top-0 left-0 h-full object-cover max-w-none select-none" style={{ width: containerRef.current?.offsetWidth || '100vw' }} />
         ) : (
           <div className="absolute top-0 left-0 w-screen h-full bg-[#0a0a0a] border-r-2 border-orange-500/50 flex items-center justify-start pl-8" style={{ width: containerRef.current?.offsetWidth || '100vw' }}>
             <span className="text-white/30 font-bold text-4xl transform rotate-90 origin-left">BEFORE</span>

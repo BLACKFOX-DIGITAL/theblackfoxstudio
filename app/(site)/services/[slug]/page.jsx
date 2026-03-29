@@ -12,17 +12,10 @@ export function generateMetadata({ params }) {
   const slug = params.slug;
   const dbService = services.find(s => s.slug === slug);
 
-  if (slug === 'ecommerce-photo-editing') {
-    return {
-      title: "E-Commerce Photo Editing Service | Blackfox Digital",
-      description: "Professional e-commerce photo editing service for Amazon, eBay and Shopify sellers. Consistent product images, color correction and marketplace compliance. From $0.35/image. 24-hour delivery. Free trial available.",
-    };
-  }
-
   if (dbService) {
     return {
-      title: `${dbService.title} Service | Blackfox Digital`,
-      description: dbService.shortDescription || `Professional ${dbService.title} services for global brands. From $${dbService.priceStarting}/image. 24-hour delivery. Free trial available.`,
+      title: dbService.pageTitle || `${dbService.title} | Blackfox Digital`,
+      description: dbService.schemaDescription || dbService.shortDescription || `Professional ${dbService.title} services for global brands. From $${dbService.priceStarting}/image. 24-hour delivery. Free trial available.`,
     };
   }
 
@@ -41,20 +34,12 @@ export default function ServicePage({ params }) {
   const dbRelatedServices = services.filter(s => s.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 3);
 
   // 2. Data Definitions
-  const isEcommerce = slug === 'ecommerce-photo-editing';
-  const title = isEcommerce ? "E-Commerce Photo Editing Service" : (dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
-  const heroLabel = isEcommerce ? "E-Commerce Photo Editing" : (dbService?.title || "Professional Service");
+  const title = dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const heroLabel = dbService?.heroLabel || "Professional Service";
   
-  const heroSubtext = isEcommerce 
-    ? "Professional e-commerce photo editing for Amazon, eBay, Shopify and global marketplaces. Consistent product images that convert browsers into buyers. From $0.35/image. 24-hour delivery."
-    : (dbService?.shortDescription || `Professional ${title} for global marketplaces. Consistent results that drive results. 24-hour delivery.`);
+  const heroSubtext = dbService?.shortDescription || `Professional ${title} for global marketplaces. Consistent results that drive results. 24-hour delivery.`;
 
-  const pricingData = isEcommerce ? [
-    { type: 'Basic', price: '$0.35/image', desc: 'Simple backgrounds, single objects' },
-    { type: 'Standard', price: '$0.75/image', desc: 'Detailed edges, moderate retouching' },
-    { type: 'Complex', price: '$1.50/image', desc: 'Jewelry, complex outlines, detailed shadows' },
-    { type: 'Super Complex', price: '$3.00/image', desc: 'High-end composites, multi-component items' }
-  ] : [
+  const pricingData = dbService?.pricingData || [
     { type: 'Standard', price: `$${dbService?.priceStarting || '0.49'}/image`, desc: 'Standard turnaround and quality' },
     { type: 'Express', price: '+20%', desc: '24-hour priority delivery' },
     { type: 'Rush', price: '+40%', desc: '12-hour high-speed delivery' },
@@ -68,14 +53,7 @@ export default function ServicePage({ params }) {
     { time: 'Emergency 6hrs', add: '+60%' }
   ];
 
-  const faqs = isEcommerce ? [
-    { q: "What is the delivery time for Ecommerce Photo Editing?", a: "Standard delivery is 24-48 hours. We also offer Rush (12hrs +20%), Super Rush (6hrs +40%) and Emergency (2-4hrs +60%) options." },
-    { q: "What file formats do you accept?", a: "We accept RAW, CR2, NEF, DNG, PSD, TIFF, JPG and PNG files. Final delivery in your preferred format via FTP, Dropbox or WeTransfer." },
-    { q: "Can I request a sample before bulk ordering?", a: "Yes! We offer a free trial of up to 10 images with no credit card required. Submit via our free trial page and receive results in 24 hours." },
-    { q: "Do you offer bulk enterprise discounts?", a: "Yes. Orders of 1000+ images receive 20% discount automatically. Contact us for custom enterprise pricing on larger volumes." },
-    { q: "How do you handle transparent objects?", a: "Transparent objects like glass, bottles and acrylic products are handled using advanced image masking techniques to preserve natural transparency and reflections." },
-    { q: "Is my studio data secure?", a: "Absolutely. All files are transferred via secure FTP or encrypted cloud storage. We sign NDAs on request and never share client files." }
-  ] : [
+  const faqs = dbService?.customFaqs || [
     { q: `What is the delivery time for ${title}?`, a: "Standard delivery is 24-48 hours. Express options are available for urgent projects." },
     { q: "Can I get a free trial?", a: "Yes, we offer up to 10 images free for every new client to test our quality." },
     { q: "What is your pricing model?", a: "We offer per-image pricing based on complexity, starting from $0.35/image for high-volume orders." },
@@ -83,12 +61,23 @@ export default function ServicePage({ params }) {
     { q: "How are files delivered?", a: "Files are delivered via secure links (Dropbox, WeTransfer) or directly to your FTP server." }
   ];
 
+  const h2Title = dbService?.h2Title || `Professional ${title} Workflows`;
+  const targetAudience = dbService?.targetAudience || null;
+
+  // SEO Alt Texts
+  const titleLower = title.replace(/ service/i, '').toLowerCase() + ' service';
+  const heroAlt = `${titleLower} before and after example`;
+  const beforeAlt = `${titleLower} raw unedited image`;
+  const afterAlt = `${titleLower} final edited result`;
+
   // Internal Link Helper
   const processDescription = (html) => {
     if (!html) return '';
     let processed = html;
     const links = [
       { text: 'background removal', url: '/services/background-removal-service' },
+      { text: 'image masking', url: '/services/image-masking-service' },
+      { text: 'e-commerce photo editing', url: '/services/ecommerce-photo-editing' },
       { text: 'color correction', url: '/services/color-correction-service' },
       { text: 'clipping path', url: '/services/clipping-path-service' }
     ];
@@ -109,7 +98,7 @@ export default function ServicePage({ params }) {
       "@type": "Organization",
       "name": "Blackfox Digital"
     },
-    "description": heroSubtext,
+    "description": dbService?.schemaDescription || heroSubtext,
     "offers": {
       "@type": "Offer",
       "priceCurrency": "USD",
@@ -118,7 +107,8 @@ export default function ServicePage({ params }) {
         "minPrice": dbService?.priceStarting || "0.35",
         "maxPrice": "3.00"
       }
-    }
+    },
+    "areaServed": "Worldwide"
   };
 
   return (
@@ -168,7 +158,7 @@ export default function ServicePage({ params }) {
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-white shadow-2xl group">
               <Image 
                 src={dbService?.heroImage || dbService?.afterImage || '/logo.png'} 
-                alt={`${title} main preview`}
+                alt={heroAlt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-1000"
                 unoptimized
@@ -198,7 +188,9 @@ export default function ServicePage({ params }) {
                 <BeforeAfterSlider 
                   label={`${title} Comparison ${idx+1}`} 
                   beforeImage={item.beforeImage} 
-                  afterImage={item.afterImage} 
+                  afterImage={item.afterImage}
+                  beforeAlt={beforeAlt}
+                  afterAlt={afterAlt}
                 />
                 <div className="absolute top-6 left-6 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                    <div className="bg-white/40 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full shadow-lg">
@@ -285,12 +277,28 @@ export default function ServicePage({ params }) {
 
             {/* Main Description */}
             <div className="max-w-3xl">
-              <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">Professional <span className="text-[#EE3A39]">{title}</span> Workflows</h2>
+              <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">{h2Title}</h2>
               <div 
                 className="prose prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#011]/70 prose-p:leading-relaxed max-w-none mb-12 text-justify font-bold"
                 dangerouslySetInnerHTML={{ __html: serviceDescription }}
               />
               
+              {/* Target Audience Section (Dynamically Injected) */}
+              {targetAudience && (
+                <div className="mt-12 bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm relative overflow-hidden">
+                   <div className="absolute -inset-4 bg-[#EE3A39]/5 blur-[30px] rounded-full pointer-events-none"></div>
+                   <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011] relative z-10">Who Needs {title}?</h3>
+                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+                     {targetAudience.map((audience, idx) => (
+                       <li key={idx} className="flex items-center gap-3">
+                         <div className="w-2 h-2 bg-[#EE3A39] rounded-full shrink-0"></div>
+                         <span className="font-bold text-[#011]/80 text-sm tracking-wide">{audience}</span>
+                       </li>
+                     ))}
+                   </ul>
+                </div>
+              )}
+
               {/* Complexity Table */}
               <div className="mt-12 bg-[#F8F8F8] rounded-[2rem] p-8 border border-gray-100">
                 <h3 className="text-lg font-black uppercase tracking-tight mb-8">Service Complexity Pricing</h3>
@@ -306,6 +314,7 @@ export default function ServicePage({ params }) {
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -340,7 +349,7 @@ export default function ServicePage({ params }) {
             </div>
             
             <div>
-              <h2 className="text-4xl md:text-5xl font-black mb-12 text-[#011] tracking-tighter leading-tight uppercase">Our {isEcommerce ? "E-Commerce" : "Professional"} <br/> Editing Process</h2>
+              <h2 className="text-4xl md:text-5xl font-black mb-12 text-[#011] tracking-tighter leading-tight uppercase">Our Professional <br/> Editing Process</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                 {[
                   { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Batch precision starts with a clean file transfer via FTP or Cloud.' },
