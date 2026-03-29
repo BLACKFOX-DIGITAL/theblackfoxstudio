@@ -1,9 +1,10 @@
 import Hero from "@/components/Hero";
+import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import { cn } from "@/lib";
 import { services } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare } from "lucide-react";
+import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
 
 export const metadata = {
   title: "Professional Image Post-Production Services | Blackfox Digital",
@@ -120,30 +121,23 @@ export default function Home() {
               let imgAfter = service.afterImage || "/hero-1.jpg";
 
               if (!service.beforeImage && !service.afterImage) {
-                if (slug.includes("e-commerce")) { imgBefore = "/ECommerce.jpg"; imgAfter = "/ECommerce-Done.jpg"; }
-                else if (slug.includes("background") || slug.includes("clipping")) { imgBefore = "/bg-removal.jpg"; imgAfter = "/bg-removal-done.jpg"; }
+                if (slug.includes("ecommerce") || slug.includes("e-commerce")) { imgBefore = "/ECommerce.jpg"; imgAfter = "/ECommerce-Done.jpg"; }
+                else if (slug.includes("background")) { imgBefore = "/bg-removal.jpg"; imgAfter = "/bg-removal-done.jpg"; }
+                else if (slug.includes("clipping")) { imgBefore = "/Flatlay-1.jpg"; imgAfter = "/Flatlay-1-Done.jpg"; }
                 else if (slug.includes("ghost-mannequin")) { imgBefore = "/Ghost-Mannequin-2-Raw.jpg"; imgAfter = "/Ghost-Mannequin-2-Done.jpg"; }
                 else if (slug.includes("beauty") || slug.includes("skin")) { imgBefore = "/Beauty-Retouch-Service-Page.jpg"; imgAfter = "/Beauty-Retouch-Service-Page-Done.jpg"; }
-                else if (slug.includes("masking")) { imgBefore = "/Masking-Retouch-Service-3.jpg"; imgAfter = "/Masking-Retouch-Service-Done-3.jpg"; }
+                else if (slug.includes("masking")) { imgBefore = "/Masking-Retouch.jpg"; imgAfter = "/Masking-Retouch-Done.jpg"; }
                 else if (slug.includes("shadow") || slug.includes("reflection")) { imgBefore = "/Reflection-Service.jpg"; imgAfter = "/Reflection-Service-Done.jpg"; }
-                else if (slug.includes("model")) { imgBefore = "/Model-Retouch-1.jpg"; imgAfter = "/Model-Retouch-1-Done.jpg"; }
+                else if (slug.includes("jewelry")) { imgBefore = "/Jewlery-Retouch-Service-Page.jpg"; imgAfter = "/Jewlery-Retouch-Service-Page-Done.jpg"; }
+                else if (slug.includes("product")) { imgBefore = "/Product-Retouch-Service-Page.jpg"; imgAfter = "/Product-Retouch-Service-Page-Done.jpg"; }
               }
 
               return (
                  <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group flex flex-col">
-                   {/* Before and After Image Container (Edge-to-Edge Elite: Full Bleed) */}
-                   <Link href={`/services/${slug}`} className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
-                     {/* Base Image (After) */}
-                     <Image src={imgAfter} alt={`${service.title} after`} fill className="object-cover absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-transform duration-700" />
-                     {/* Overlay Image (Before) */}
-                     <Image src={imgBefore} alt={`${service.title} before`} fill className="object-cover absolute inset-0 z-10 opacity-100 group-hover:opacity-0 transition-opacity duration-700 ease-in-out" />
-                     {/* High-Contrast Minimalist Comparison Icon */}
-                     <div className="absolute top-4 left-4 z-20 flex items-center justify-center p-2.5 bg-white border border-gray-100 rounded-xl shadow-xl transition-all duration-300 group-hover:bg-[#EE3A39] group-hover:border-[#EE3A39] group-hover:scale-110">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EE3A39" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors duration-300">
-                         <path d="M12 2v20M8 8l-4 4 4 4M16 8l4 4-4 4" />
-                       </svg>
-                     </div>
-                   </Link>
+                   {/* Interactive Before/After Slider */}
+                   <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
+                     <BeforeAfterSlider beforeImage={imgBefore} afterImage={imgAfter} label={service.title} />
+                   </div>
 
                    {/* Content Container */}
                    <div className="p-8 flex-grow flex flex-col">
@@ -168,44 +162,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2.5. PRICING SNAPSHOT */}
-      <section className="py-24 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 max-w-5xl text-center">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-[#011] tracking-tighter mb-2">Transparent Pricing</h2>
-            <p className="text-[#626262] font-medium text-lg">Per-image rates with no hidden fees</p>
+      {/* 2.5. PREMIUM SERVICE PRICE BOARD */}
+      <section className="py-24 bg-white border-b border-gray-100 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[#F8F8F8]/50 pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-xs font-bold mb-4 uppercase tracking-[3px]">
+               Direct Rates
+             </div>
+            <h2 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-4">Transparent Pricing Snapshot</h2>
+            <p className="text-[#626262] font-medium text-lg max-w-2xl mx-auto">Straightforward per-image rates with absolute transparency. No contracts, just results.</p>
           </div>
           
-          <div className="overflow-hidden rounded-3xl border border-gray-100 shadow-sm">
-            <table className="w-full text-left border-collapse bg-[#F8F8F8]">
-              <thead>
-                <tr className="bg-[#011] text-white">
-                  <th className="p-6 font-bold uppercase tracking-widest text-xs">Service</th>
-                  <th className="p-6 font-bold uppercase tracking-widest text-xs text-right">Starting Rate</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {[
-                  { name: "Background Removal", price: "$0.29/image" },
-                  { name: "Clipping Path", price: "$0.25/image" },
-                  { name: "Ghost Mannequin", price: "$0.75/image" },
-                  { name: "Beauty Retouch", price: "$2.00/image" },
-                  { name: "Product Retouch", price: "$0.99/image" },
-                  { name: "Jewelry Retouch", price: "$2.00/image" }
-                ].map((row, i) => (
-                  <tr key={i} className="hover:bg-white transition-colors">
-                    <td className="p-6 font-bold text-[#011]">{row.name}</td>
-                    <td className="p-6 font-black text-[#EE3A39] text-right">{row.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             {[
+               { name: "Background Removal", price: "0.29", sub: "/image", icon: Scissors, popular: true, note: "Perfect for E-commerce" },
+               { name: "Clipping Path", price: "0.25", sub: "/image", icon: Target, note: "Hand-drawn precision" },
+               { name: "Ghost Mannequin", price: "0.75", sub: "/image", icon: ImageIcon, note: "Professional 3D effect" },
+               { name: "Beauty Retouch", price: "2.00", sub: "/image", icon: Zap, note: "Magazine-quality skin" },
+               { name: "Product Retouch", price: "0.99", sub: "/image", icon: Layers, note: "Shadows & Reflections" },
+               { name: "Jewelry Retouch", price: "2.50", sub: "/image", icon: Award, note: "High-end brilliance" }
+             ].map((row, i) => (
+                <div key={i} className="group bg-[#F8F8F8] hover:bg-white border border-transparent hover:border-[#EE3A39]/20 p-6 rounded-[2rem] flex items-center justify-between transition-all duration-400 hover:shadow-2xl hover:-translate-y-1">
+                   <div className="flex items-center gap-5">
+                      <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#011] group-hover:text-white group-hover:bg-[#EE3A39] transition-all shadow-sm">
+                         <row.icon size={24} />
+                      </div>
+                      <div>
+                         <div className="flex items-center gap-2 mb-0.5">
+                            <h3 className="font-extrabold text-lg text-[#011] uppercase tracking-tight">{row.name}</h3>
+                            {row.popular && <span className="bg-[#EE3A39] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest">Popular</span>}
+                         </div>
+                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{row.note}</p>
+                      </div>
+                   </div>
+                   <div className="text-right">
+                      <div className="flex items-end justify-end gap-0.5 mb-1">
+                         <span className="text-xs font-black text-[#EE3A39] mb-1.5 uppercase tracking-widest">$</span>
+                         <span className="text-3xl font-black text-[#011] tracking-tighter group-hover:text-[#EE3A39] transition-colors">{row.price.split('.')[0]}</span>
+                         <span className="text-xl font-black text-[#011] tracking-tighter group-hover:text-[#EE3A39] transition-colors">.{row.price.split('.')[1]}</span>
+                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[2px] mb-1.5 ml-1">{row.sub}</span>
+                      </div>
+                      <Link href={`/order?service=${row.name.toLowerCase().replace(/ /g, '-')}`} className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] opacity-0 group-hover:opacity-100 transition-all flex items-center justify-end gap-1 translate-x-4 group-hover:translate-x-0">
+                         Start Now <ArrowRight size={10} />
+                      </Link>
+                   </div>
+                </div>
+             ))}
           </div>
           
-          <div className="mt-8">
-            <Link href="/pricing" className="text-[#EE3A39] font-bold flex items-center justify-center gap-2 group border-b border-transparent hover:border-[#EE3A39] transition-all w-fit mx-auto">
-              View full pricing for all 20 services <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          <div className="mt-16 flex flex-col items-center">
+            <Link href="/pricing" className="px-8 py-4 bg-[#011] text-white font-black rounded-2xl hover:bg-[#EE3A39] transition-all flex items-center gap-3 group shadow-xl">
+              View Detailed Price List <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
+            <p className="mt-6 text-sm font-bold text-gray-400 uppercase tracking-widest">
+              Processing 5,000+ per month? <Link href="/get-quote" className="text-[#EE3A39] hover:underline underline-offset-4">Talk to an Agent</Link>
+            </p>
           </div>
         </div>
       </section>

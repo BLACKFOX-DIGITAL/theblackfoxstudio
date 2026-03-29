@@ -2,6 +2,7 @@ import { services as mockServices } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Scissors, Zap, Award, Sparkles } from "lucide-react";
+import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 
 export const metadata = {
   title: "Image Post Production Services | Blackfox Limited",
@@ -18,16 +19,25 @@ export default function ServicesPage() {
   // A helper map to assign breathtaking placeholder images to dynamic services if they lack explicit ones
   const serviceVisuals = {
     "background-removal": { before: "/bg-removal.jpg", after: "/bg-removal-done.jpg" },
+    "clipping-path": { before: "/Flatlay-1.jpg", after: "/Flatlay-1-Done.jpg" },
     "ghost-mannequin": { before: "/Ghost-Mannequin-2-Raw.jpg", after: "/Ghost-Mannequin-2-Done.jpg" },
-    "ecommerce-retouch": { before: "/ECommerce.jpg", after: "/ECommerce-Done.jpg" },
+    "e-commerce-photo-editing": { before: "/ECommerce.jpg", after: "/ECommerce-Done.jpg" },
     "beauty-retouch": { before: "/Beauty-Retouch-Service-Page.jpg", after: "/Beauty-Retouch-Service-Page-Done.jpg" },
-    "image-masking": { before: "/Masking-Retouch.jpg", after: "/Masking-Retouch-Done.jpg" },
-    "shadow-creation": { before: "/Shadow-Service-Page.jpg", after: "/Shadow-Service-Page-Done.jpg" },
     "product-retouch": { before: "/Product-Retouch-Service-Page.jpg", after: "/Product-Retouch-Service-Page-Done.jpg" },
-    "model-retouch": { before: "/Model-Retouch-1.jpg", after: "/Model-Retouch-1-Done.jpg" },
     "jewelry-retouch": { before: "/Jewlery-Retouch-Service-Page.jpg", after: "/Jewlery-Retouch-Service-Page-Done.jpg" },
-    "flat-lay-retouch": { before: "/Flatlay-2.jpg", after: "/Flatlay-2-Done.jpg" },
-    "image-manipulation": { before: "/Image-Manipulation-1.jpg", after: "/Image-Manipulation-Done-1.jpg" },
+    "image-masking": { before: "/Masking-Retouch.jpg", after: "/Masking-Retouch-Done.jpg" },
+    "shadow-reflection": { before: "/Reflection-Service.jpg", after: "/Reflection-Service-Done.jpg" },
+    "color-variants": { before: "/Color-Change.jpg", after: "/Color-Change-Done.jpg" },
+    "image-manipulation": { before: "/Image-Manipulation.jpg", after: "/Image-Manipulation-Done.jpg" },
+    "flat-lay-editing": { before: "/Flatlay-2.jpg", after: "/Flatlay-2-Done.jpg" },
+    "vector-conversion": { before: "/download.png", after: "/logo.png" },
+    "real-estate-editing": { before: "/Real-Estate-Before.png", after: "/Real-Estate-After.png" },
+    "car-photo-editing": { before: "/Car-Before.png", after: "/Car-After.png" },
+    "photo-restoration": { before: "/Photo-Restoration-Before.png", after: "/Photo-Restoration-After.png" },
+    "multi-clipping-path": { before: "/bg-removal.jpg", after: "/bg-removal-done.jpg" },
+    "image-web-optimization": { before: "/ECommerce.jpg", after: "/ECommerce-Done.jpg" },
+    "360-product-editing": { before: "/Product-Retouch-Service-Page.jpg", after: "/Product-Retouch-Service-Page-Done.jpg" },
+    "packshot-retouching": { before: "/Jewlery-Retouch-Service-Page.jpg", after: "/Jewlery-Retouch-Service-Page-Done.jpg" },
   };
 
   return (
@@ -78,34 +88,23 @@ export default function ServicesPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {dbServices.map((service) => {
-                // Map DB slugs or titles to precise old image paths for the visual Wow factor
                 const slug = service.slug || "";
-                let imgBefore = service.beforeImage || "/hero-1.jpeg";
-                let imgAfter = service.afterImage || "/hero-1.jpg";
+                let imgBefore = service.beforeImage;
+                let imgAfter = service.afterImage;
 
-                const fallback = serviceVisuals[slug] || { before: "/ECommerce.jpg", after: "/ECommerce-Done.jpg" };
-                if (!service.beforeImage && !service.afterImage) {
+                const fallback = serviceVisuals[slug] || { before: "/hero-1.jpeg", after: "/hero-1.jpg" };
+                if (!imgBefore || !imgAfter) {
                   imgBefore = fallback.before;
                   imgAfter = fallback.after;
                 }
 
                 return (
-                   <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group flex flex-col">
-                     {/* Before and After Image Container */}
-                     <Link href={`/services/${slug}`} className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
-                       {/* Base Image (After) */}
-                       <Image src={imgAfter} alt={`${service.title} after`} fill className="object-cover absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-transform duration-700" />
-                       {/* Overlay Image (Before) */}
-                       <Image src={imgBefore} alt={`${service.title} before`} fill className="object-cover absolute inset-0 z-10 opacity-100 group-hover:opacity-0 transition-opacity duration-700 ease-in-out" />
-                       
-                       {/* High-Contrast Minimalist Comparison Icon (Synced with Homepage) */}
-                       <div className="absolute top-4 left-4 z-20 flex items-center justify-center p-2.5 bg-white border border-gray-100 rounded-xl shadow-xl transition-all duration-300 group-hover:bg-[#EE3A39] group-hover:border-[#EE3A39] group-hover:scale-110">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EE3A39" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors duration-300">
-                           <path d="M12 2v20M8 8l-4 4 4 4M16 8l4 4-4 4" />
-                         </svg>
-                       </div>
-                     </Link>
- 
+                   <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] transition-all duration-500 overflow-hidden group flex flex-col">
+                     {/* Interactive Before/After Slider */}
+                     <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
+                       <BeforeAfterSlider beforeImage={imgBefore} afterImage={imgAfter} label={service.title} />
+                     </div>
+  
                     {/* Content Container */}
                     <div className="p-8 flex-grow flex flex-col">
                       <Link href={`/services/${slug}`} className="block">

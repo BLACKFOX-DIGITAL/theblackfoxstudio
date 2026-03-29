@@ -109,7 +109,7 @@ export default function Hero() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
                   className={cn(
-                    "max-w-xl md:max-w-2xl lg:max-w-3xl p-6 md:p-10 lg:p-12 rounded-3xl shadow-2xl backdrop-blur-md transition-all",
+                    "max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-6 lg:p-8 rounded-3xl shadow-2xl backdrop-blur-md transition-all",
                     slide.isGraphic ? "bg-white/95" : "bg-white/10 border border-white/20"
                   )}
                 >
@@ -117,7 +117,7 @@ export default function Hero() {
                      {slide.subtitle}
                    </div>
                    
-                   <h1 className={cn("text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tighter leading-[1.05]", slide.isGraphic ? "text-[#011]" : "text-white")}>
+                   <h1 className={cn("text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tighter leading-[1.05]", slide.isGraphic ? "text-[#011]" : "text-white")}>
                      {slide.title}
                    </h1>
                    
