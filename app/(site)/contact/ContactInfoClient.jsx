@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ContactForm } from "@/components/About/Contact";
-import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib";
 
@@ -49,56 +49,65 @@ export default function ContactInfoClient() {
   return (
     <div className="min-h-screen bg-[#F8F8F8] text-[#011]">
 
+      {/* BREADCRUMB */}
+      <div className="bg-white border-b border-gray-100 py-3 relative z-30">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400">
+            <Link href="/" className="hover:text-[#EE3A39] transition-colors">Home</Link>
+            <ArrowRight size={10} className="text-gray-300" />
+            <span className="text-[#EE3A39]">Contact</span>
+          </nav>
+        </div>
+      </div>
+
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-24 border-b border-gray-200 overflow-hidden bg-white">
+      <section className="relative pt-24 pb-20 border-b border-gray-200 overflow-hidden bg-white">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
           <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
-            Get In Touch
+            Available 24/7/365
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] leading-tight">
-            We&apos;d Love To{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">
-              Hear From You.
-            </span>
+          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+            Contact Blackfox Digital — <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">Image Post-Production Services</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium max-w-2xl mx-auto mb-12">
-            Whether you have a question about pricing, bulk volumes, or anything else, our team is ready to help — typically within a few hours.
+          <p className="text-lg md:text-xl text-[#626262] leading-relaxed font-bold max-w-3xl mx-auto mb-10">
+            Our team is available 24/7 to answer your questions about pricing, bulk volumes and turnaround times.
           </p>
 
           {/* Quick Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-bold text-[#011] uppercase tracking-widest">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-[11px] font-black text-[#011] uppercase tracking-[3px]">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Available 24/7
+              Live Now
             </div>
             <div className="flex items-center gap-2">
               <Clock size={14} className="text-[#EE3A39]" />
-              Replies within 4 hours
+              Replies within 2 hours
             </div>
             <div className="flex items-center gap-2">
-              <MapPin size={14} className="text-[#EE3A39]" />
-              Dhaka Headquarters
+              <MessageSquare size={14} className="text-[#EE3A39]" />
+              Free Quote Response
             </div>
           </div>
         </div>
       </section>
 
-      {/* CONTACT DETAILS + FORM + MAP */}
+      {/* CONTACT DETAILS + FORM */}
       <section className="py-24 bg-[#F8F8F8] w-full">
         <div className="container mx-auto px-4 max-w-7xl w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full items-start">
 
-            {/* Left: Contact Info Cards */}
+            {/* Left: Contact Info & FAQs */}
             <div className="lg:col-span-4 flex flex-col gap-6 w-full">
               {contactCards.map((card, i) => {
                 const Icon = card.icon;
                 return (
                   <div
                     key={i}
-                    className="bg-white/70 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden flex flex-col w-full"
+                    className="bg-white rounded-[2.5rem] p-8 border border-white shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden flex flex-col w-full"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#EE3A39]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none" />
 
@@ -123,6 +132,21 @@ export default function ContactInfoClient() {
                 );
               })}
 
+              {/* FAQs - Nice to have #8 */}
+              <div className="space-y-4">
+                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6 pl-4">Common Questions</h4>
+                {[
+                  { q: "How quickly do you reply?", a: "We reply within 2 hours, 24 hours a day, 7 days a week." },
+                  { q: "What file formats do you accept?", a: "We accept JPG, PNG, PSD, TIFF, RAW and most common formats. Files via FTP, Dropbox or WeTransfer." },
+                  { q: "Do you offer bulk pricing?", a: "Yes! Orders of 1000+ images receive 20% discount automatically." }
+                ].map((faq, i) => (
+                  <div key={i} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                    <p className="text-xs font-black uppercase tracking-tight text-[#EE3A39] mb-2">{faq.q}</p>
+                    <p className="text-sm text-[#626262] font-medium leading-relaxed">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+
               {/* Quick CTA Card */}
               <div className="bg-[#011] rounded-[2.5rem] p-10 text-white relative overflow-hidden group w-full shadow-2xl shadow-[#011]/30">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE3A39]/20 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:scale-125 transition-transform duration-1000" />
@@ -131,7 +155,7 @@ export default function ContactInfoClient() {
                   Experience boutique quality on your images today. No credit card required.
                 </p>
                 <Link
-                  href="/take-free-trial"
+                  href="/free-trial"
                   className="relative z-10 inline-flex items-center gap-2 text-sm font-black text-[#EE3A39] hover:text-white transition-all group/cta uppercase tracking-[3px]"
                 >
                   Get Started <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" />
@@ -139,28 +163,48 @@ export default function ContactInfoClient() {
               </div>
             </div>
 
-            {/* Right: Form + Map */}
+            {/* Right: Form + File Transfer */}
             <div className="lg:col-span-8 flex flex-col gap-10 w-full">
 
               {/* Form */}
-              <div className="bg-white/80 backdrop-blur-md rounded-[3rem] p-10 md:p-14 border border-white shadow-2xl relative overflow-hidden w-full">
+              <div className="bg-white/80 backdrop-blur-md rounded-[3rem] p-8 md:p-14 border border-white shadow-2xl relative overflow-hidden w-full">
                 <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#EE3A39] to-orange-500" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
 
                 <div className="relative z-10">
-                  <h2 className="text-4xl md:text-6xl font-black text-[#011] tracking-tighter mb-4 leading-none">
-                    Send Message
+                  <h2 className="text-3xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">
+                    Submit Requirement
                   </h2>
-                  <p className="text-xl text-[#626262] mb-14 font-medium leading-relaxed max-w-xl">
-                    Fill out the form below and our boutique support team will reply within 4 hours.
+                  <p className="text-lg text-[#626262] mb-12 font-medium leading-relaxed max-w-xl">
+                    Fill out the form below and our production team will reply within 2 hours.
                   </p>
 
                   <div className="w-full">
                     <ContactForm
-                      textAreaClass="min-h-[160px] bg-gray-50/50 border-gray-100 focus-visible:ring-[#EE3A39]/10 text-base p-8 rounded-3xl shadow-inner placeholder:text-gray-300"
-                      buttonClass="w-full sm:w-auto px-12 bg-[#011] hover:bg-[#EE3A39] text-white font-black py-6 rounded-2xl shadow-xl shadow-[#011]/10 hover:shadow-[#EE3A39]/30 hover:-translate-y-1 transition-all duration-500 mt-8 text-base tracking-[4px] uppercase flex items-center justify-center gap-3"
+                      textAreaClass="min-h-[120px] bg-gray-50/50 border-gray-100 focus-visible:ring-[#EE3A39]/10 text-xs p-6 rounded-2xl shadow-inner placeholder:text-gray-300"
+                      buttonClass="w-full sm:w-auto px-12 bg-[#EE3A39] hover:bg-black text-white font-black py-5 rounded-2xl shadow-xl shadow-[#EE3A39]/20 hover:shadow-black/20 hover:-translate-y-1 transition-all duration-500 mt-8 text-sm tracking-[4px] uppercase flex items-center justify-center gap-3"
                     />
                   </div>
+                </div>
+              </div>
+
+              {/* File Transfer Info - Important #6 */}
+              <div className="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm text-center">
+                <h4 className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 mb-8">We accept files via:</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {[
+                    { name: "FTP", icon: "RiCloudFill" },
+                    { name: "Dropbox", icon: "RiDropboxFill" },
+                    { name: "WeTransfer", icon: "RiSendPlaneFill" },
+                    { name: "Google Drive", icon: "RiGoogleFill" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default group">
+                      <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-[#EE3A39]/10 group-hover:text-[#EE3A39] transition-all">
+                        <Zap size={20} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-widest">{item.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 

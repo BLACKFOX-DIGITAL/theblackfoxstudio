@@ -267,13 +267,32 @@ export const ContactForm = ({ textAreaClass, buttonClass }) => {
   } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const countries = [
+    "United States", "United Kingdom", "Germany", "France", "Italy", "Spain", "Canada", "Australia", 
+    "Netherlands", "Sweden", "Denmark", "Norway", "Finland", "Switzerland", "Japan", "China", 
+    "Hong Kong", "Singapore", "New Zealand", "Other"
+  ].sort();
+
+  const services = [
+    "Background Removal", "Clipping Path", "Ghost Mannequin", "E-commerce Photo Editing", 
+    "Beauty Retouch", "Product Retouch", "Jewelry Retouch", "Image Masking", 
+    "Shadow & Reflection", "Color Variants", "Image Manipulation", "Flat Lay Editing", 
+    "Vector Conversion", "Real Estate Editing", "Car Photo Editing", "Photo Restoration", 
+    "Multi Clipping Path", "Image Web Optimization", "360° Product Editing", "Packshot Retouching"
+  ].sort();
+
+  const turnarounds = [
+    { label: "Normal (48 hrs)", value: "48h" },
+    { label: "Rush (24 hrs)", value: "24h" },
+    { label: "Super Rush (12 hrs)", value: "12h" },
+    { label: "Emergency (6 hrs)", value: "6h" },
+  ];
+
   const onSubmit = async (formData) => {
     setIsSubmitting(true);
     try {
-      // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      toast.success("Message sent successfully! We will get back to you soon.");
+      toast.success("Message sent successfully! We will get back to you within 2 hours.");
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
     } finally {
@@ -281,58 +300,109 @@ export const ContactForm = ({ textAreaClass, buttonClass }) => {
     }
   };
 
-  return (
-    <form className="grid grid-cols-2 gap-4 w-full h-fit">
-      <div className="col-span-2 lg:col-span-1">
-        <Input
-          {...register("name", {
-            required: "Name is required",
-          })}
-          aria-label="Enter your name"
-          className={cn("   ", errors?.name && " shadow-input_invalid ")}
-          type="text"
-          placeholder="Your name"
-        />
-      </div>
-      <div className="col-span-2 lg:col-span-1">
-        <Input
-          {...register("email", {
-            required: "Email is required",
-          })}
-          aria-label="Enter your e-mail"
-          className={cn("", errors?.email && " shadow-input_invalid ")}
-          type="email"
-          placeholder="Your e-mail"
-        />
-      </div>
-      <div className="col-span-2">
-        <Input
-          {...register("subject")}
-          aria-label="Give your subject"
-          className={cn("  w-full ")}
-          type="text"
-          placeholder="Subject"
-        />
-      </div>
-      <Textarea
-        {...register("message", {
-          required: "Message is required",
-        })}
-        className={cn(
-          "col-span-2 lg:h-[116px] ",
-          errors?.message && " shadow-input_invalid ",
-          textAreaClass
-        )}
-        placeholder="Type your message here."
-      />
+  const inputStyle = "bg-gray-50/50 border-gray-100 focus:border-[#EE3A39]/30 focus:ring-[#EE3A39]/10 rounded-2xl text-sm py-4 h-auto shadow-sm transition-all";
+  const labelStyle = "text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-2 block ml-1";
 
-      <div>
+  return (
+    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full" onSubmit={handleSubmit(onSubmit)}>
+      
+      {/* Name */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Full Name *</label>
+        <Input
+          {...register("name", { required: "Name is required" })}
+          className={cn(inputStyle, errors?.name && "border-red-500")}
+          placeholder="e.g. John Smith"
+        />
+      </div>
+
+      {/* Email */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Email Address *</label>
+        <Input
+          {...register("email", { required: "Email is required" })}
+          className={cn(inputStyle, errors?.email && "border-red-500")}
+          type="email"
+          placeholder="smith@company.com"
+        />
+      </div>
+
+      {/* Company Name */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Company Name</label>
+        <Input
+          {...register("company")}
+          className={inputStyle}
+          placeholder="Your brand or studio"
+        />
+      </div>
+
+      {/* Country */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Country</label>
+        <select
+          {...register("country")}
+          className={cn(inputStyle, "w-full px-4 appearance-none outline-none")}
+        >
+          <option value="">Select Country</option>
+          {countries.map(c => <option key={c} value={c}>{c}</option>)}
+        </select>
+      </div>
+
+      {/* Service Needed */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Service Needed</label>
+        <select
+          {...register("service")}
+          className={cn(inputStyle, "w-full px-4 appearance-none outline-none")}
+        >
+          <option value="">Choose Service</option>
+          {services.map(s => <option key={s} value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      {/* Number of Images */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Number of Images</label>
+        <Input
+          {...register("images")}
+          className={inputStyle}
+          type="number"
+          placeholder="Approx. volume"
+        />
+      </div>
+
+      {/* Turnaround */}
+      <div className="col-span-1">
+        <label className={labelStyle}>Turnaround Needed</label>
+        <select
+          {...register("turnaround")}
+          className={cn(inputStyle, "w-full px-4 appearance-none outline-none")}
+        >
+          {turnarounds.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+        </select>
+      </div>
+      
+      {/* Empty space for grid alignment if needed, or I'll just leave it */}
+      <div className="hidden md:block"></div>
+
+      {/* Message */}
+      <div className="col-span-1 md:col-span-2">
+        <label className={labelStyle}>Requirement / Message *</label>
+        <Textarea
+          {...register("message", { required: "Message is required" })}
+          className={cn("min-h-[120px]", inputStyle, textAreaClass, errors?.message && "border-red-500")}
+          placeholder="How can we help your production workflow today?"
+          rows={4}
+        />
+      </div>
+
+      <div className="col-span-1 md:col-span-2 mt-4">
         <button
           disabled={isSubmitting}
-          onClick={handleSubmit(onSubmit)}
-          aria-label="send message"
+          type="submit"
           className={cn(
-            " btn-brand-primary relative overflow-hidden ",
+            "w-full bg-[#EE3A39] hover:bg-black text-white font-black py-5 rounded-2xl shadow-xl shadow-[#EE3A39]/20 transition-all flex items-center justify-center gap-3 text-sm tracking-[4px] uppercase",
             buttonClass
           )}
         >
