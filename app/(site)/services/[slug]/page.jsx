@@ -33,7 +33,7 @@ export default function ServicePage({ params }) {
   const rawPortfolio = mockPortfolio.filter(p => p.category === slug);
   const dbPortfolio = rawPortfolio.length >= 3 
     ? rawPortfolio.slice(0, 3) 
-    : [...rawPortfolio, ...mockPortfolio.filter(p => p.category !== slug).slice(0, 3 - rawPortfolio.length)];
+    : [...rawPortfolio, ...Array(3 - rawPortfolio.length).fill(rawPortfolio[0] || mockPortfolio[0])];
   const dbRelatedServices = services.filter(s => s.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 3);
 
   // 2. Data Definitions
