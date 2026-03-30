@@ -204,14 +204,62 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* 3. SERVICE DETAILS & PRICING */}
-      <section className="py-24 bg-white border-y border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="w-full">
-            {/* Service Details Box */}
-            <div className="lg:float-right lg:ml-12 lg:mb-12 w-full lg:w-[450px] space-y-6 clear-both">
+      <section className="py-28 md:py-32 bg-white border-y border-gray-200 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F8F8F8] rounded-bl-[100px] -z-10 opacity-50 pointer-events-none"></div>
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Content Column (8 cols) */}
+            <div className="lg:col-span-8 flex flex-col gap-12 lg:gap-16">
               
-              {/* Feature Stats */}
-              <div className="bg-[#011] text-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative z-10 overflow-hidden">
+              {/* Main Description */}
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tighter text-[#011]">{h2Title}</h2>
+                <div 
+                  className="prose prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#011]/75 prose-p:leading-relaxed max-w-none text-justify font-bold"
+                  dangerouslySetInnerHTML={{ __html: serviceDescription }}
+                />
+              </div>
+              
+              {/* Target Audience Section (Dynamically Injected) */}
+              {targetAudience && (
+                <div className="bg-[#F8F8F8] rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-sm relative overflow-hidden group">
+                   <div className="absolute -inset-4 bg-[#EE3A39]/5 blur-[30px] rounded-full pointer-events-none group-hover:bg-[#EE3A39]/10 transition-colors duration-700"></div>
+                   <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011] relative z-10">Who Needs {title}?</h3>
+                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 relative z-10">
+                     {targetAudience.map((audience, idx) => (
+                       <li key={idx} className="flex items-center gap-4">
+                         <div className="w-2 h-2 bg-[#EE3A39] rounded-full shrink-0 shadow-[0_0_10px_rgba(238,58,57,0.5)]"></div>
+                         <span className="font-bold text-[#011]/80 text-sm tracking-wide">{audience}</span>
+                       </li>
+                     ))}
+                   </ul>
+                </div>
+              )}
+
+              {/* Complexity Table */}
+              <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-2xl shadow-gray-200/50">
+                <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011]">Service Complexity Pricing</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {pricingData.map((item, i) => (
+                    <div key={i} className="bg-[#F8F8F8] p-6 rounded-2xl border border-transparent group hover:border-[#EE3A39]/30 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-[11px] font-black uppercase tracking-[2px] text-gray-400 group-hover:text-[#011] transition-colors">{item.type}</span>
+                        <span className="text-lg font-black text-[#EE3A39]">{item.price}</span>
+                      </div>
+                      <p className="text-xs font-bold text-[#011]/60 leading-relaxed group-hover:text-[#011] transition-colors">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Sidebar Widget (4 cols) - Sticky */}
+            <div className="lg:col-span-4 space-y-8 sticky top-32">
+              
+              {/* Feature Stats Box */}
+              <div className="bg-[#011] text-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE3A39]/20 blur-[50px] rounded-full"></div>
                 <h3 className="text-xl font-black mb-8 flex items-center gap-3 uppercase tracking-tighter">
                   <ShieldCheck className="text-[#EE3A39]" /> Service Specs
@@ -253,69 +301,33 @@ export default function ServicePage({ params }) {
               </div>
 
               {/* Turnaround Table */}
-              <div className="bg-[#F8F8F8] border border-gray-200 p-8 rounded-[2.5rem] shadow-sm">
+              <div className="bg-white border border-gray-100 p-8 rounded-[2.5rem] shadow-xl shadow-gray-200/50">
                 <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6 flex items-center gap-3">
                   <Zap size={16} className="text-[#EE3A39]" /> Speed Options
                 </h4>
                 <div className="space-y-3">
                   {turnaroundOptions.map((opt, i) => (
-                    <div key={i} className="flex justify-between items-center py-3 border-b border-gray-200 last:border-0">
+                    <div key={i} className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50/50 px-2 -mx-2 rounded-lg transition-colors">
                       <span className="text-xs font-bold text-[#011]/60 uppercase tracking-tight">{opt.time}</span>
                       <span className="text-[10px] font-black text-white bg-[#011] px-3 py-1 rounded-full uppercase tracking-[2px]">{opt.add}</span>
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 pt-6 border-t border-gray-200">
+                <div className="mt-8 pt-6 border-t border-gray-100">
                   <p className="text-[10px] font-black text-[#EE3A39] uppercase tracking-[2px] text-center">
                     Order 1000+ images? Get 20% off
                   </p>
-                  <Link href="/pricing" className="block text-center mt-3 text-[10px] font-black uppercase tracking-[2px] hover:underline">View pricing guide</Link>
+                  <Link href="/pricing" className="block text-center mt-3 text-[10px] font-black uppercase tracking-[2px] hover:underline text-[#011]/50 hover:text-[#011]">View pricing guide</Link>
                 </div>
               </div>
-
-            </div>
-
-            {/* Main Description */}
-            <div className="max-w-3xl">
-              <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">{h2Title}</h2>
-              <div 
-                className="prose prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#011]/70 prose-p:leading-relaxed max-w-none mb-12 text-justify font-bold"
-                dangerouslySetInnerHTML={{ __html: serviceDescription }}
-              />
               
-              {/* Target Audience Section (Dynamically Injected) */}
-              {targetAudience && (
-                <div className="mt-12 bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm relative overflow-hidden">
-                   <div className="absolute -inset-4 bg-[#EE3A39]/5 blur-[30px] rounded-full pointer-events-none"></div>
-                   <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011] relative z-10">Who Needs {title}?</h3>
-                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
-                     {targetAudience.map((audience, idx) => (
-                       <li key={idx} className="flex items-center gap-3">
-                         <div className="w-2 h-2 bg-[#EE3A39] rounded-full shrink-0"></div>
-                         <span className="font-bold text-[#011]/80 text-sm tracking-wide">{audience}</span>
-                       </li>
-                     ))}
-                   </ul>
-                </div>
-              )}
-
-              {/* Complexity Table */}
-              <div className="mt-12 bg-[#F8F8F8] rounded-[2rem] p-8 border border-gray-100">
-                <h3 className="text-lg font-black uppercase tracking-tight mb-8">Service Complexity Pricing</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {pricingData.map((item, i) => (
-                    <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-50 group hover:border-[#EE3A39]/30 transition-colors">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-[10px] font-black uppercase tracking-[2px] text-gray-400">{item.type}</span>
-                        <span className="text-sm font-black text-[#EE3A39]">{item.price}</span>
-                      </div>
-                      <p className="text-xs font-bold text-[#011]/60 leading-relaxed group-hover:text-[#011] transition-colors">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* Trust Sub-text */}
+              <p className="text-center text-[10px] font-black uppercase tracking-[2px] text-gray-400">
+                Over 5,000,000 images delivered worldwide.
+              </p>
 
             </div>
+
           </div>
         </div>
       </section>
