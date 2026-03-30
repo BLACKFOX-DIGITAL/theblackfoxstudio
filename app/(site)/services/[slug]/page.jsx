@@ -187,7 +187,7 @@ export default function ServicePage({ params }) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {dbPortfolio.map((item, idx) => (
-              <div key={idx} className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-white group transition-all duration-700 hover:scale-[1.02]">
+              <div key={idx} className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F8F8] group transition-all duration-700 hover:scale-[1.02]">
                 <BeforeAfterSlider 
                   label={`${title} Comparison ${idx+1}`} 
                   beforeImage={item.beforeImage} 
