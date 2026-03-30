@@ -122,36 +122,36 @@ export default function ServicePage({ params }) {
       />
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-32 border-b border-gray-100 overflow-hidden bg-white">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 border-b border-gray-100 overflow-hidden bg-white">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[40%] bg-orange-500/3 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="max-w-2xl">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-8">
+            <nav className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-6">
               <Link href="/" className="hover:text-[#EE3A39] transition-colors">Home</Link>
               <ArrowRight size={8} className="text-gray-300" />
               <Link href="/services" className="hover:text-[#EE3A39] transition-colors">Services</Link>
               <ArrowRight size={8} className="text-gray-300" />
-              <span className="text-[#EE3A39]">{title}</span>
+              <span className="text-[#EE3A39] line-clamp-1">{title}</span>
             </nav>
 
-            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-xs font-black mb-8 uppercase tracking-[3px] shadow-sm">
+            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">
               {heroLabel}
             </div>
-            <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-[#011] leading-[0.9] uppercase">
+            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-[1.1] uppercase">
               {title}
             </h1>
-            <p className="text-xl md:text-2xl text-[#011]/60 mb-12 leading-relaxed font-bold">
+            <p className="text-base md:text-lg text-[#626262] mb-10 leading-relaxed font-bold">
               {heroSubtext}
             </p>
-            <div className="flex flex-wrap gap-5">
-              <Link href="/free-trial" className="bg-[#EE3A39] hover:bg-[#011] text-white px-10 py-5 rounded-2xl font-black shadow-[0_20px_40px_rgba(238,58,57,0.2)] hover:-translate-y-1 transition-all duration-500 text-sm tracking-[3px] uppercase inline-flex items-center gap-3 group">
-                Start Free Trial <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-wrap gap-4">
+              <Link href="/free-trial" className="bg-[#EE3A39] hover:bg-[#011] text-white px-8 py-4 rounded-2xl font-black shadow-[0_20px_40px_rgba(238,58,57,0.2)] hover:-translate-y-1 transition-all duration-500 text-[10px] tracking-[3px] uppercase inline-flex items-center gap-2 group">
+                Start Free Trial <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/get-quote" className="bg-white hover:bg-[#F8F8F8] border-2 border-[#011] text-[#011] px-10 py-5 rounded-2xl font-black hover:-translate-y-1 transition-all duration-500 text-sm tracking-[3px] uppercase inline-block shadow-sm">
-                Get Quote
+              <Link href="/get-quote" className="bg-white hover:bg-[#F8F8F8] border border-[#011] text-[#011] px-8 py-4 rounded-2xl font-black hover:-translate-y-1 transition-all duration-500 text-[10px] tracking-[3px] uppercase inline-flex shadow-sm items-center gap-2 group">
+                Get Quote <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0" />
               </Link>
             </div>
           </div>
@@ -178,12 +178,12 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* 2. PRECISION COMPARISON */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      <section className="py-24 bg-[#F8F8F8] relative overflow-hidden">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="text-center mb-24 max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-[#011] tracking-tighter uppercase leading-[0.9]">{title} — <br/> <span className="text-[#EE3A39]">Before & After Results</span></h2>
-            <p className="text-lg md:text-xl text-[#011]/60 leading-relaxed font-bold">Drag the slider to compare original raw files against our studio-grade delivery. Experience the technical transformation of every edge, shadow, and color profile.</p>
+          <div className="text-center mb-16 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase leading-tight">{title} <br className="hidden md:block"/> <span className="text-[#EE3A39]">Before & After Results</span></h2>
+            <p className="text-base font-bold text-[#626262] leading-relaxed">Drag the slider to compare original raw files against our studio-grade delivery. Experience the technical transformation of every edge, shadow, and color profile.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {dbPortfolio.map((item, idx) => (
@@ -207,7 +207,7 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* 3. SERVICE DETAILS & PRICING */}
-      <section className="py-28 md:py-32 bg-white border-y border-gray-200 relative overflow-hidden">
+      <section className="py-24 bg-white border-y border-gray-100 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F8F8F8] rounded-bl-[100px] -z-10 opacity-50 pointer-events-none"></div>
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -217,23 +217,23 @@ export default function ServicePage({ params }) {
               
               {/* Main Description */}
               <div>
-                <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tighter text-[#011]">{h2Title}</h2>
+                <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">{h2Title}</h2>
                 <div 
-                  className="prose prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#011]/75 prose-p:leading-relaxed max-w-none text-justify font-bold"
+                  className="prose prose-base md:prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#626262] prose-p:leading-relaxed max-w-none text-justify font-bold"
                   dangerouslySetInnerHTML={{ __html: serviceDescription }}
                 />
               </div>
               
               {/* Target Audience Section (Dynamically Injected) */}
               {targetAudience && (
-                <div className="bg-[#F8F8F8] rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-sm relative overflow-hidden group">
+                <div className="bg-[#F8F8F8] rounded-[2rem] p-8 md:p-10 border border-gray-100 shadow-sm relative overflow-hidden group">
                    <div className="absolute -inset-4 bg-[#EE3A39]/5 blur-[30px] rounded-full pointer-events-none group-hover:bg-[#EE3A39]/10 transition-colors duration-700"></div>
-                   <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011] relative z-10">Who Needs {title}?</h3>
+                   <h3 className="text-2xl font-black uppercase tracking-tighter mb-6 text-[#011] relative z-10">Who Needs {title}?</h3>
                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 relative z-10">
                      {targetAudience.map((audience, idx) => (
                        <li key={idx} className="flex items-center gap-4">
                          <div className="w-2 h-2 bg-[#EE3A39] rounded-full shrink-0 shadow-[0_0_10px_rgba(238,58,57,0.5)]"></div>
-                         <span className="font-bold text-[#011]/80 text-sm tracking-wide">{audience}</span>
+                         <span className="font-bold text-[#626262] text-sm tracking-wide">{audience}</span>
                        </li>
                      ))}
                    </ul>
@@ -241,16 +241,16 @@ export default function ServicePage({ params }) {
               )}
 
               {/* Complexity Table */}
-              <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-2xl shadow-gray-200/50">
-                <h3 className="text-xl font-black uppercase tracking-tight mb-8 text-[#011]">Service Complexity Pricing</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-[#F8F8F8] rounded-[2rem] p-8 md:p-10 border border-gray-100 shadow-sm">
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-6 text-[#011]">Service Complexity Pricing</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {pricingData.map((item, i) => (
-                    <div key={i} className="bg-[#F8F8F8] p-6 rounded-2xl border border-transparent group hover:border-[#EE3A39]/30 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                    <div key={i} className="bg-white p-6 rounded-[1.5rem] border border-transparent group transition-all duration-300 hover:shadow-lg">
                       <div className="flex justify-between items-center mb-3">
-                        <span className="text-[11px] font-black uppercase tracking-[2px] text-gray-400 group-hover:text-[#011] transition-colors">{item.type}</span>
-                        <span className="text-lg font-black text-[#EE3A39]">{item.price}</span>
+                        <span className="text-[10px] font-black uppercase tracking-[3px] text-gray-400 group-hover:text-[#011] transition-colors">{item.type}</span>
+                        <span className="text-xl font-black text-[#EE3A39]">{item.price}</span>
                       </div>
-                      <p className="text-xs font-bold text-[#011]/60 leading-relaxed group-hover:text-[#011] transition-colors">{item.desc}</p>
+                      <p className="text-xs font-bold text-[#626262] leading-relaxed group-hover:text-[#011] transition-colors">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -336,12 +336,36 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* 4. PROCESS STEPS */}
-      <section className="py-32 bg-white border-t border-gray-100">
+      <section className="py-24 bg-[#F8F8F8] border-t border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row">
+            
+            <div>
+              <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">
+                Flawless Process
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black mb-10 text-[#011] tracking-tighter uppercase">Our Professional <br className="hidden md:block"/> Editing Workflow</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Batch precision starts with a clean file transfer via FTP or Cloud.' },
+                  { icon: <CheckCircle size={24} />, title: '2. Expert Edit', desc: 'Your brand guidelines are the blueprint for pixel perfection.' },
+                  { icon: <FileCheck size={24} />, title: '3. Multi-Tier QC', desc: 'Every pixel is audited by lead editors before approval.' },
+                  { icon: <Truck size={24} />, title: '4. Fast Delivery', desc: 'Ready-to-publish files delivered in your chosen format.' }
+                ].map((step, idx) => (
+                  <div key={idx} className="flex flex-col items-start translate-y-0 hover:-translate-y-1 transition-transform duration-500 bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100/50">
+                    <div className="w-12 h-12 bg-[#EE3A39]/10 border border-[#EE3A39]/20 rounded-xl flex items-center justify-center text-[#EE3A39] mb-4 shadow-sm">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-base font-black text-[#011] mb-2 tracking-tighter uppercase">{step.title}</h3>
+                    <p className="text-[#626262] text-xs font-bold leading-relaxed">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="relative">
-               <div className="absolute -inset-4 bg-[#EE3A39]/10 blur-[40px] rounded-[2.5rem]"></div>
-               <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-2xl bg-[#011] flex items-center justify-center">
+               <div className="absolute -inset-4 bg-[#EE3A39]/10 blur-[40px] rounded-[2rem]"></div>
+               <div className="relative aspect-square rounded-[2rem] overflow-hidden border border-gray-100 shadow-2xl bg-[#011] flex items-center justify-center">
                   {dbService?.workflowImage && dbService.workflowImage !== '/logo.png' ? (
                     <Image 
                       src={dbService.workflowImage} 
@@ -356,50 +380,33 @@ export default function ServicePage({ params }) {
                       <span className="text-[10px] font-black uppercase tracking-[4px]">Studio Workflow Viz</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#011]/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                     <span className="text-white text-[10px] font-black uppercase tracking-[3px]">Expert Studio Operations</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#011]/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-8 left-8 right-8">
+                     <span className="text-white text-[10px] font-black uppercase tracking-[3px] flex items-center gap-2">
+                       <CheckCircle size={14} className="text-[#EE3A39]" /> Secure Enterprise Transfer
+                     </span>
                   </div>
                </div>
             </div>
             
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black mb-12 text-[#011] tracking-tighter leading-tight uppercase">Our Professional <br/> Editing Process</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                {[
-                  { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Batch precision starts with a clean file transfer via FTP or Cloud.' },
-                  { icon: <CheckCircle size={24} />, title: '2. Expert Edit', desc: 'Your brand guidelines are the blueprint for pixel perfection.' },
-                  { icon: <FileCheck size={24} />, title: '3. Multi-Tier QC', desc: 'Every pixel is audited by lead editors before approval.' },
-                  { icon: <Truck size={24} />, title: '4. Fast Delivery', desc: 'Ready-to-publish files delivered in your chosen format.' }
-                ].map((step, idx) => (
-                  <div key={idx} className="flex flex-col items-start translate-y-0 hover:-translate-y-2 transition-transform duration-500">
-                    <div className="w-14 h-14 bg-[#EE3A39]/10 border border-[#EE3A39]/20 rounded-2xl flex items-center justify-center text-[#EE3A39] mb-5 shadow-inner">
-                      {step.icon}
-                    </div>
-                    <h3 className="text-lg font-black text-[#011] mb-2 uppercase tracking-tight">{step.title}</h3>
-                    <p className="text-[#011]/50 text-[10px] leading-relaxed font-black uppercase tracking-wider">{step.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* 5. FAQ */}
-      <section className="py-32 bg-[#F8F8F8] border-y border-gray-100">
+      <section className="py-24 bg-white border-y border-gray-100">
         <div className="container mx-auto px-6 md:px-12 max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 text-[#011] tracking-tighter uppercase">{title} FAQ</h2>
-            <p className="text-[#011]/50 text-xs font-black uppercase tracking-[3px] leading-relaxed">Everything you need to know about our precision workflow.</p>
+            <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase">{title} FAQ</h2>
+            <p className="text-[#626262] text-base font-bold leading-relaxed">Everything you need to know about our precision workflow.</p>
           </div>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="border-none bg-white rounded-3xl px-8 shadow-sm hover:shadow-md transition-shadow">
-                <AccordionTrigger className="text-left text-lg font-black text-[#011] hover:text-[#EE3A39] py-8 uppercase tracking-tight">
+              <AccordionItem key={idx} value={`item-${idx}`} className="border-none bg-[#F8F8F8] rounded-[1.5rem] px-8 shadow-sm hover:shadow-md transition-shadow">
+                <AccordionTrigger className="text-left text-base md:text-lg font-black tracking-tight text-[#011] hover:text-[#EE3A39] py-6 uppercase">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-[#011]/60 text-base leading-relaxed font-bold pb-8 border-t border-gray-50 pt-6">
+                <AccordionContent className="text-[#626262] text-sm md:text-base leading-relaxed font-bold pb-6 border-t border-gray-200 pt-5">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -409,22 +416,22 @@ export default function ServicePage({ params }) {
       </section>
 
       {/* 6. RELATED SERVICES */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-[#F8F8F8]">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-4xl font-black text-[#011] mb-2 uppercase tracking-tighter">Related Services</h2>
-              <p className="text-[#011]/50 text-xs font-black uppercase tracking-[3px]">Compliment your workflow with these retouching options.</p>
+              <h2 className="text-3xl md:text-4xl font-black text-[#011] mb-3 uppercase tracking-tighter">Related Services</h2>
+              <p className="text-[#626262] text-base font-bold">Compliment your workflow with these retouching options.</p>
             </div>
-            <Link href="/services" className="hidden sm:flex text-[#EE3A39] font-black items-center gap-2 hover:text-[#011] transition-colors text-[10px] uppercase tracking-[2px]">
+            <Link href="/services" className="hidden sm:flex text-[#EE3A39] font-black items-center gap-2 hover:text-[#011] transition-colors text-[10px] uppercase tracking-[3px]">
               View All <ArrowRight size={14} />
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {dbRelatedServices.map((rel, idx) => (
-              <Link key={idx} href={`/services/${rel.slug}`} className="group block bg-[#F8F8F8] p-4 rounded-[2rem] border border-gray-100 hover:border-[#EE3A39]/30 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-2xl">
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 shadow-md bg-[#011]">
+              <Link key={idx} href={`/services/${rel.slug}`} className="group block bg-white p-4 rounded-[1.5rem] border border-transparent shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                <div className="relative aspect-[16/10] rounded-[1rem] overflow-hidden mb-5 shadow-sm bg-[#011]">
                    <Image 
                      src={rel.afterImage || '/logo.png'} 
                      alt={`${rel.title} preview`}
@@ -432,14 +439,14 @@ export default function ServicePage({ params }) {
                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                      unoptimized
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                    <div className="absolute bottom-4 left-4">
-                      <span className="text-white text-[10px] font-black uppercase tracking-[2px] bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">Studio Service</span>
+                      <span className="text-white text-[10px] font-black uppercase tracking-[3px] bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-[0.5rem] border border-white/20">Studio Grade</span>
                    </div>
                 </div>
-                <div className="px-4 pb-4">
+                <div className="px-3 pb-2">
                   <h3 className="text-lg font-black text-[#011] mb-2 uppercase tracking-tighter group-hover:text-[#EE3A39] transition-colors">{rel.title}</h3>
-                  <p className="text-[#011]/50 text-[10px] font-black line-clamp-2 uppercase tracking-wide leading-relaxed">{rel.shortDescription || rel.description?.replace(/<[^>]*>?/gm, '').slice(0, 100)}...</p>
+                  <p className="text-[#626262] text-sm font-bold line-clamp-2 leading-relaxed">{rel.shortDescription || rel.description?.replace(/<[^>]*>?/gm, '').slice(0, 100)}...</p>
                 </div>
               </Link>
             ))}
@@ -451,15 +458,15 @@ export default function ServicePage({ params }) {
       <section className="py-24 relative overflow-hidden bg-[#EE3A39]">
         <div className="absolute inset-0 bg-black/5"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center mx-auto mb-10 shadow-inner">
-             <Star className="text-white fill-white" size={40} />
+          <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-inner">
+             <Star className="text-white fill-white" size={32} />
           </div>
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">Try This Service Free</h2>
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto font-bold leading-relaxed">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase">Try This Service Free</h2>
+          <p className="text-base font-bold text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
             Upload up to 10 images right now. Let us prove our professional quality before you commit to bulk studio volumes. No credit card required.
           </p>
-          <Link href="/free-trial" className="bg-white text-[#EE3A39] px-12 py-6 rounded-[1.5rem] font-black text-sm uppercase tracking-[3px] flex items-center gap-3 justify-center mx-auto hover:bg-[#011] hover:text-white transition-all shadow-2xl hover:-translate-y-1">
-            <Zap className="fill-current" size={20} /> Get Your Free Trial
+          <Link href="/free-trial" className="bg-white text-[#EE3A39] px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center mx-auto hover:bg-[#011] hover:text-white transition-all shadow-2xl hover:-translate-y-1 w-max">
+            <Zap className="fill-current" size={16} /> Get Your Free Trial
           </Link>
         </div>
       </section>
