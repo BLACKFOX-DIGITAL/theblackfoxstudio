@@ -30,7 +30,10 @@ export default function ServicePage({ params }) {
   
   // 1. Fetch from Mock records
   const dbService = services.find(s => s.slug === slug);
-  const dbPortfolio = mockPortfolio.filter(p => p.category === slug).slice(0, 3);
+  const rawPortfolio = mockPortfolio.filter(p => p.category === slug);
+  const dbPortfolio = rawPortfolio.length >= 3 
+    ? rawPortfolio.slice(0, 3) 
+    : [...rawPortfolio, ...mockPortfolio.filter(p => p.category !== slug).slice(0, 3 - rawPortfolio.length)];
   const dbRelatedServices = services.filter(s => s.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 3);
 
   // 2. Data Definitions
