@@ -103,13 +103,13 @@ export default function Home() {
           
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">Our Image Post-Production Services</h2>
-              <p className="text-xl text-[#626262]">
+              <h2 className="text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Our Image Post-Production Services</h2>
+              <p className="text-base font-bold text-[#626262]">
                 Professional photo editing and retouching services for e-commerce, fashion and enterprise clients worldwide. Quality is our #1 Priority.
               </p>
             </div>
-            <Link href="/services" className="px-6 py-3 bg-[#EE3A39]/10 text-[#EE3A39] font-bold rounded-xl hover:bg-[#EE3A39] hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
-              View All Services <ArrowRight size={18} />
+            <Link href="/services" className="px-6 py-2.5 bg-[#EE3A39]/10 text-[#EE3A39] font-black uppercase tracking-[3px] text-[10px] rounded-xl hover:bg-[#EE3A39] hover:text-white hover:-translate-y-1 transition-all flex items-center gap-2 whitespace-nowrap shadow-sm">
+              View All Services <ArrowRight size={14} />
             </Link>
           </div>
 
@@ -167,11 +167,11 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full bg-[#F8F8F8]/50 pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
           <div className="text-center mb-16">
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-xs font-bold mb-4 uppercase tracking-[3px]">
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
                Direct Rates
              </div>
-            <h2 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-4">Transparent Pricing Snapshot</h2>
-            <p className="text-[#626262] font-medium text-lg max-w-2xl mx-auto">Straightforward per-image rates with absolute transparency. No contracts, just results.</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Transparent Pricing Snapshot</h2>
+            <p className="text-[#626262] font-bold text-base max-w-2xl mx-auto">Straightforward per-image rates with absolute transparency. No contracts, just results.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -212,8 +212,8 @@ export default function Home() {
           </div>
           
           <div className="mt-16 flex flex-col items-center">
-            <Link href="/pricing" className="px-8 py-4 bg-[#011] text-white font-black rounded-2xl hover:bg-[#EE3A39] transition-all flex items-center gap-3 group shadow-xl">
-              View Detailed Price List <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <Link href="/pricing" className="px-8 py-4 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl hover:bg-[#EE3A39] hover:-translate-y-1 transition-all flex items-center gap-2 group shadow-xl">
+              View Detailed Price List <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <p className="mt-6 text-sm font-bold text-gray-400 uppercase tracking-widest">
               Processing 5,000+ per month? <Link href="/get-quote" className="text-[#EE3A39] hover:underline underline-offset-4">Talk to an Agent</Link>
@@ -223,16 +223,16 @@ export default function Home() {
       </section>
 
       {/* 2.6. BULK ORDER BANNER */}
-      <section className="py-12 bg-[#C41E3A] relative overflow-hidden">
+      <section className="py-12 bg-[#EE3A39] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[40%] h-full bg-white/5 skew-x-[-20deg] translate-x-1/2"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
-              <h3 className="text-white text-3xl font-black tracking-tighter mb-2">Order 1000+ Images?</h3>
-              <p className="text-white/80 text-lg font-medium">Get 20% Off on Bulk Orders</p>
+              <h3 className="text-white text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2">Order 1000+ Images?</h3>
+              <p className="text-white text-base font-bold">Get 20% Off on Bulk Orders across all photo editing categories.</p>
             </div>
-            <Link href="/get-quote" className="px-10 py-5 bg-white text-[#C41E3A] font-black rounded-2xl shadow-xl hover:bg-gray-50 hover:-translate-y-1 transition-all uppercase tracking-widest text-sm">
-              Get Bulk Quote
+            <Link href="/contact" className="px-8 py-4 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:bg-white hover:text-[#011] hover:-translate-y-1 transition-all flex items-center gap-2">
+              Get Bulk Quote <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -244,8 +244,8 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
           
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">Our Image Editing Workflow</h2>
-            <p className="text-xl text-[#626262] max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
+            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
               Our 5-step process is engineered for unmatched speed, security, and flawless execution.
             </p>
           </div>
@@ -283,17 +283,17 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] border border-[#EE3A39]/20 rounded-full text-sm font-bold mb-6 uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] border border-[#EE3A39]/20 rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px]">
                 Our Guarantee
               </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tighter leading-tight text-[#011]">
-                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital for Image Post-Production</span>
+              <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
+                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital</span>
               </h2>
-              <p className="text-xl text-[#626262] mb-10 leading-relaxed">
+              <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
                 We don't just edit photos; we build backend infrastructures that allow studios, photographers, and e-commerce giants to scale limitlessly.
               </p>
-              <Link href="/free-trial" className="inline-flex px-8 py-4 bg-[#EE3A39] text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all items-center gap-2">
-                Test Our Infrastructure <ArrowRight size={18} />
+              <Link href="/free-trial" className="inline-flex px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all items-center gap-2">
+                Test Our Infrastructure <ArrowRight size={14} />
               </Link>
             </div>
 
@@ -317,9 +317,8 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Industries We Serve</h2>
-            <div className="w-20 h-1 bg-[#EE3A39] mx-auto mb-6"></div>
-            <p className="text-xl text-[#626262] max-w-2xl mx-auto font-medium leading-relaxed">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-5">Industries We Serve</h2>
+            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto leading-relaxed">
               Our infrastructure is engineered to handle the unique technical requirements of global industries.
             </p>
           </div>
@@ -350,8 +349,8 @@ export default function Home() {
           </div>
 
           <div className="mt-20 text-center">
-            <Link href="/portfolio" className="inline-flex items-center gap-3 px-8 py-4 bg-[#011] text-white font-extrabold rounded-xl hover:bg-[#EE3A39] transition-all shadow-xl group">
-              See How We Help Your Industry <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+            <Link href="/portfolio" className="inline-flex items-center gap-3 px-8 py-4 bg-[#011] text-white uppercase font-black tracking-[3px] text-[10px] rounded-2xl hover:bg-[#EE3A39] hover:-translate-y-1 transition-all shadow-xl group cursor-pointer">
+              See How We Help Your Industry <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -361,8 +360,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">What Our Clients Say</h2>
-            <div className="w-16 h-1 bg-[#EE3A39] mx-auto"></div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -412,10 +410,10 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6 text-center md:text-left">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black text-[#011] tracking-tighter mb-2">Resources & Insights</h2>
-              <p className="text-[#626262] font-medium">Expert guides to help you optimize your visual content.</p>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-[#011] mb-4">Resources & Insights</h2>
+              <p className="text-[#626262] font-bold text-base uppercase tracking-widest">Expert guides to help you optimize your visual content.</p>
             </div>
-            <Link href="/blog" className="text-[#EE3A39] font-bold flex items-center gap-2 group border-b border-transparent hover:border-[#EE3A39] transition-all">
+            <Link href="/blog" className="text-[#EE3A39] font-black uppercase tracking-[3px] text-[10px] flex items-center gap-2 group border-b border-transparent hover:border-[#EE3A39] transition-all">
               View All Articles <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -445,18 +443,18 @@ export default function Home() {
       <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#EE3A39] mb-6 tracking-tighter leading-tight">
+          <h2 className="text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">
             Try Our Image Editing Service Free
           </h2>
-          <p className="text-xl text-[#011] font-medium mb-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base font-bold text-[#626262] mb-8 max-w-2xl mx-auto leading-relaxed">
             Send us a few test shots and we'll edit them for free — no credit card, no commitment. Just great edits.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-            <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-extrabold rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
-              Claim Your Free <span className="underline underline-offset-4">Trial</span> <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
+              Claim Your Free Trial <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="/get-quote" className="px-10 py-5 bg-[#011] text-white font-extrabold rounded-2xl shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
-              Get a <span className="text-[#EE3A39] underline underline-offset-4">Custom Quote</span> <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Link href="/contact" className="px-10 py-5 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
+              Get A Custom Quote <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
