@@ -22,38 +22,38 @@ export default function BlogClient({ initialPosts }) {
     <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
       
       {/* 1. Header & Search Area */}
-      <section className="relative pt-32 pb-24 border-b border-gray-200 overflow-hidden bg-white">
+      <section className="relative pt-24 pb-16 border-b border-gray-200 overflow-hidden bg-white">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl">
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
           {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-8">
+          <nav className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-6">
             <Link href="/" className="hover:text-[#EE3A39] transition-colors">Home</Link>
             <ArrowRight size={10} className="text-gray-300" />
             <span className="text-[#EE3A39]">Blog</span>
           </nav>
 
-          <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
+          <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-xs font-bold mb-4 uppercase tracking-widest shadow-sm">
             Blog & Resources
           </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+          <h1 className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
             Image Editing Blog — <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Tips, Tutorials & Industry Insights</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Tips, Tutorials & Insights</span>
           </h1>
-          <p className="text-lg md:text-xl text-[#011] leading-relaxed font-bold mb-12 max-w-4xl mx-auto">
+          <p className="text-base md:text-lg text-[#011] leading-relaxed font-bold mb-10 max-w-3xl mx-auto">
             Expert image editing tutorials, retouching tips and e-commerce photography guides from our team of 80+ professional editors.
           </p>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-[2px] transition-all ${
+                className={`px-5 py-2 rounded-xl text-[9px] font-black uppercase tracking-[2px] transition-all ${
                   activeCategory === cat 
-                    ? "bg-[#EE3A39] text-white shadow-lg shadow-[#EE3A39]/20 scale-105" 
+                    ? "bg-[#EE3A39] text-white shadow-md shadow-[#EE3A39]/20 scale-105" 
                     : "bg-white text-[#626262] border border-gray-100 hover:border-[#EE3A39]/30 hover:text-[#EE3A39]"
                 }`}
               >
@@ -63,14 +63,14 @@ export default function BlogClient({ initialPosts }) {
           </div>
           
           {/* Search Bar */}
-          <div className="max-w-xl mx-auto relative group">
-            <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#EE3A39] transition-colors" size={20} />
+          <div className="max-w-md mx-auto relative group">
+            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#EE3A39] transition-colors" size={16} />
             <input 
               type="text" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search articles..." 
-              className="w-full bg-white border border-gray-200 rounded-full py-4 pl-14 pr-6 text-[#011] focus:outline-none focus:border-[#EE3A39] focus:ring-4 focus:ring-[#EE3A39]/10 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.03)] text-sm font-medium"
+              className="w-full bg-white border border-gray-200 rounded-full py-3.5 pl-12 pr-6 text-[#011] focus:outline-none focus:border-[#EE3A39] focus:ring-4 focus:ring-[#EE3A39]/10 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.03)] text-xs font-bold"
             />
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function BlogClient({ initialPosts }) {
                   <p className="text-[#626262]">Try adjusting your search or category filter.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {filteredPosts.map((post, idx) => (
                     <Link href={`/blog/${post.slug}`} key={idx} className="group bg-white rounded-[2.5rem] overflow-hidden hover:shadow-[0_30px_60px_rgba(238,58,57,0.1)] hover:-translate-y-2 border border-gray-100 transition-all duration-500 flex flex-col h-full shadow-sm relative">
                       
@@ -112,10 +112,10 @@ export default function BlogClient({ initialPosts }) {
                           <span className="flex items-center gap-1.5 text-[10px] font-black text-gray-400 uppercase tracking-widest"><Clock size={12} className="text-[#EE3A39]"/> {post.readTime}</span>
                         </div>
 
-                        <h2 className="text-lg font-black text-[#011] mb-3 group-hover:text-[#EE3A39] transition-colors leading-tight line-clamp-2 uppercase">
+                        <h2 className="text-xl font-black text-[#011] mb-3 group-hover:text-[#EE3A39] transition-colors leading-tight line-clamp-3 uppercase">
                           {post.title}
                         </h2>
-                        <p className="text-[#626262] mb-8 line-clamp-3 text-xs leading-relaxed flex-1 font-bold">
+                        <p className="text-[#626262] mb-8 line-clamp-3 text-xs leading-relaxed flex-1 font-medium">
                           {post.excerpt}
                         </p>
                         
