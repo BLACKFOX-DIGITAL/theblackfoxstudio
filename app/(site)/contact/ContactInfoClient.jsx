@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { ContactForm } from "@/components/About/Contact";
 import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/Accordion';
 
 export default function ContactInfoClient() {
   const contactCards = [
@@ -91,13 +92,13 @@ export default function ContactInfoClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full items-start">
 
             {/* Left: Contact Info & FAQs */}
-            <div className="lg:col-span-4 flex flex-col gap-6 w-full">
+            <div className="lg:col-span-4 flex flex-col gap-6 w-full sticky top-32">
               {contactCards.map((card, i) => {
                 const Icon = card.icon;
                 return (
                   <div
                     key={i}
-                    className="bg-white rounded-[2.5rem] p-8 border border-white shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden flex flex-col w-full"
+                    className="bg-white rounded-[2.5rem] p-8 border border-gray-50 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden flex flex-col w-full"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#EE3A39]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none" />
 
@@ -122,19 +123,25 @@ export default function ContactInfoClient() {
                 );
               })}
 
-              {/* FAQs - Nice to have #8 */}
-              <div className="space-y-4">
-                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6 pl-4">Common Questions</h4>
-                {[
-                  { q: "How quickly do you reply?", a: "We reply within 2 hours, 24 hours a day, 7 days a week." },
-                  { q: "What file formats do you accept?", a: "We accept JPG, PNG, PSD, TIFF, RAW and most common formats. Files via FTP, Dropbox or WeTransfer." },
-                  { q: "Do you offer bulk pricing?", a: "Yes! Orders of 1000+ images receive 20% discount automatically." }
-                ].map((faq, i) => (
-                  <div key={i} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
-                    <p className="text-xs font-black uppercase tracking-tight text-[#EE3A39] mb-2">{faq.q}</p>
-                    <p className="text-sm text-[#626262] font-medium leading-relaxed">{faq.a}</p>
-                  </div>
-                ))}
+              {/* FAQs - Converted to Accordion for vertical space saving */}
+              <div className="bg-white rounded-[2.5rem] p-8 border border-gray-50 shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6">Common Questions</h4>
+                <Accordion type="single" collapsible className="w-full space-y-3">
+                  {[
+                    { q: "How quickly do you reply?", a: "We reply within 2 hours, 24 hours a day, 7 days a week." },
+                    { q: "What file formats do you accept?", a: "We accept JPG, PNG, PSD, TIFF, RAW and most common formats. Files via FTP, Dropbox or WeTransfer." },
+                    { q: "Do you offer bulk pricing?", a: "Yes! Orders of 1000+ images receive 20% discount automatically." }
+                  ].map((faq, i) => (
+                    <AccordionItem key={i} value={`faq-${i}`} className="border-none bg-[#F8F8F8] rounded-2xl px-5">
+                      <AccordionTrigger className="text-left text-xs font-black text-[#011] hover:text-[#EE3A39] py-4 uppercase tracking-tight">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-[#626262] text-sm font-medium pb-4 border-t border-gray-200 pt-3">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
 
               {/* Quick CTA Card */}
@@ -156,12 +163,12 @@ export default function ContactInfoClient() {
             {/* Right: Form + File Transfer */}
             <div className="lg:col-span-8 flex flex-col gap-10 w-full">
 
-              {/* Form */}
-              <div className="bg-white/80 backdrop-blur-md rounded-[3rem] p-8 md:p-14 border border-white shadow-2xl relative overflow-hidden w-full">
+              {/* Form Integrated with File Transfer for Cohesion */}
+              <div className="bg-white/80 backdrop-blur-md rounded-[3rem] border border-white shadow-2xl relative overflow-hidden w-full flex flex-col">
                 <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#EE3A39] to-orange-500" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
 
-                <div className="relative z-10">
+                <div className="relative z-10 p-8 md:p-14 pb-10">
                   <h2 className="text-3xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">
                     Submit Requirement
                   </h2>
@@ -176,25 +183,25 @@ export default function ContactInfoClient() {
                     />
                   </div>
                 </div>
-              </div>
 
-              {/* File Transfer Info - Important #6 */}
-              <div className="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm text-center">
-                <h4 className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 mb-8">We accept files via:</h4>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                  {[
-                    { name: "FTP", icon: "RiCloudFill" },
-                    { name: "Dropbox", icon: "RiDropboxFill" },
-                    { name: "WeTransfer", icon: "RiSendPlaneFill" },
-                    { name: "Google Drive", icon: "RiGoogleFill" }
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default group">
-                      <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-[#EE3A39]/10 group-hover:text-[#EE3A39] transition-all">
-                        <Zap size={20} />
+                {/* File Transfer Info - Integrated as Form Footer */}
+                <div className="bg-[#F8F8F8]/80 border-t border-gray-100 px-8 py-10 md:px-14 flex flex-col md:flex-row items-center justify-between gap-8 mt-auto relative z-10">
+                  <h4 className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 shrink-0">We accept files via:</h4>
+                  <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-10 w-full">
+                    {[
+                      { name: "FTP", icon: "RiCloudFill" },
+                      { name: "Dropbox", icon: "RiDropboxFill" },
+                      { name: "WeTransfer", icon: "RiSendPlaneFill" },
+                      { name: "Google Drive", icon: "RiGoogleFill" }
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 grayscale border border-transparent opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default group">
+                        <div className="text-gray-400 group-hover:text-[#EE3A39] transition-all">
+                          <Zap size={16} />
+                        </div>
+                        <span className="text-[10px] font-black uppercase tracking-widest">{item.name}</span>
                       </div>
-                      <span className="text-[10px] font-black uppercase tracking-widest">{item.name}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
 
