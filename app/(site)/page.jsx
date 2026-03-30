@@ -4,6 +4,7 @@ import { cn } from "@/lib";
 import { services } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
+import TestimonialSlider from "@/components/ui/TestimonialSlider";
 import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
 
 export const metadata = {
@@ -43,6 +44,24 @@ export default function Home() {
     { title: "Turnaround That Fits Your Schedule", desc: "Standard, express, and bulk options available to perfectly align with your production calendar.", icon: Zap },
     { title: "Transparent Pricing", desc: "No surprises and no hidden fees—just straightforward, per-image rates you can plan around.", icon: Target },
     { title: "24/7 Global Support", desc: "Round-the-clock access to dedicated support managers ready to assist in every time zone.", icon: MessageSquare },
+  ];
+
+  const homepageTestimonials = [
+    { stars: 5, text: "Blackfox Digital transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", author: "James R.", role: "E-Commerce Manager", loc: "United States" },
+    { stars: 5, text: "We process 2,000+ fashion images monthly with Blackfox. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
+    { stars: 5, text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", author: "Lars K.", role: "Brand Manager", loc: "Germany" },
+    { stars: 5, text: "We outsource all our background removal to Blackfox Digital. 500+ images weekly, always delivered on time with zero errors.", author: "Michael T.", role: "Operations Director", loc: "Australia" },
+    { stars: 5, text: "The clipping path quality is outstanding. Sharp edges, clean paths — exactly what our catalog needs for print and web.", author: "Anna K.", role: "Art Director", loc: "Netherlands" },
+    { stars: 5, text: "Switched from our previous editing team to Blackfox Digital and the difference in quality was immediately noticeable.", author: "David L.", role: "E-Commerce Manager", loc: "Canada" },
+    { stars: 5, text: "Their beauty retouching is world-class. Our model images look editorial-quality every single time.", author: "Isabella F.", role: "Fashion Photographer", loc: "Italy" },
+    { stars: 5, text: "Fast, affordable and incredibly consistent. Blackfox Digital handles our entire Shopify product catalog monthly.", author: "Thomas B.", role: "Store Owner", loc: "Germany" },
+    { stars: 5, text: "The ghost mannequin results are flawless. Our fashion brand has never looked more professional online.", author: "Emma S.", role: "Brand Manager", loc: "France" },
+    { stars: 5, text: "We send 1,000+ images per week and Blackfox never misses a deadline. Exceptional service and great communication.", author: "Ahmed R.", role: "Creative Director", loc: "UAE" },
+    { stars: 5, text: "Our jewelry photography has transformed since working with Blackfox Digital. Every gem looks stunning and precise.", author: "Priya M.", role: "Jewelry Brand Owner", loc: "United States" },
+    { stars: 5, text: "Best image editing partner we have worked with in 8 years. Quality is consistent, pricing is fair and delivery is fast.", author: "Kevin O.", role: "Photo Studio Owner", loc: "United Kingdom" },
+    { stars: 5, text: "Their real estate photo editing is exceptional. HDR blending, sky replacement — all perfect. Highly recommended.", author: "Marcus H.", role: "Real Estate Photographer", loc: "United States" },
+    { stars: 5, text: "We process our entire Amazon FBA catalog with Blackfox. White background compliance is always perfect first time.", author: "Sarah W.", role: "Amazon Seller", loc: "Australia" },
+    { stars: 5, text: "Blackfox Digital understands our brand standards perfectly. Every image is consistent across our entire product range.", author: "Chen L.", role: "E-Commerce Director", loc: "Singapore" }
   ];
 
   return (
@@ -356,52 +375,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5.5. TESTIMONIALS */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
+      {/* 5.5. TESTIMONIALS SLIDER SECTION */}
+      <section className="py-24 bg-white overflow-hidden relative border-t border-gray-100">
+        <div className="absolute left-[-20%] bottom-[-20%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-16 md:mb-24 relative">
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { 
-                stars: 5, 
-                text: "Blackfox Digital transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", 
-                author: "James R.", 
-                role: "E-Commerce Manager", 
-                loc: "United States" 
-              },
-              { 
-                stars: 5, 
-                text: "We process 2,000+ fashion images monthly with Blackfox. Their ghost mannequin work is the best we have found globally.", 
-                author: "Sophie M.", 
-                role: "Creative Director", 
-                loc: "United Kingdom" 
-              },
-              { 
-                stars: 5, 
-                text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", 
-                author: "Lars K.", 
-                role: "Brand Manager", 
-                loc: "Germany" 
-              }
-            ].map((t, i) => (
-              <div key={i} className="bg-[#F8F8F8] p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                <div className="flex text-orange-400 mb-6">
-                  {Array(t.stars).fill(0).map((_, s) => (
-                    <span key={s} className="text-lg">★</span>
-                  ))}
-                </div>
-                <p className="text-[#011] font-medium leading-relaxed italic mb-8 italic">"{t.text}"</p>
-                <div>
-                  <div className="font-bold text-[#011]">— {t.author}</div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-[#EE3A39] mt-1">{t.role}</div>
-                  <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t.loc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialSlider testimonials={homepageTestimonials} />
         </div>
       </section>
 
