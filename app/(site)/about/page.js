@@ -157,12 +157,12 @@ export default function AboutPage() {
             <div className="lg:w-1/2 relative">
                <div className="absolute inset-0 bg-[#EE3A39]/5 blur-[100px] rounded-full"></div>
                <div className="relative border-2 border-[#011]/5 rounded-[40px] p-8 bg-gray-50/50 backdrop-blur-sm shadow-2xl">
-                 <div className="aspect-square w-full rounded-2xl bg-[#011] flex items-center justify-center p-12 overflow-hidden group">
-                    <Globe2 className="w-full h-full text-[#EE3A39] opacity-20 absolute scale-[2] rotate-12" />
-                    <div className="z-10 text-center">
+                 <div className="relative aspect-square w-full rounded-[2rem] bg-[#011] flex items-center justify-center p-12 overflow-hidden group shadow-inner">
+                    <Globe className="w-[150%] h-[150%] text-white opacity-[0.03] absolute scale-125 transition-transform duration-1000 group-hover:scale-150 group-hover:rotate-12" strokeWidth={0.5} />
+                    <div className="z-10 text-center relative">
                        <div className="text-6xl font-black text-white mb-2">24/7/365</div>
                        <div className="text-[#EE3A39] font-black uppercase tracking-[5px] text-sm">Always Online</div>
-                       <div className="mt-8 text-gray-400 text-xs font-medium max-w-[200px] mx-auto opacity-60">Seamless infrastructure for the global creative economy.</div>
+                       <div className="mt-8 text-gray-400 text-xs font-medium max-w-[200px] mx-auto opacity-60 leading-relaxed">Seamless infrastructure for the global creative economy.</div>
                     </div>
                  </div>
                </div>
