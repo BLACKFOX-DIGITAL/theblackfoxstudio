@@ -96,11 +96,11 @@ const Form = () => {
       {/* 2. Services Selection */}
       <div className="pt-6 border-t border-gray-100">
         <label className={labelStyle}>Required Services (Select all that apply)</label>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+        <div className="flex flex-wrap gap-2.5 mt-4">
           {servicesList.map((service, index) => (
-            <label key={index} className="cursor-pointer group flex">
+            <label key={index} className="cursor-pointer group">
               <input type="checkbox" value={service} {...register("services")} className="peer sr-only" />
-              <div className="w-full h-full flex items-center justify-center px-3 py-3.5 rounded-xl border border-gray-100 text-[9px] sm:text-[10px] uppercase tracking-[1px] font-black text-gray-400 text-center peer-checked:bg-[#EE3A39] peer-checked:text-white peer-checked:border-[#EE3A39] peer-checked:shadow-lg peer-checked:shadow-[#EE3A39]/20 hover:border-[#EE3A39]/30 transition-all select-none bg-white leading-tight">
+              <div className="px-4 py-2 rounded-full border border-gray-100 text-[9px] uppercase tracking-[1px] font-black text-gray-500 peer-checked:bg-[#EE3A39] peer-checked:text-white peer-checked:border-[#EE3A39] peer-checked:shadow-md peer-checked:shadow-[#EE3A39]/20 hover:border-[#EE3A39]/40 transition-all select-none bg-white whitespace-nowrap">
                 {service}
               </div>
             </label>
