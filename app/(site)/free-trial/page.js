@@ -67,7 +67,7 @@ export default function TakeFreeTrialPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Copy & Trust Signals */}
-          <div className="lg:col-span-5 flex flex-col pt-8">
+          <div className="lg:col-span-5 flex flex-col lg:sticky lg:top-32">
             <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold w-max mb-6 uppercase tracking-widest shadow-sm">
               Free Trial
             </div>
@@ -130,15 +130,6 @@ export default function TakeFreeTrialPage() {
 
           {/* Right Column: Embedded Form */}
           <div className="lg:col-span-7 w-full z-20">
-            {/* Stats Row above form */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {stats.map((s, i) => (
-                <div key={i} className="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm text-center">
-                  <p className="text-sm font-black text-[#EE3A39] mb-1 leading-none uppercase">{s.label}</p>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{s.sub}</p>
-                </div>
-              ))}
-            </div>
 
             <div className="bg-white rounded-[3rem] p-8 sm:p-12 border border-gray-100 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#EE3A39] to-orange-500" />
