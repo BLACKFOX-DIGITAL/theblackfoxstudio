@@ -16,7 +16,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white font-sans text-[#011] overflow-x-hidden">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-[#F8F8F8] border-b border-gray-200">
+      <section className="relative pt-24 pb-16 overflow-hidden bg-[#F8F8F8] border-b border-gray-200">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none"></div>
         
@@ -27,13 +27,13 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-4xl mx-auto text-center"
           >
-            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
+            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px] shadow-sm">
               Our Story
             </div>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+            <h1 className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
               The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital</span> <br className="hidden md:block"/> Narrative Since 2016
             </h1>
-            <p className="text-lg md:text-xl text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
               Professional image post-production services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect editing. 24-hour delivery.
             </p>
           </motion.div>
@@ -41,7 +41,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. THE STORY */}
-      <section className="py-20 bg-white relative">
+      <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -64,8 +64,8 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="space-y-6">
-              <div className="inline-block px-4 py-1 bg-gray-100 text-gray-500 rounded-full text-[10px] font-black uppercase tracking-[3px] mb-8 uppercase">About Blackfox Digital</div>
-              <div className="text-[#626262] text-lg leading-relaxed flex flex-col gap-6">
+              <div className="inline-block px-4 py-1.5 bg-gray-100 text-[#011] rounded-full text-[10px] font-black uppercase tracking-[3px] mb-6">About Blackfox</div>
+              <div className="text-[#626262] text-sm font-medium leading-relaxed flex flex-col gap-5">
                 <p className="font-bold text-[#011] text-xl mb-2">From a 5-person startup to 80+ specialist editors since 2016</p>
                 <p>
                   Blackfox Digital began its journey in 2016 as a boutique image post-production company with a team of 5 specialist retouching experts. Our mission was clear: deliver pixel-perfect <Link href="/services" className="text-[#EE3A39] hover:underline">image editing services</Link> to e-commerce brands and enterprises worldwide — with zero compromise on quality.
@@ -92,11 +92,11 @@ export default function AboutPage() {
       </section>
 
       {/* 3. WHY US / OUR PROMISE */}
-      <section className="py-32 bg-[#F8F8F8] border-y border-gray-200">
+      <section className="py-24 bg-[#F8F8F8] border-y border-gray-200">
         <div className="container mx-auto px-4">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#011] mb-6">Why Global Brands Choose Our Image Editing Services</h2>
-            <p className="text-xl text-[#626262]">We have structured our entire workflow to serve as seamless infrastructure for your business.</p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-[#011] mb-5">Why Global Brands Choose Us</h2>
+            <p className="text-base font-bold text-[#626262]">We have structured our entire workflow to serve as seamless infrastructure for your business.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,12 +131,12 @@ export default function AboutPage() {
       </section>
 
       {/* 4. GLOBAL PRESENCE */}
-      <section className="py-32 bg-white overflow-hidden">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/2">
-              <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">Global Footprint</div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#011] tracking-tight mb-8">Professional Photo Editing Services for USA, Europe & Beyond</h2>
+              <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">Global Footprint</div>
+              <h2 className="text-3xl md:text-4xl font-black text-[#011] tracking-tighter uppercase mb-8">Professional Photo Editing Services for USA, Europe & Beyond</h2>
               <div className="grid grid-cols-2 gap-8">
                 {[
                   { label: "Founded", val: "2016" },
@@ -172,12 +172,12 @@ export default function AboutPage() {
       </section>
 
       {/* 5. OUR TEAM SECTION */}
-      <section className="py-32 bg-white">
+      <section className="py-24 bg-[#F8F8F8] border-y border-gray-100">
         <div className="container mx-auto px-4">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">The Experts</div>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#011] mb-6">Meet Our Expert Image Editing Team</h2>
-            <p className="text-xl text-[#626262]">Driven by precision, powered by experience. Meet the masters behind your image transformations.</p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">The Experts</div>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-[#011] mb-5">Meet Our Expert Team</h2>
+            <p className="text-base font-bold text-[#626262]">Driven by precision, powered by experience. Meet the masters behind your image transformations.</p>
           </motion.div>
 
           <TeamGrid fadeIn={fadeIn} />
@@ -185,12 +185,12 @@ export default function AboutPage() {
       </section>
 
       {/* 7. CONTACT / REACH OUT */}
-      <section className="py-32 bg-[#F8F8F8] border-t border-gray-200 relative overflow-hidden">
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">Get In Touch</div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#011] tracking-tight mb-4">Our Studio: Dhaka, Bangladesh</h2>
+          <div className="text-center mb-12">
+            <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">Get In Touch</div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-[#011] mb-4">Our Studio: Dhaka, Bangladesh</h2>
           </div>
 
           <div className="max-w-xl mx-auto">
@@ -213,20 +213,20 @@ export default function AboutPage() {
       <section className="py-24 bg-[#011] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Ready to Work With Us?</h2>
-          <p className="text-xl text-gray-400 mb-12 font-medium max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mb-5">Ready to Work With Us?</h2>
+          <p className="text-base font-bold text-gray-400 mb-10 max-w-2xl mx-auto">
             Start with 10 free images — no credit card needed. Experience the boutique quality that global brands trust.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
-              href="/take-free-trial" 
-              className="px-12 py-5 bg-[#C41E3A] text-white font-black rounded-2xl shadow-xl shadow-[#C41E3A]/20 hover:bg-[#a31930] hover:-translate-y-1 transition-all duration-300 tracking-[3px] uppercase text-sm"
+              href="/free-trial" 
+              className="px-12 py-4 bg-[#EE3A39] text-white font-black rounded-2xl shadow-xl shadow-[#EE3A39]/20 hover:bg-black hover:-translate-y-1 transition-all duration-300 tracking-[3px] uppercase text-[10px]"
             >
               Start Free Trial
             </Link>
             <Link 
               href="/contact" 
-              className="px-12 py-5 border-2 border-[#C41E3A] text-[#C41E3A] font-black rounded-2xl hover:bg-[#C41E3A] hover:text-white transition-all duration-300 tracking-[3px] uppercase text-sm"
+              className="px-12 py-4 border border-[#EE3A39]/50 text-[#EE3A39] font-black rounded-2xl hover:bg-[#EE3A39] hover:text-white transition-all duration-300 tracking-[3px] uppercase text-[10px]"
             >
               Get a Quote
             </Link>
