@@ -185,9 +185,9 @@ export default function ContactInfoClient() {
                 </div>
 
                 {/* File Transfer Info - Integrated as Form Footer */}
-                <div className="bg-[#F8F8F8]/80 border-t border-gray-100 px-8 py-10 md:px-14 flex flex-col md:flex-row items-center justify-between gap-8 mt-auto relative z-10">
-                  <h4 className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 shrink-0">We accept files via:</h4>
-                  <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-10 w-full">
+                <div className="bg-[#F8F8F8]/80 border-t border-gray-100 px-6 py-8 md:py-10 md:px-12 flex flex-col xl:flex-row items-center justify-between gap-6 mt-auto relative z-10">
+                  <h4 className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 shrink-0 text-center xl:text-left mb-2 xl:mb-0">We accept files via:</h4>
+                  <div className="flex flex-wrap items-center justify-center xl:justify-end gap-x-8 gap-y-4 md:gap-x-12 w-full">
                     {[
                       { name: "FTP", icon: "RiCloudFill" },
                       { name: "Dropbox", icon: "RiDropboxFill" },
