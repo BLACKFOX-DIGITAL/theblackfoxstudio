@@ -167,7 +167,7 @@ const Gallery = ({ data = [] }) => {
           </div>
         ) : (
           <motion.div
-            className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6"
+            className="columns-1 md:columns-2 lg:columns-3 gap-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -186,7 +186,7 @@ const Gallery = ({ data = [] }) => {
                     animate="visible"
                     exit="exit"
                     onClick={() => setSelectedImage(ele)}
-                    className="relative w-full break-inside-avoid overflow-hidden rounded-[2.5rem] bg-[#F8F8F8] shadow-sm hover:shadow-2xl border border-gray-100 group cursor-zoom-in transition-all duration-500 mb-6"
+                    className="relative w-full break-inside-avoid overflow-hidden rounded-[2rem] bg-[#F8F8F8] shadow-sm hover:shadow-2xl border border-gray-100 group cursor-zoom-in transition-all duration-500 mb-8"
                   >
                     {/* Crimson Badge */}
                     <div className="absolute top-5 left-5 z-20 bg-[#EE3A39] px-3 py-1.5 rounded-full text-white text-[9px] font-black uppercase tracking-[2px] shadow-lg pointer-events-none">
