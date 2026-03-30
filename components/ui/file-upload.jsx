@@ -75,7 +75,7 @@ export const FileUpload = ({ onChange }) => {
       <motion.div
         onClick={handleClick}
         whileHover="animate"
-        className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
+        className="p-4 md:p-6 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
       >
         <input
           ref={fileInputRef}
@@ -86,13 +86,54 @@ export const FileUpload = ({ onChange }) => {
         />
 
         <div className="flex flex-col items-center justify-center">
-          <p className="relative z-20 font-sans font-bold text-[#011] text-base group-hover/file:text-[#EE3A39] transition-colors">
-            Upload files
-          </p>
-          <p className="relative z-20 font-sans font-normal text-[#626262] text-sm mt-2 text-center max-w-[200px]">
-            Drag or drop your files here or click to browse
-          </p>
-          <div className="relative w-full mt-10 max-w-xl mx-auto">
+          
+          <div className="relative w-full max-w-xl mx-auto flex flex-col items-center justify-center z-40">
+            {!files.length && (
+              <motion.div
+                layoutId="file-upload"
+                variants={mainVariant}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                className={cn(
+                  "relative group-hover/file:shadow-sm z-40 bg-white border border-dashed border-gray-300 group-hover/file:border-[#EE3A39]/50 transition-colors flex items-center justify-center w-14 h-14 mx-auto rounded-2xl mb-4",
+                  "shadow-sm"
+                )}
+              >
+                {isDragActive ? (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-[#EE3A39] flex flex-col items-center justify-center"
+                  >
+                    <RiUploadLine className="h-6 w-6 text-[#EE3A39]" />
+                  </motion.p>
+                ) : (
+                  <RiUploadLine className="h-6 w-6 text-[#626262] group-hover/file:text-[#EE3A39] transition-colors" />
+                )}
+              </motion.div>
+            )}
+
+            {!files.length && (
+              <motion.div
+                variants={secondaryVariant}
+                className="absolute top-0 opacity-0 border border-dashed border-[#EE3A39] z-30 bg-transparent flex items-center justify-center w-14 h-14 mx-auto rounded-2xl pointer-events-none mb-4"
+              ></motion.div>
+            )}
+            
+            {!files.length && (
+              <>
+                <p className="relative z-20 font-black tracking-[2px] uppercase text-[#011] text-xs group-hover/file:text-[#EE3A39] transition-colors mb-2">
+                  Upload files
+                </p>
+                <p className="relative z-20 font-medium tracking-widest uppercase text-[#626262] text-[9px] text-center max-w-[250px]">
+                  Drag & Drop or click to browse
+                </p>
+              </>
+            )}
+
             {files.length > 0 &&
               files.map((file, idx) => (
                 <motion.div
@@ -144,40 +185,6 @@ export const FileUpload = ({ onChange }) => {
                   </div>
                 </motion.div>
               ))}
-            {!files.length && (
-              <motion.div
-                layoutId="file-upload"
-                variants={mainVariant}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
-                className={cn(
-                  "relative group-hover/file:shadow-sm z-40 bg-white border border-dashed border-gray-300 group-hover/file:border-[#EE3A39]/50 transition-colors flex items-center justify-center p-4 mt-6 w-16 h-16 mx-auto rounded-2xl",
-                  "shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-                )}
-              >
-                {isDragActive ? (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-[#EE3A39] flex flex-col items-center justify-center"
-                  >
-                    <RiUploadLine className="h-6 w-6 text-[#EE3A39]" />
-                  </motion.p>
-                ) : (
-                  <RiUploadLine className="h-6 w-6 text-[#626262] group-hover/file:text-[#EE3A39] transition-colors" />
-                )}
-              </motion.div>
-            )}
-
-            {!files.length && (
-              <motion.div
-                variants={secondaryVariant}
-                className="absolute opacity-0 border border-dashed border-[#EE3A39] inset-0 z-30 bg-transparent flex items-center justify-center mt-6 w-16 h-16 mx-auto rounded-2xl pointer-events-none"
-              ></motion.div>
-            )}
           </div>
         </div>
       </motion.div>
