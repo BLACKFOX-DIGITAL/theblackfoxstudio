@@ -54,13 +54,13 @@ const Gallery = ({ data = [] }) => {
     <div className="min-h-screen bg-white pb-32">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-24 border-b border-gray-100 overflow-hidden bg-[#F8F8F8]">
+      <section className="relative pt-24 pb-16 border-b border-gray-100 overflow-hidden bg-[#F8F8F8]">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[40%] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl">
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
           {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-8">
+          <nav className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[2px] text-gray-400 mb-6">
             <Link href="/" className="hover:text-[#EE3A39] transition-colors font-black">Home</Link>
             <ArrowRight size={10} className="text-gray-300" />
             <span className="text-[#EE3A39] font-black">Portfolio</span>
@@ -69,7 +69,7 @@ const Gallery = ({ data = [] }) => {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
+            className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px] shadow-sm"
           >
             Our Work
           </motion.div>
@@ -77,7 +77,7 @@ const Gallery = ({ data = [] }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase"
+            className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase"
           >
             Image Editing Portfolio — <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Before & After Results</span>
           </motion.h1>
@@ -85,16 +85,16 @@ const Gallery = ({ data = [] }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-[#011] leading-relaxed font-bold max-w-4xl mx-auto mb-6"
+            className="text-base md:text-lg text-[#011] leading-relaxed font-bold max-w-3xl mx-auto mb-4"
           >
             Browse our work across all 20 image editing services. 500,000+ images edited since 2016. Filter by service category to see exactly what we can do for you.
           </motion.p>
-          <p className="text-[#626262] text-sm font-medium max-w-2xl mx-auto mb-12">
+          <p className="text-[#626262] text-xs font-medium max-w-2xl mx-auto mb-10">
             Real before and after results from our professional image editing services.
           </p>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto py-8 border-y border-gray-200">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto py-6 border-y border-gray-200">
             {[
               { val: "500,000+", label: "Images Edited" },
               { val: "20", label: "Service Categories" },
@@ -111,7 +111,7 @@ const Gallery = ({ data = [] }) => {
       </section>
 
       {/* 2. FILTER TABS */}
-      <section className="sticky top-[108px] z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100 shadow-sm py-5 mb-12 group/filter">
+      <section className="sticky top-[108px] z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100 shadow-sm py-4 mb-10 group/filter">
         <div className="container mx-auto px-4 relative">
           
           {showLeftArrow && (
@@ -146,9 +146,9 @@ const Gallery = ({ data = [] }) => {
                 key={`filter-${ind}`}
                 onClick={() => setCategory(ele)}
                 className={cn(
-                  "px-6 py-2.5 rounded-2xl text-[10px] uppercase tracking-[2px] font-black transition-all duration-500 whitespace-nowrap relative z-10",
+                  "px-5 py-2 rounded-xl text-[9px] uppercase tracking-[2px] font-black transition-all duration-500 whitespace-nowrap relative z-10",
                   category === ele 
-                    ? "bg-[#011] text-white shadow-xl shadow-[#011]/20 scale-105" 
+                    ? "bg-[#011] text-white shadow-md shadow-[#011]/20 scale-105" 
                     : "bg-[#F8F8F8] text-[#011]/40 border border-transparent hover:border-[#EE3A39]/30 hover:text-[#EE3A39] hover:bg-white"
                 )}
               >
@@ -167,7 +167,7 @@ const Gallery = ({ data = [] }) => {
           </div>
         ) : (
           <motion.div
-            className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
+            className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
