@@ -4,8 +4,10 @@ import { ArrowRight, Lock, UploadCloud, UserCircle2, Info, CheckCircle2, ShieldC
 import Image from "next/image";
 
 export const metadata = {
-  title: "New Order | Blackfox Studio",
-  description: "Start a new retouching order.",
+  title: "Place an Order — Image Retouching | BLACKFOX DIGITAL",
+  description: "Start a new image retouching order with BLACKFOX DIGITAL. Background removal, clipping path, ghost mannequin, beauty retouch and more. 24-hour delivery.",
+  alternates: { canonical: "https://theblackfoxstudio.com/order" },
+  robots: { index: false, follow: false },
 };
 
 export default function OrderPage({ searchParams }) {

@@ -96,32 +96,12 @@ const Form = () => {
       {/* 2. Services Selection */}
       <div className="pt-6 border-t border-gray-100">
         <label className={labelStyle}>Required Services (Select all that apply)</label>
-        <div className="flex flex-wrap gap-2.5 mt-4">
+        <div className="flex flex-wrap justify-center gap-2.5 mt-4">
           {servicesList.map((service, index) => (
             <label key={index} className="cursor-pointer group">
               <input type="checkbox" value={service} {...register("services")} className="peer sr-only" />
               <div className="px-4 py-2 rounded-full border border-gray-100 text-[9px] uppercase tracking-[1px] font-black text-gray-500 peer-checked:bg-[#EE3A39] peer-checked:text-white peer-checked:border-[#EE3A39] peer-checked:shadow-md peer-checked:shadow-[#EE3A39]/20 hover:border-[#EE3A39]/40 transition-all select-none bg-white whitespace-nowrap">
                 {service}
-              </div>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* 3. Turnaround - Critical Fix #4 */}
-      <div className="pt-6 border-t border-gray-100">
-        <label className={labelStyle}>Turnaround Time</label>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
-          {[
-            { label: "Standard 24hrs", value: "24h", extra: "Default" },
-            { label: "Rush 12hrs", value: "12h", extra: "+40%" },
-            { label: "Emergency 6hrs", value: "6h", extra: "+60%" }
-          ].map((t, i) => (
-            <label key={i} className="cursor-pointer group">
-              <input type="radio" value={t.value} defaultChecked={t.value === "24h"} {...register("turnaround")} className="peer sr-only" />
-              <div className="p-4 rounded-2xl border border-gray-100 bg-white peer-checked:border-[#EE3A39] peer-checked:bg-[#EE3A39]/5 transition-all text-center">
-                <p className="text-xs font-black text-[#011] group-hover:text-[#EE3A39] transition-colors">{t.label}</p>
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-1">{t.extra}</p>
               </div>
             </label>
           ))}

@@ -8,8 +8,9 @@ import TestimonialSlider from "@/components/ui/TestimonialSlider";
 import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
 
 export const metadata = {
-  title: "Professional Image Post-Production Services | Blackfox Digital",
-  description: "Blackfox Digital offers professional image post-production services including background removal, clipping path, ghost mannequin, beauty retouching and more. Trusted by 500+ global brands. 24-hour delivery. Start your free trial today.",
+  title: "Outsource Photo Editing & Retouching Services | BLACKFOX DIGITAL",
+  description: "Outsource photo editing to BLACKFOX DIGITAL — 80+ professional retouchers delivering background removal, clipping path, ghost mannequin, beauty retouch and 20+ services. From $0.29/image. 24-hour delivery. Trusted by 500+ global brands. Free trial.",
+  alternates: { canonical: "https://theblackfoxstudio.com/" },
 };
 
 export default function Home() {
@@ -47,26 +48,45 @@ export default function Home() {
   ];
 
   const homepageTestimonials = [
-    { stars: 5, text: "Blackfox Digital transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", author: "James R.", role: "E-Commerce Manager", loc: "United States" },
-    { stars: 5, text: "We process 2,000+ fashion images monthly with Blackfox. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
+    { stars: 5, text: "BLACKFOX DIGITAL transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", author: "James R.", role: "E-Commerce Manager", loc: "United States" },
+    { stars: 5, text: "We process 2,000+ fashion images monthly with BLACKFOX DIGITAL. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
     { stars: 5, text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", author: "Lars K.", role: "Brand Manager", loc: "Germany" },
-    { stars: 5, text: "We outsource all our background removal to Blackfox Digital. 500+ images weekly, always delivered on time with zero errors.", author: "Michael T.", role: "Operations Director", loc: "Australia" },
+    { stars: 5, text: "We outsource all our background removal to BLACKFOX DIGITAL. 500+ images weekly, always delivered on time with zero errors.", author: "Michael T.", role: "Operations Director", loc: "Australia" },
     { stars: 5, text: "The clipping path quality is outstanding. Sharp edges, clean paths — exactly what our catalog needs for print and web.", author: "Anna K.", role: "Art Director", loc: "Netherlands" },
-    { stars: 5, text: "Switched from our previous editing team to Blackfox Digital and the difference in quality was immediately noticeable.", author: "David L.", role: "E-Commerce Manager", loc: "Canada" },
+    { stars: 5, text: "Switched from our previous editing team to BLACKFOX DIGITAL and the difference in quality was immediately noticeable.", author: "David L.", role: "E-Commerce Manager", loc: "Canada" },
     { stars: 5, text: "Their beauty retouching is world-class. Our model images look editorial-quality every single time.", author: "Isabella F.", role: "Fashion Photographer", loc: "Italy" },
-    { stars: 5, text: "Fast, affordable and incredibly consistent. Blackfox Digital handles our entire Shopify product catalog monthly.", author: "Thomas B.", role: "Store Owner", loc: "Germany" },
+    { stars: 5, text: "Fast, affordable and incredibly consistent. BLACKFOX DIGITAL handles our entire Shopify product catalog monthly.", author: "Thomas B.", role: "Store Owner", loc: "Germany" },
     { stars: 5, text: "The ghost mannequin results are flawless. Our fashion brand has never looked more professional online.", author: "Emma S.", role: "Brand Manager", loc: "France" },
-    { stars: 5, text: "We send 1,000+ images per week and Blackfox never misses a deadline. Exceptional service and great communication.", author: "Ahmed R.", role: "Creative Director", loc: "UAE" },
-    { stars: 5, text: "Our jewelry photography has transformed since working with Blackfox Digital. Every gem looks stunning and precise.", author: "Priya M.", role: "Jewelry Brand Owner", loc: "United States" },
+    { stars: 5, text: "We send 1,000+ images per week and BLACKFOX DIGITAL never misses a deadline. Exceptional service and great communication.", author: "Ahmed R.", role: "Creative Director", loc: "UAE" },
+    { stars: 5, text: "Our jewelry photography has transformed since working with BLACKFOX DIGITAL. Every gem looks stunning and precise.", author: "Priya M.", role: "Jewelry Brand Owner", loc: "United States" },
     { stars: 5, text: "Best image editing partner we have worked with in 8 years. Quality is consistent, pricing is fair and delivery is fast.", author: "Kevin O.", role: "Photo Studio Owner", loc: "United Kingdom" },
     { stars: 5, text: "Their real estate photo editing is exceptional. HDR blending, sky replacement — all perfect. Highly recommended.", author: "Marcus H.", role: "Real Estate Photographer", loc: "United States" },
-    { stars: 5, text: "We process our entire Amazon FBA catalog with Blackfox. White background compliance is always perfect first time.", author: "Sarah W.", role: "Amazon Seller", loc: "Australia" },
-    { stars: 5, text: "Blackfox Digital understands our brand standards perfectly. Every image is consistent across our entire product range.", author: "Chen L.", role: "E-Commerce Director", loc: "Singapore" }
+    { stars: 5, text: "We process our entire Amazon FBA catalog with BLACKFOX DIGITAL. White background compliance is always perfect first time.", author: "Sarah W.", role: "Amazon Seller", loc: "Australia" },
+    { stars: 5, text: "BLACKFOX DIGITAL understands our brand standards perfectly. Every image is consistent across our entire product range.", author: "Chen L.", role: "E-Commerce Director", loc: "Singapore" }
   ];
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://theblackfoxstudio.com",
+    "name": "BLACKFOX DIGITAL",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://theblackfoxstudio.com/services?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
 
   return (
     <main className="w-full bg-[#F8F8F8] text-[#011] min-h-screen font-sans overflow-hidden">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+
       {/* 1. EPIC HERO */}
       <Hero />
 
@@ -294,7 +314,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. THE BLACKFOX DIFFERENCE */}
+      {/* 4. THE BLACKFOX DIGITAL DIFFERENCE */}
       <section className="py-24 bg-white text-[#011] overflow-hidden relative border-t border-gray-100">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         
@@ -306,7 +326,7 @@ export default function Home() {
                 Our Guarantee
               </div>
               <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
-                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital</span>
+                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">BLACKFOX DIGITAL</span>
               </h2>
               <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
                 We don't just edit photos; we build backend infrastructures that allow studios, photographers, and e-commerce giants to scale limitlessly.
@@ -448,7 +468,7 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
-            "name": "Blackfox Digital",
+            "name": "BLACKFOX DIGITAL",
             "url": "https://theblackfoxstudio.com",
             "description": "Professional image post-production services including background removal, clipping path, and retouching.",
             "foundingDate": "2016",

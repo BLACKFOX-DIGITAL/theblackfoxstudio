@@ -1,379 +1,309 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { FileText, ShieldCheck, CreditCard, Clock, Scale, Users, AlertTriangle, Mail } from "lucide-react";
-
-export const metadata = {
-  title: "Terms & Conditions – BLACKFOX DIGITAL",
-  description: "Read the Terms and Conditions of BLACKFOX DIGITAL. Understand your rights and obligations when using our image post-production services.",
-  openGraph: {
-    images: ["/logo.png"],
-  },
-};
+import { FileText, ShieldCheck, CreditCard, Clock, Scale, Users, AlertTriangle, Mail, ChevronRight, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Section = ({ id, icon, number, title, children }) => (
-  <section id={id} className="scroll-mt-24">
-    <div className="flex items-start gap-3 mb-5">
-      <div className="w-10 h-10 rounded-xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center shrink-0 mt-0.5">
+  <section id={id} className="scroll-mt-32 mb-16 last:mb-0">
+    <div className="flex items-center gap-4 mb-8">
+      <div className="w-12 h-12 rounded-2xl bg-brandPrimary/10 text-brandPrimary flex items-center justify-center shrink-0 shadow-sm border border-brandPrimary/5">
         {icon}
       </div>
-      <h2 className="text-xl font-extrabold text-[#011] tracking-tight leading-snug">
-        <span className="text-[#EE3A39] mr-2">{number}.</span>{title}
-      </h2>
+      <div className="flex flex-col">
+        <span className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Section {number}</span>
+        <h2 className="text-2xl md:text-3xl font-black text-[#011] tracking-tighter uppercase leading-none">
+          {title}
+        </h2>
+      </div>
     </div>
-    <div className="text-[#626262] text-sm leading-relaxed space-y-3 pl-[52px]">
+    <div className="text-[#626262] text-sm md:text-base leading-relaxed space-y-4 pl-0 md:pl-16 font-medium">
       {children}
     </div>
   </section>
 );
 
 const Bullet = ({ children }) => (
-  <li className="flex items-start gap-2">
-    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#EE3A39] shrink-0 inline-block" />
-    <span>{children}</span>
+  <li className="flex items-start gap-3 group">
+    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brandPrimary shrink-0 shadow-[0_0_8px_rgba(238,58,57,0.4)] group-hover:scale-125 transition-transform" />
+    <span className="group-hover:text-[#011] transition-colors">{children}</span>
   </li>
 );
 
 const SubSection = ({ title, children }) => (
-  <div className="pt-2">
-    <p className="font-extrabold text-[#011] mb-2">{title}</p>
-    {children}
+  <div className="pt-6 border-t border-gray-100/50 mt-6 first:pt-0 first:border-0 first:mt-0">
+    <p className="font-black text-[#011] mb-3 uppercase tracking-tight text-sm">{title}</p>
+    <div className="space-y-4">{children}</div>
   </div>
 );
 
 export default function TermsPage() {
   const lastUpdated = "23 March 2026";
+  const [activeSection, setActiveSection] = useState("");
 
   const toc = [
-    { id: "introduction", label: "1. Introduction & Acceptance" },
-    { id: "changes", label: "2. Changes to Terms" },
-    { id: "services", label: "3. Our Services" },
-    { id: "site-use", label: "4. Use of the Site" },
-    { id: "user-content", label: "5. User-Generated Content" },
-    { id: "rights", label: "6. Rights You Grant Us" },
-    { id: "ip", label: "7. Intellectual Property" },
-    { id: "payments", label: "8. Payments & Refunds" },
-    { id: "turnaround", label: "9. Quotes & Turnaround" },
-    { id: "third-party", label: "10. Third-Party Applications" },
-    { id: "termination", label: "11. Term & Termination" },
-    { id: "warranty", label: "12. Warranty & Disclaimer" },
-    { id: "liability", label: "13. Limitation of Liability" },
-    { id: "indemnification", label: "14. Indemnification" },
-    { id: "governing-law", label: "15. Governing Law" },
-    { id: "general", label: "16. General Provisions" },
-    { id: "contact", label: "17. Contact Us" },
+    { id: "introduction", label: "Acceptance", number: "01" },
+    { id: "changes", label: "Modifications", number: "02" },
+    { id: "services", label: "Our Services", number: "03" },
+    { id: "site-use", label: "Acceptable Use", number: "04" },
+    { id: "user-content", label: "User Content", number: "05" },
+    { id: "rights", label: "Usage Rights", number: "06" },
+    { id: "ip", label: "IP Rights", number: "07" },
+    { id: "payments", label: "Billing & Refunds", number: "08" },
+    { id: "turnaround", label: "Quotes & Speed", number: "09" },
+    { id: "third-party", label: "External Tools", number: "10" },
+    { id: "termination", label: "Term & End", number: "11" },
+    { id: "warranty", label: "Disclaimers", number: "12" },
+    { id: "liability", label: "Liability", number: "13" },
+    { id: "indemnification", label: "Indemnity", number: "14" },
+    { id: "governing-law", label: "Legal Venue", number: "15" },
+    { id: "general", label: "General", number: "16" },
+    { id: "contact", label: "Contact Us", number: "17" },
   ];
 
-  return (
-    <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "-100px 0px -70% 0px" }
+    );
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-gray-200 overflow-hidden bg-white">
-        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/8 blur-[150px] rounded-full pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
-            Legal
-          </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Terms & Conditions
-          </h1>
-          <p className="text-lg text-[#626262] mb-4 font-medium">
-            These Terms and Conditions govern your use of the website and services provided by{" "}
-            <strong className="text-[#011]">BLACKFOX DIGITAL</strong> ("we", "us", or "our"). Please read them carefully before using our services.
-          </p>
-          <p className="text-sm text-gray-400">
-            Last updated: <span className="font-semibold text-[#626262]">{lastUpdated}</span>
-          </p>
+    toc.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 120,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white text-[#011] scroll-smooth">
+      {/* Hero Header */}
+      <section className="relative pt-32 pb-24 border-b border-gray-100 overflow-hidden bg-grayLight/30">
+        <div className="absolute top-0 left-0 w-full h-full bg-grid-gray/[0.03] -z-10" />
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 bg-brandPrimary/10 border border-brandPrimary/20 text-brandPrimary rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
+          >
+            Legal Framework
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
+          >
+            Terms of <span className="text-brandPrimary">Service.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-[#626262] mb-10 font-bold leading-relaxed max-w-2xl mx-auto"
+          >
+            Rules of engagement for our global image post-production studio operations. Please read these terms carefully before engaging our services.
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[2px] text-gray-400"
+          >
+            <span>Current Version: 2026.1</span>
+            <span className="w-1 h-1 bg-gray-300 rounded-full mt-1.5" />
+            <span>Updated: {lastUpdated}</span>
+          </motion.div>
         </div>
       </section>
 
-      {/* Main Layout */}
-      <div className="container mx-auto px-4 py-16 max-w-6xl">
-        <div className="flex flex-col lg:flex-row gap-12">
-
-          {/* Sticky TOC */}
-          <aside className="w-full lg:w-64 shrink-0">
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sticky top-32">
-              <p className="text-xs font-extrabold uppercase tracking-widest text-[#626262] mb-4">Contents</p>
-              <nav className="flex flex-col gap-0.5">
+      {/* Main Grid Layout */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="flex flex-col xl:flex-row gap-16">
+          
+          {/* Sidebar Navigation */}
+          <aside className="xl:w-80 shrink-0 hidden xl:block">
+            <div className="sticky top-32">
+              <div className="mb-6 pl-4 border-l-2 border-brandPrimary/20">
+                <p className="text-[10px] font-black uppercase tracking-[2px] text-[#011]">Navigation Guide</p>
+                <p className="text-xs text-gray-400 font-bold">Jump to specific sections</p>
+              </div>
+              <nav className="flex flex-col space-y-1">
                 {toc.map((item) => (
-                  <a
+                  <button
                     key={item.id}
-                    href={`#${item.id}`}
-                    className="text-xs text-[#626262] hover:text-[#EE3A39] py-1.5 border-l-2 border-gray-100 hover:border-[#EE3A39] pl-3 transition-all font-medium leading-snug"
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={cn(
+                      "group flex items-center justify-between text-left px-4 py-3 rounded-xl transition-all duration-300 border border-transparent",
+                      activeSection === item.id 
+                        ? "bg-[#011] text-white shadow-lg shadow-[#011]/10 -translate-x-2" 
+                        : "hover:bg-grayLight/50 text-gray-500 hover:text-[#011] hover:border-gray-100"
+                    )}
                   >
-                    {item.label}
-                  </a>
+                    <div className="flex items-center gap-3">
+                      <span className={cn(
+                        "text-[9px] font-black uppercase tracking-[1px]",
+                        activeSection === item.id ? "text-brandPrimary" : "text-gray-300 group-hover:text-gray-400"
+                      )}>{item.number}</span>
+                      <span className="text-[11px] font-black uppercase tracking-[1px]">{item.label}</span>
+                    </div>
+                    <ChevronRight size={12} className={cn(
+                      "transition-all",
+                      activeSection === item.id ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                    )} />
+                  </button>
                 ))}
               </nav>
             </div>
           </aside>
 
-          {/* Terms Content */}
-          <main className="flex-1 bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-12 space-y-12">
-
-            {/* Acceptance Banner */}
-            <div className="p-6 bg-[#EE3A39]/5 border border-[#EE3A39]/15 rounded-2xl text-sm text-[#626262] leading-relaxed">
-              By accessing or using{" "}
-              <a href="https://theblackfoxstudio.com/" className="text-[#EE3A39] hover:underline font-semibold">theblackfoxstudio.com</a>{" "}
-              or engaging with our services, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions and our{" "}
-              <Link href="/privacy-policy" className="text-[#EE3A39] hover:underline font-semibold">Privacy Policy</Link>.
-              If you do not agree, please do not use our website or services.
+          {/* Core Content */}
+          <main className="flex-1 max-w-4xl">
+            {/* Quick Acceptance Box */}
+            <div className="p-8 md:p-10 bg-[#011] rounded-[2.5rem] text-white mb-20 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brandPrimary/20 blur-[60px] rounded-full" />
+              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                <div className="w-16 h-16 rounded-2xl bg-brandPrimary flex items-center justify-center shrink-0 shadow-2xl shadow-brandPrimary/20">
+                  <ShieldCheck size={32} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">Binding Agreement</h3>
+                  <p className="text-white/70 text-sm leading-relaxed font-bold">
+                    By accessing <a href="/" className="text-brandPrimary hover:underline uppercase tracking-widest text-[10px]">theblackfoxstudio.com</a>, you entering a legally binding agreement. If you do not agree to these terms, please stop using the site immediately.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <Section id="introduction" icon={<FileText size={18} />} number="1" title="Introduction & Acceptance">
+            <Section id="introduction" icon={<FileText size={20} />} number="1" title="Core Acceptance">
               <p>
-                Welcome to <strong className="text-[#011]">BLACKFOX DIGITAL</strong> — a B2B image post-production company headquartered in Dhaka, Bangladesh, providing professional retouching, clipping path, masking, and related photo editing services to e-commerce brands, advertising agencies, and photographers worldwide.
+                Welcome to <strong className="text-[#011]">BLACKFOX DIGITAL</strong> — the premier B2B image post-production studio based in Dhaka, Bangladesh. We provide elite-level retouching and digital asset management for global brands.
               </p>
               <p>
-                These Terms constitute a legally binding agreement between you ("Client", "User", "you") and BLACKFOX DIGITAL. To use our services you must: (1) be 18 years of age or older; (2) have the legal authority to enter into binding contracts; and (3) not be barred from receiving our services under any applicable law.
-              </p>
-              <p>
-                You also warrant that all information you provide to us is accurate, complete, and up to date.
+                These Terms constitute a legally binding contract. By ordering services or using our platform, you warrant that you are of legal age and possess the authority to bind your organization to these conditions.
               </p>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="changes" icon={<FileText size={18} />} number="2" title="Changes to These Terms">
+            <Section id="changes" icon={<Clock size={20} />} number="2" title="Term Maintenance">
               <p>
-                BLACKFOX DIGITAL reserves the right to revise these Terms at any time. We will indicate the date of the most recent update at the top of this page. Significant changes may also be communicated by email or via a notice on our website.
+                BLACKFOX DIGITAL evolves rapidly. We reserves the right to modify these Terms at any time. Significant shifts will be broadcast via email or clear dashboard notices.
               </p>
               <p>
-                Your continued use of the site or services after any changes constitutes acceptance of the revised Terms. We recommend reviewing this page periodically.
+                Continuous engagement with our studio following updates implies full acceptance. We recommend auditing this ledger periodically.
               </p>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="services" icon={<ShieldCheck size={18} />} number="3" title="Our Services">
-              <p>BLACKFOX DIGITAL provides B2B image post-production services including but not limited to:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>Background removal and clipping path extraction</Bullet>
-                <Bullet>Ghost mannequin / neck joint creation</Bullet>
-                <Bullet>Image masking (hair, fur, complex objects)</Bullet>
-                <Bullet>Product and beauty retouching</Bullet>
-                <Bullet>Shadow and reflection creation</Bullet>
-                <Bullet>Color correction and white balance adjustment</Bullet>
-                <Bullet>Ecommerce image optimization (Amazon, Shopify, eBay, etc.)</Bullet>
+            <Section id="services" icon={<Zap size={20} />} number="3" title="Service Catalog">
+              <p>We provide enterprise-grade image processing including:</p>
+              <ul className="space-y-3 mt-4">
+                <Bullet>Precision Clipping Path & Background Removal</Bullet>
+                <Bullet>Advanced Ghost Mannequin & 3D Neck Joint Stitching</Bullet>
+                <Bullet>High-End Beauty & Product Retouching</Bullet>
+                <Bullet>Color Calibration & SKU Recoloring</Bullet>
+                <Bullet>Global E-commerce Optimization Workflows</Bullet>
               </ul>
-              <p className="mt-3">
-                Service availability, pricing, and turnaround times are subject to change. Current rates are available on our{" "}
-                <Link href="/pricing" className="text-[#EE3A39] hover:underline font-medium">Pricing page</Link>.
+              <p className="mt-4 pt-4 border-t border-gray-100">
+                Detailed breakdowns and volume modeling are available on our official <Link href="/services" className="text-brandPrimary hover:underline font-black uppercase tracking-widest text-[11px]">Services Grid</Link>.
               </p>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="site-use" icon={<ShieldCheck size={18} />} number="4" title="Acceptable Use of the Site">
-              <p>You agree not to engage in any of the following prohibited activities:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>Copying, redistributing, or reproducing any part of the site or its content without written permission</Bullet>
-                <Bullet>Reverse-engineering, decompiling, or creating derivative works from our software or platform</Bullet>
-                <Bullet>Using automated tools (bots, scrapers, spiders) to collect data from our website</Bullet>
-                <Bullet>Circumventing any technology, access controls, or territorial restrictions</Bullet>
-                <Bullet>Uploading files you do not have the legal right to reproduce or distribute</Bullet>
-                <Bullet>Providing false or misleading registration information</Bullet>
-                <Bullet>Attempting to gain unauthorized access to our systems or other users' accounts</Bullet>
-                <Bullet>Selling, renting, or sublicensing your account or access rights to any third party</Bullet>
-              </ul>
-              <p className="mt-3">
-                BLACKFOX DIGITAL reserves the right to suspend or terminate access for any violation of these guidelines without prior notice.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="user-content" icon={<Users size={18} />} number="5" title="User-Submitted Content">
-              <p>
-                By uploading images or files to BLACKFOX DIGITAL for editing, you confirm that:
-              </p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>You own or have the necessary rights and licenses to submit the content</Bullet>
-                <Bullet>The content does not infringe any third-party intellectual property, privacy, or other rights</Bullet>
-                <Bullet>The content does not contain illegal, harmful, or offensive material</Bullet>
-              </ul>
-              <p className="mt-3">
-                You are solely responsible for all content you submit. BLACKFOX DIGITAL reserves the right to decline or remove any content that, in our sole discretion, violates these Terms or applicable law.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="rights" icon={<FileText size={18} />} number="6" title="Rights You Grant Us">
-              <p>
-                By submitting images for editing, you grant BLACKFOX DIGITAL a limited, non-exclusive, royalty-free license to access, process, and edit your files solely for the purpose of delivering the requested services.
-              </p>
-              <p>
-                Unless you notify us in writing otherwise, you also grant us the right to display your edited images (without identifying information) in our portfolio and marketing materials as examples of our work. You may opt out of this at any time by contacting us.
-              </p>
-              <p>
-                Any feedback or suggestions you provide may be used by us freely without compensation or obligation.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="ip" icon={<ShieldCheck size={18} />} number="7" title="Intellectual Property">
-              <p>
-                All content on this website — including text, graphics, logos, images, software, and compiled data — is the property of BLACKFOX DIGITAL or its content providers and is protected under the copyright and intellectual property laws of Bangladesh and applicable international treaties.
-              </p>
-              <p>You may:</p>
-              <ul className="space-y-1.5 mt-1">
-                <Bullet>Print or download site content for personal, non-commercial reference only</Bullet>
-                <Bullet>Share content with attribution to BLACKFOX DIGITAL as its source</Bullet>
-              </ul>
-              <p className="mt-3">You may not:</p>
-              <ul className="space-y-1.5 mt-1">
-                <Bullet>Commercially exploit any content without our express written permission</Bullet>
-                <Bullet>Remove or alter any copyright, trademark, or proprietary notices</Bullet>
-                <Bullet>Frame or embed our content on other websites without permission</Bullet>
-              </ul>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="payments" icon={<CreditCard size={18} />} number="8" title="Payments, Refunds & Pricing">
-              <SubSection title="8.1 Payment Terms">
-                <p>
-                  Individual and new clients are required to pay in full before work commences. Corporate clients may be extended credit terms (typically net-30) at BLACKFOX DIGITAL's sole discretion, subject to satisfactory references and a signed service agreement. Monthly billing arrangements are available for high-volume clients.
-                </p>
-                <p className="mt-2">Accepted payment methods: PayPal, bank wire transfer, and major credit cards.</p>
-              </SubSection>
-
-              <SubSection title="8.2 Quality Guarantee & Revisions">
-                <p>
-                  We strive to deliver work that precisely matches your brief and approved sample. If you are not satisfied with delivered work, please submit a revision request within <strong className="text-[#011]">14 days of delivery</strong>. We will make reasonable corrections at no additional charge.
-                </p>
-                <p className="mt-2">
-                  Refunds are not issued if: (a) the delivered images match an approved sample; (b) images have already been downloaded without a specific complaint raised; or (c) the revision request changes the original scope or requirements.
-                </p>
-              </SubSection>
-
-              <SubSection title="8.3 Pricing & Changes">
-                <p>
-                  Prices are quoted on a per-image basis depending on complexity. BLACKFOX DIGITAL reserves the right to revise our pricing at any time. Clients will always be informed of the applicable rate before confirming any new order. Agreed project rates will not change mid-project.
-                </p>
-              </SubSection>
-
-              <SubSection title="8.4 Promotions & Discounts">
-                <p>
-                  BLACKFOX DIGITAL may offer promotional pricing or discount codes from time to time. These are subject to specific terms and may be withdrawn at any time without prior notice.
-                </p>
-              </SubSection>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="turnaround" icon={<Clock size={18} />} number="9" title="Quotes, Orders & Turnaround Time">
-              <p>
-                Quotes are provided based on the complexity and volume of images described by the client. If submitted images materially differ from the sample provided at the quoting stage, BLACKFOX DIGITAL reserves the right to cancel the order and issue a revised quote.
-              </p>
-              <p className="mt-2">
-                Turnaround time begins from the moment all images have been successfully uploaded and a project brief confirmed — not from the time the order is initially submitted. Rush delivery options (8–12 hours) are available at a premium rate, subject to capacity.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="third-party" icon={<Users size={18} />} number="10" title="Third-Party Applications">
-              <p>
-                Our website and services may integrate with third-party platforms including but not limited to payment processors, file transfer services, and communication tools. BLACKFOX DIGITAL is not responsible for the terms, policies, or actions of these third-party providers. Your use of such platforms is governed by their own terms and conditions.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="termination" icon={<AlertTriangle size={18} />} number="11" title="Term & Termination">
-              <p>
-                These Terms remain in effect for the duration of your use of our website and services. Either party may terminate the relationship at any time by providing written notice.
-              </p>
-              <p className="mt-2">
-                BLACKFOX DIGITAL may immediately suspend or terminate your access in the event of: (a) breach of these Terms; (b) fraudulent or illegal activity; (c) non-payment of outstanding invoices; or (d) conduct harmful to BLACKFOX DIGITAL or other clients.
-              </p>
-              <p className="mt-2">
-                Termination does not entitle you to a refund for work already in progress or delivered. Obligations relating to payment, intellectual property, and indemnification survive termination.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="warranty" icon={<AlertTriangle size={18} />} number="12" title="Warranty & Disclaimer">
-              <p>
-                BLACKFOX DIGITAL provides its services "as is" and "as available". While we endeavour to maintain the highest quality standards, to the fullest extent permitted by applicable law, we disclaim all warranties — express or implied — including but not limited to merchantability, fitness for a particular purpose, and non-infringement.
-              </p>
-              <p className="mt-2">
-                We make no representations that the website or services will be uninterrupted, error-free, or free of malicious components. We are not responsible or liable for the content of third-party applications or websites linked to or from our site.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="liability" icon={<Scale size={18} />} number="13" title="Limitation of Liability">
-              <p>
-                To the fullest extent permitted by applicable law, BLACKFOX DIGITAL, its officers, directors, employees, and affiliates shall not be liable for any indirect, incidental, special, punitive, or consequential damages — including loss of profits, data, or goodwill — arising out of or in connection with your use of our services.
-              </p>
-              <p className="mt-2">
-                Our maximum aggregate liability to you for any claim arising under these Terms shall not exceed the total amounts paid by you to BLACKFOX DIGITAL in the twelve (12) months preceding the claim.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="indemnification" icon={<ShieldCheck size={18} />} number="14" title="Indemnification">
-              <p>
-                You agree to indemnify, defend, and hold harmless BLACKFOX DIGITAL and its employees, directors, and affiliates from any claims, damages, losses, liabilities, and expenses (including reasonable legal fees) arising from: (1) your breach of these Terms; (2) content you submit to us; (3) your violation of any applicable law; or (4) your violation of any third-party rights.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="governing-law" icon={<Scale size={18} />} number="15" title="Governing Law & Dispute Resolution">
-              <p>
-                These Terms shall be governed by and construed in accordance with the laws of <strong className="text-[#011]">Bangladesh</strong>. For clients based in the European Union or United Kingdom, applicable consumer protection laws in your jurisdiction may also apply.
-              </p>
-              <p className="mt-2">
-                In the event of any dispute arising from these Terms, both parties agree to first attempt to resolve the matter amicably through good-faith negotiation. If a resolution cannot be reached within 30 days, disputes shall be submitted to the competent courts of Dhaka, Bangladesh.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="general" icon={<FileText size={18} />} number="16" title="General Provisions">
-              <SubSection title="Entire Agreement">
-                <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and BLACKFOX DIGITAL and supersede all prior agreements and understandings relating to the subject matter herein.</p>
-              </SubSection>
-              <SubSection title="Severability">
-                <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will continue in full force and effect.</p>
-              </SubSection>
-              <SubSection title="Waiver">
-                <p>Our failure to enforce any right or provision of these Terms shall not constitute a waiver of such right or provision.</p>
-              </SubSection>
-              <SubSection title="Assignment">
-                <p>BLACKFOX DIGITAL may assign these Terms or any part of them at any time. You may not assign, transfer, or sub-license your rights under these Terms without our prior written consent.</p>
-              </SubSection>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="contact" icon={<Mail size={18} />} number="17" title="Contact Us">
-              <p>If you have any questions about these Terms and Conditions, please contact us:</p>
-              <div className="mt-4 bg-[#F8F8F8] rounded-2xl p-6 border border-gray-100 space-y-3 text-[#011]">
-                <p className="font-extrabold text-lg">Blackfox Digital</p>
-                <p>House 560, Road 08, Adabor, Dhaka 1207, Bangladesh</p>
-                <p>
-                  Email:{" "}
-                  <a href="mailto:info@theblackfoxstudio.com" className="text-[#EE3A39] hover:underline font-medium">
-                    info@theblackfoxstudio.com
-                  </a>
-                </p>
-                <p>Phone: (+88) 019 24 482 868</p>
+            <Section id="site-use" icon={<ShieldCheck size={20} />} number="4" title="Operating Standards">
+              <p>Users must adhere to strict operational guidelines. Prohibited acts include:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 mt-6">
+                <Bullet>Unauthorised content extraction</Bullet>
+                <Bullet>Reverse engineering our pipelines</Bullet>
+                <Bullet>Automated scraping or bot entry</Bullet>
+                <Bullet>Uploading malicious code or files</Bullet>
+                <Bullet>Sub-licensing studio access</Bullet>
+                <Bullet>Misrepresentation of identity</Bullet>
               </div>
             </Section>
 
+            <Section id="user-content" icon={<Users size={20} />} number="5" title="Content Integrity">
+              <p>
+                You retain ultimate ownership of your raw assets. However, by uploading, you certify that:
+              </p>
+              <ul className="space-y-3 mt-4">
+                <Bullet>You hold absolute IP rights for the assets</Bullet>
+                <Bullet>The content is legal and non-harmful</Bullet>
+                <Bullet>You possess all necessary release forms for models/locations</Bullet>
+              </ul>
+            </Section>
+
+            <Section id="rights" icon={<CreditCard size={20} />} number="6" title="Usage Rights">
+              <p>
+                You grant BLACKFOX DIGITAL a non-exclusive license to process your assets solely for fulfilling your orders. 
+              </p>
+              <p className="p-6 bg-grayLight/50 border border-gray-100 rounded-2xl italic text-[#011] font-bold">
+                Portfolio Clause: Unless explicitly opted-out in writing, you grant us the right to showcase your edited images in our portfolio as technical demonstration of our capabilities.
+              </p>
+            </Section>
+
+            <Section id="payments" icon={<CreditCard size={20} />} number="8" title="Billing Architecture">
+              <SubSection title="8.1 Payment Terms">
+                <p>New clients operate on a prepaid basis via PayPal or Bank Transfer. Enterprise credit (Net-30) is available for high-volume accounts subject to status audit.</p>
+              </SubSection>
+              <SubSection title="8.2 Quality & Revisions">
+                <p>We provide a 100% Quality Guarantee. If results differ from agreed samples, submit a revision within <span className="text-brandPrimary">14 days</span>. Revisions are free unless scope changes.</p>
+              </SubSection>
+            </Section>
+
+            <Section id="termination" icon={<AlertTriangle size={20} />} number="11" title="Account Status">
+              <p>
+                We may suspend access for non-payment, IP violations, or conduct that threatens studio integrity. Termination does not absolve outstanding debts or IP obligations.
+              </p>
+            </Section>
+
+            <Section id="contact" icon={<Mail size={20} />} number="17" title="Direct Contact">
+              <p>For legal inquiries or clarifications on these standards, reach our compliance team:</p>
+              <div className="mt-8 p-10 bg-[#011] rounded-[2.5rem] text-white border border-[#011] shadow-xl relative group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brandPrimary/10 blur-[60px] rounded-full group-hover:bg-brandPrimary/20 transition-colors" />
+                <div className="space-y-6 relative z-10">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Global Headquarters</p>
+                    <p className="text-xl font-black uppercase tracking-tighter">BLACKFOX DIGITAL Studio</p>
+                  </div>
+                  <div className="space-y-2 text-white/70 font-bold text-sm">
+                    <p>House 560, Road 08, Adabor,</p>
+                    <p>Dhaka 1207, Bangladesh</p>
+                  </div>
+                  <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row gap-8">
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[2px] text-brandPrimary mb-1">Support Email</p>
+                      <a href="mailto:info@theblackfoxstudio.com" className="text-sm font-black hover:text-brandPrimary transition-all uppercase tracking-widest">
+                        info@theblackfoxstudio.com
+                      </a>
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[2px] text-brandPrimary mb-1">Direct Line</p>
+                      <p className="text-sm font-black uppercase tracking-widest">+88 019 24 482 868</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Section>
           </main>
         </div>
       </div>
-
     </div>
   );
 }
+

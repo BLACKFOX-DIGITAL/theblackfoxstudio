@@ -1,8 +1,15 @@
 import BlogClient from './BlogClient';
 
 export const metadata = {
-  title: "Image Editing Blog & Resources | Blackfox Digital",
-  description: "Explore Blackfox Digital's image editing blog for expert tutorials, retouching tips and e-commerce photography guides. Learn from 80+ professional editors.",
+  title: "Image Editing Blog & Resources | BLACKFOX DIGITAL",
+  description: "Explore BLACKFOX DIGITAL's image editing blog for expert tutorials, retouching tips and e-commerce photography guides. Learn from 80+ professional editors.",
+  alternates: { canonical: "https://theblackfoxstudio.com/blog" },
+  openGraph: {
+    title: "Image Editing Blog & Resources | BLACKFOX DIGITAL",
+    description: "Expert tutorials, retouching tips and e-commerce photography guides from BLACKFOX DIGITAL's 80+ professional editors.",
+    url: "https://theblackfoxstudio.com/blog",
+    type: "website",
+  },
 };
 
 export default function BlogListPage() {
@@ -92,7 +99,7 @@ export default function BlogListPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blackfox Digital Blog",
+    "name": "BLACKFOX DIGITAL Blog",
     "description": "Image editing tips, tutorials and industry insights",
     "url": "https://theblackfoxstudio.com/blog"
   };

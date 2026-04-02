@@ -1,27 +1,39 @@
 import { services, portfolio as mockPortfolio, faqs as mockFaqs } from '@/lib/mock-data';
 import { ArrowRight, CheckCircle, Download, MonitorPlay, FileCheck, Truck, Zap, Star, ShieldCheck, DollarSign, Clock, Layers } from 'lucide-react';
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
+
+const BASE_URL = "https://theblackfoxstudio.com";
 
 // Dynamically generate metadata for SEO
 export function generateMetadata({ params }) {
   const slug = params.slug;
   const dbService = services.find(s => s.slug === slug);
 
-  if (dbService) {
-    return {
-      title: dbService.pageTitle || `${dbService.title} | Blackfox Digital`,
-      description: dbService.schemaDescription || dbService.shortDescription || `Professional ${dbService.title} services for global brands. From $${dbService.priceStarting}/image. 24-hour delivery. Free trial available.`,
-    };
-  }
+  const title = dbService?.pageTitle || `${dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} | BLACKFOX DIGITAL`;
+  const description = dbService?.schemaDescription || dbService?.shortDescription || `Professional ${slug.replace(/-/g, ' ')} services for global e-commerce brands and photographers.`;
+  const url = `${BASE_URL}/services/${slug}`;
 
   return {
-    title: `${slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} Service | Blackfox Digital`,
-    description: `Professional ${slug.replace(/-/g, ' ')} services for global e-commerce brands and photographers.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: dbService?.title ? `${dbService.title} | BLACKFOX DIGITAL` : title,
+      description,
+      url,
+      type: "website",
+      images: dbService?.heroImage ? [{ url: `${BASE_URL}${dbService.heroImage}`, alt: dbService.title }] : ["/logo.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dbService?.title ? `${dbService.title} | BLACKFOX DIGITAL` : title,
+      description,
+    },
   };
 }
 
@@ -93,26 +105,53 @@ export default function ServicePage({ params }) {
 
   const serviceDescription = processDescription(dbService?.description || `<p>Professional ${title} services tailored for high-volume studios and brands.</p>`);
 
+  const serviceUrl = `${BASE_URL}/services/${slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": title,
+    "url": serviceUrl,
     "provider": {
       "@type": "Organization",
-      "name": "Blackfox Digital"
+      "name": "BLACKFOX DIGITAL",
+      "url": BASE_URL,
+      "logo": `${BASE_URL}/logo.png`,
     },
     "description": dbService?.schemaDescription || heroSubtext,
+    "areaServed": "Worldwide",
     "offers": {
       "@type": "Offer",
       "priceCurrency": "USD",
       "price": dbService?.priceStarting || "0.35",
       "priceSpecification": {
+        "@type": "PriceSpecification",
         "minPrice": dbService?.priceStarting || "0.35",
-        "maxPrice": "3.00"
-      }
+        "priceCurrency": "USD",
+      },
+      "availability": "https://schema.org/InStock",
     },
-    "areaServed": "Worldwide"
   };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": `${BASE_URL}/services` },
+      { "@type": "ListItem", "position": 3, "name": title, "item": serviceUrl },
+    ],
+  };
+
+  const faqLd = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  } : null;
 
   return (
     <div className="min-h-screen bg-white text-[#011]">
@@ -120,6 +159,16 @@ export default function ServicePage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       
       {/* 1. HERO SECTION */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 border-b border-gray-100 overflow-hidden bg-white">

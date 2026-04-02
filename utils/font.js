@@ -9,28 +9,33 @@ import {
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+  display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
 const sairaCondensed = Saira_Condensed({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+  display: "swap",
 });
 
 const lato = Lato({
   subsets: ["latin"],
   weight: ["100", "300", "400", "700", "900"],
+  display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
 const mrDafoe = Mr_Dafoe({
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 const bungeeOutline = Bungee_Outline({
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 /**

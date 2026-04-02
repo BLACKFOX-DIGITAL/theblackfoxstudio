@@ -26,7 +26,7 @@ const Story = () => {
 
           <p className="subtitle text-justify">
             Image post production company{" "}
-            <a href="https://theblackfoxstudio.com/">Blackfox Digital</a>{" "}
+            <a href="https://theblackfoxstudio.com/">BLACKFOX DIGITAL</a>{" "}
             started its journey in 2016 with a small team of 5 highly skilled
             graphic designers. Since its inception, Blackfox has worked long and
             hard to provide its clients with the best quality service there is.
@@ -42,7 +42,7 @@ const Story = () => {
             contents to satisfy our clients need and some time beyond the
             clients expectation. We believe that, providing client support is as
             important as serving our clients with timely and qualitative end to
-            end solutions. Blackfox Digital use all the resources available to
+            end solutions. BLACKFOX DIGITAL use all the resources available to
             us to make sure that clients are always satisfied with the work we
             delivered.
           </p>
@@ -74,7 +74,7 @@ const Story = () => {
             delivering on the clients desired deadline while ensuring quality of
             work. This quality is possible due to our 3 step quality control
             process where quality checks on the files are done after each and
-            every step of the design. We make sure that Blackfox Digital is the
+            every step of the design. We make sure that BLACKFOX DIGITAL is the
             ultimate solution for your graphic and image editing needs.
           </p>
           <p className="subtitle text-justify">

@@ -22,7 +22,7 @@ const Footer = ({ dbSettings = {} }) => {
           {/* Brand & Socials */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <Image src={dbSettings.logoUrl || "/logo.png"} alt="Blackfox Logo" width={220} height={50} className="object-contain object-left h-[44px] w-auto pointer-events-none" />
+              <Image src={dbSettings.logoUrl || "/logo.png"} alt="BLACKFOX DIGITAL Logo" width={220} height={50} className="object-contain object-left h-[44px] w-auto pointer-events-none" />
             </Link>
             <p className="text-[#626262] leading-relaxed text-sm max-w-sm">
               Superior Image Post-Production Services. We operate a highly secure, 24/7 backend infrastructure to scale your editing needs limitlessly.
@@ -81,7 +81,7 @@ const Footer = ({ dbSettings = {} }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
               {[
                 { name: "Terms & Conditions", url: "/terms-and-conditions" },
-                { name: "Payment Method", url: "#" },
+                { name: "Payment Method", url: "/payment-method" },
                 { name: "FAQ", url: "/faq" },
                 { name: "Privacy Policy", url: "/privacy-policy" },
                 { name: "Cookies Policy", url: "/cookies-policy" },

@@ -210,7 +210,7 @@ const Gallery = ({ data = [] }) => {
                       <MousePointer2 size={12} className="text-[#EE3A39]" /> Raw Comparison
                     </div>
  
-                    <div className="absolute inset-x-5 bottom-5 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] bg-[#011]/80 backdrop-blur-xl px-5 py-5 rounded-[1.5rem] border border-white/5 shadow-2xl overflow-hidden">
+                    <div className="absolute inset-x-5 bottom-5 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out bg-[#011]/80 backdrop-blur-xl px-5 py-5 rounded-[1.5rem] border border-white/5 shadow-2xl overflow-hidden">
                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE3A39]/10 blur-[40px] rounded-full pointer-events-none"></div>
                        <span className="relative z-10 text-white text-[11px] font-black uppercase tracking-[3px] flex items-center justify-center gap-3">
                          <Maximize2 size={16} className="text-[#EE3A39] animate-pulse"/> Interactive Suite
@@ -277,7 +277,7 @@ const Gallery = ({ data = [] }) => {
                    autoplay={false}
                    className="w-full h-full object-contain !bg-transparent"
                    firstImageClassName="object-contain w-full h-full !bg-transparent"
-                   secondImageClassname="object-contain w-full h-full !bg-transparent"
+                   secondImageClassName="object-contain w-full h-full !bg-transparent"
                 />
  
                 <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50">
@@ -287,7 +287,7 @@ const Gallery = ({ data = [] }) => {
                 </div>
                 <div className="absolute top-16 left-6 md:top-10 md:right-10 z-50 md:flex flex-col items-end">
                   <div className="px-4 py-1.5 md:px-6 md:py-2 bg-[#EE3A39]/20 backdrop-blur-md rounded-full border border-[#EE3A39]/30 text-white text-[9px] md:text-[10px] uppercase font-black tracking-[4px]">
-                    The Black Fox Edit
+                    BLACKFOX DIGITAL Edit
                   </div>
                 </div>
               </div>

@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { ContactForm } from "@/components/About/Contact";
 import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 export default function ContactInfoClient() {
   const contactCards = [
@@ -61,7 +61,7 @@ export default function ContactInfoClient() {
             Available 24/7/365
           </div>
           <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
-            Contact Blackfox Digital — <br className="hidden md:block" />
+            Contact BLACKFOX DIGITAL — <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">Image Post-Production Services</span>
           </h1>
           <p className="text-lg md:text-xl text-[#626262] leading-relaxed font-bold max-w-3xl mx-auto mb-10">

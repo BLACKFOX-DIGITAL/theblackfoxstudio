@@ -1,11 +1,18 @@
 import { services as mockServices } from '@/lib/mock-data';
 import Link from 'next/link';
 import { CheckCircle, Zap, Building2, Crown, Sparkles, AlertCircle } from 'lucide-react';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 export const metadata = {
-  title: 'Pricing & Volume Discounts | Blackfox Digital',
-  description: 'Transparent and scalable pricing for high-volume image post-production. Background removal from $0.29. Volume discounts available.',
+  title: 'Bulk Photo Editing Pricing & Volume Discounts | BLACKFOX DIGITAL',
+  description: 'Transparent outsource photo editing pricing. Background removal from $0.29/image. Bulk and white label discounts for agencies processing 100+ images/month. No hidden fees.',
+  alternates: { canonical: 'https://theblackfoxstudio.com/pricing' },
+  openGraph: {
+    title: 'Pricing & Volume Discounts | BLACKFOX DIGITAL',
+    description: 'Transparent per-image pricing for professional photo editing. Background removal from $0.29. Volume discounts for 100+ images/month.',
+    url: 'https://theblackfoxstudio.com/pricing',
+    type: 'website',
+  },
 };
 
 export default function PricingPage() {
@@ -48,9 +55,23 @@ export default function PricingPage() {
     { question: 'Can I test the quality before signing an SLA?', answer: 'Absolutely. We offer a 10-image free trial with zero obligations so you can verify our precision and turnaround time.' }
   ];
 
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+
       {/* 1. HERO */}
       <section className="relative pt-32 pb-24 border-b border-gray-200 overflow-hidden bg-white">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>

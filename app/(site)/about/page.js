@@ -31,7 +31,7 @@ export default function AboutPage() {
               Our Story
             </div>
             <h1 className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
-              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Blackfox Digital</span> <br className="hidden md:block"/> Narrative Since 2016
+              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">BLACKFOX DIGITAL</span> <br className="hidden md:block"/> Narrative Since 2016
             </h1>
             <p className="text-base md:text-lg text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
               Professional image post-production services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect editing. 24-hour delivery.
@@ -48,11 +48,11 @@ export default function AboutPage() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="relative">
               <div className="flex flex-col gap-6 relative z-10">
                 <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50">
-                  <Image src="/about_studio_hero_1774785390263.png" fill alt="Blackfox Digital Environment" className="object-cover object-bottom" unoptimized />
+                  <Image src="/about_studio_hero_1774785390263.png" fill alt="BLACKFOX DIGITAL studio environment" className="object-cover object-bottom" />
                 </div>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gray-50">
-                    <Image src="/expert_workflow_1774785408307.png" fill alt="Expert Precision Workflow" className="object-cover" unoptimized />
+                    <Image src="/expert_workflow_1774785408307.png" fill alt="Expert precision retouching workflow" className="object-cover" />
                   </div>
                   <div className="bg-[#EE3A39] rounded-3xl p-8 flex flex-col justify-center text-white shadow-xl">
                     <span className="text-5xl font-black mb-1">80+</span>
@@ -68,10 +68,10 @@ export default function AboutPage() {
               <div className="text-[#626262] text-sm font-medium leading-relaxed flex flex-col gap-5">
                 <p className="font-bold text-[#011] text-xl mb-2">From a 5-person startup to 80+ specialist editors since 2016</p>
                 <p>
-                  Blackfox Digital began its journey in 2016 as a boutique image post-production company with a team of 5 specialist retouching experts. Our mission was clear: deliver pixel-perfect <Link href="/services" className="text-[#EE3A39] hover:underline">image editing services</Link> to e-commerce brands and enterprises worldwide — with zero compromise on quality.
+                  BLACKFOX DIGITAL began its journey in 2016 as a boutique image post-production company with a team of 5 specialist retouching experts. Our mission was clear: deliver pixel-perfect <Link href="/services" className="text-[#EE3A39] hover:underline">image editing services</Link> to e-commerce brands and enterprises worldwide — with zero compromise on quality.
                 </p>
                 <p>
-                  Through consistent innovation and an unwavering commitment to quality, we rapidly grew into a team of 80+ professional image editors and retouching specialists. Today, Blackfox Digital delivers high-volume photo editing and retouching services to leading e-commerce brands, fashion houses, and global enterprises — processing 5,000+ images daily from our studio in Dhaka, Bangladesh.
+                  Through consistent innovation and an unwavering commitment to quality, we rapidly grew into a team of 80+ professional image editors and retouching specialists. Today, BLACKFOX DIGITAL delivers high-volume photo editing and retouching services to leading e-commerce brands, fashion houses, and global enterprises — processing 5,000+ images daily from our studio in Dhaka, Bangladesh.
                 </p>
                 <p>
                   We believe great image editing starts with great people. Our diverse team of <Link href="/services/background-removal-service" className="text-[#EE3A39] hover:underline">background removal specialists</Link>, <Link href="/services/product-retouching-service" className="text-[#EE3A39] hover:underline">retouching artists</Link>, and <Link href="/services/color-correction-service" className="text-[#EE3A39] hover:underline">color correction experts</Link> brings fresh perspectives to every project — consistently delivering results that exceed client expectations, on time, every time.
@@ -241,7 +241,7 @@ export default function AboutPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Blackfox Digital",
+            "name": "BLACKFOX DIGITAL",
             "url": "https://theblackfoxstudio.com",
             "foundingDate": "2016",
             "numberOfEmployees": "80",

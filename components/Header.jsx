@@ -161,7 +161,7 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
             <figure className="flex items-center h-[34px] sm:h-[44px] lg:h-[52px]">
               <Image
                 src={dbSettings.logoUrl || `/logo.png`}
-                alt={dbSettings.siteName || "Black Fox"}
+                alt={dbSettings.siteName || "BLACKFOX DIGITAL"}
                 width={400}
                 height={160}
                 quality={100}

@@ -1,56 +1,54 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Cookie, Settings, BarChart2, Shield, Eye, Mail } from "lucide-react";
-
-export const metadata = {
-  title: "Cookie Policy – BLACKFOX DIGITAL",
-  description: "Learn how BLACKFOX DIGITAL uses cookies and similar tracking technologies on our website.",
-  openGraph: {
-    images: ["/logo.png"],
-  },
-};
+import { Cookie, Settings, BarChart2, Shield, Eye, Mail, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Section = ({ id, icon, number, title, children }) => (
-  <section id={id} className="scroll-mt-24">
-    <div className="flex items-start gap-3 mb-5">
-      <div className="w-10 h-10 rounded-xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center shrink-0 mt-0.5">
+  <section id={id} className="scroll-mt-32 mb-16 last:mb-0">
+    <div className="flex items-center gap-4 mb-8">
+      <div className="w-12 h-12 rounded-2xl bg-brandPrimary/10 text-brandPrimary flex items-center justify-center shrink-0 shadow-sm border border-brandPrimary/5">
         {icon}
       </div>
-      <h2 className="text-xl font-extrabold text-[#011] tracking-tight leading-snug">
-        <span className="text-[#EE3A39] mr-2">{number}.</span>{title}
-      </h2>
+      <div className="flex flex-col">
+        <span className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Chapter {number}</span>
+        <h2 className="text-2xl md:text-3xl font-black text-[#011] tracking-tighter uppercase leading-none">
+          {title}
+        </h2>
+      </div>
     </div>
-    <div className="text-[#626262] text-sm leading-relaxed space-y-3 pl-[52px]">
+    <div className="text-[#626262] text-sm md:text-base leading-relaxed space-y-4 pl-0 md:pl-16 font-medium">
       {children}
     </div>
   </section>
 );
 
 const Bullet = ({ children }) => (
-  <li className="flex items-start gap-2">
-    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#EE3A39] shrink-0 inline-block" />
-    <span>{children}</span>
+  <li className="flex items-start gap-3 group">
+    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brandPrimary shrink-0 shadow-[0_0_8px_rgba(238,58,57,0.4)] group-hover:scale-125 transition-transform" />
+    <span className="group-hover:text-[#011] transition-colors">{children}</span>
   </li>
 );
 
 const CookieTable = ({ rows }) => (
-  <div className="overflow-x-auto mt-3 rounded-xl border border-gray-100">
+  <div className="overflow-x-auto mt-6 rounded-[1.5rem] border border-gray-100 shadow-sm bg-white overflow-hidden">
     <table className="w-full text-xs">
-      <thead className="bg-[#F8F8F8] border-b border-gray-100">
+      <thead className="bg-[#011] text-white">
         <tr>
-          <th className="text-left px-4 py-3 font-extrabold text-[#011] uppercase tracking-wider">Cookie Name</th>
-          <th className="text-left px-4 py-3 font-extrabold text-[#011] uppercase tracking-wider">Provider</th>
-          <th className="text-left px-4 py-3 font-extrabold text-[#011] uppercase tracking-wider">Purpose</th>
-          <th className="text-left px-4 py-3 font-extrabold text-[#011] uppercase tracking-wider">Expiry</th>
+          <th className="text-left px-6 py-4 font-black uppercase tracking-widest text-[9px]">Cookie Name</th>
+          <th className="text-left px-6 py-4 font-black uppercase tracking-widest text-[9px]">Provider</th>
+          <th className="text-left px-6 py-4 font-black uppercase tracking-widest text-[9px]">Purpose</th>
+          <th className="text-left px-6 py-4 font-black uppercase tracking-widest text-[9px]">Expiry</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-50">
         {rows.map((row, i) => (
-          <tr key={i} className="hover:bg-[#F8F8F8] transition-colors">
-            <td className="px-4 py-3 font-mono text-[#EE3A39] font-semibold whitespace-nowrap">{row.name}</td>
-            <td className="px-4 py-3 text-[#626262]">{row.provider}</td>
-            <td className="px-4 py-3 text-[#626262]">{row.purpose}</td>
-            <td className="px-4 py-3 text-[#626262] whitespace-nowrap">{row.expiry}</td>
+          <tr key={i} className="hover:bg-grayLight/50 transition-colors">
+            <td className="px-6 py-4 font-black text-brandPrimary font-mono whitespace-nowrap">{row.name}</td>
+            <td className="px-6 py-4 text-[#011] font-bold">{row.provider}</td>
+            <td className="px-6 py-4 text-[#626262] font-medium leading-relaxed">{row.purpose}</td>
+            <td className="px-6 py-4 text-gray-400 font-bold whitespace-nowrap uppercase tracking-tighter">{row.expiry}</td>
           </tr>
         ))}
       </tbody>
@@ -63,279 +61,259 @@ const BrowserLink = ({ name, href }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center gap-1 text-[#EE3A39] hover:underline font-medium"
+    className="inline-flex items-center gap-2 text-brandPrimary hover:text-[#011] font-black uppercase tracking-widest text-[10px] transition-colors bg-brandPrimary/5 px-4 py-2 rounded-full border border-brandPrimary/10 hover:border-brandPrimary/20"
   >
-    {name} →
+    {name} <ChevronRight size={12} />
   </a>
 );
 
 export default function CookiePolicyPage() {
   const lastUpdated = "23 March 2026";
+  const [activeSection, setActiveSection] = useState("");
 
   const toc = [
-    { id: "what-are-cookies", label: "1. What Are Cookies?" },
-    { id: "how-we-use", label: "2. How We Use Cookies" },
-    { id: "essential", label: "3. Essential Cookies" },
-    { id: "analytics", label: "4. Analytics Cookies" },
-    { id: "preference", label: "5. Preference Cookies" },
-    { id: "third-party", label: "6. Third-Party Services" },
-    { id: "managing", label: "7. Managing Cookies" },
-    { id: "updates", label: "8. Policy Updates" },
-    { id: "contact", label: "9. Contact Us" },
+    { id: "what-are-cookies", label: "Basics", number: "01" },
+    { id: "how-we-use", label: "Our Usage", number: "02" },
+    { id: "essential", label: "Necessary", number: "03" },
+    { id: "analytics", label: "Insights", number: "04" },
+    { id: "preference", label: "Preferences", number: "05" },
+    { id: "third-party", label: "External", number: "06" },
+    { id: "managing", label: "Controls", number: "07" },
+    { id: "updates", label: "Policy Shift", number: "08" },
+    { id: "contact", label: "Legal Desk", number: "09" },
   ];
 
-  return (
-    <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "-100px 0px -70% 0px" }
+    );
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-gray-200 overflow-hidden bg-white">
-        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/8 blur-[150px] rounded-full pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
-            Legal
-          </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Cookie Policy
-          </h1>
-          <p className="text-lg text-[#626262] mb-4 font-medium">
-            This Cookie Policy explains how <strong className="text-[#011]">BLACKFOX DIGITAL</strong> uses cookies and similar tracking technologies when you visit our website at{" "}
-            <a href="https://theblackfoxstudio.com/" className="text-[#EE3A39] hover:underline font-semibold">theblackfoxstudio.com</a>.
-          </p>
-          <p className="text-sm text-gray-400">
-            Last updated: <span className="font-semibold text-[#626262]">{lastUpdated}</span>
-          </p>
+    toc.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 120,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white text-[#011] scroll-smooth">
+      {/* Hero Header */}
+      <section className="relative pt-32 pb-24 border-b border-gray-100 overflow-hidden bg-grayLight/30">
+        <div className="absolute top-0 left-0 w-full h-full bg-grid-gray/[0.03] -z-10" />
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 bg-brandPrimary/10 border border-brandPrimary/20 text-brandPrimary rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
+          >
+            Privacy Standards
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
+          >
+            Cookie <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">Manifesto.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-[#626262] mb-10 font-bold leading-relaxed max-w-2xl mx-auto"
+          >
+            Transparency on how we track, analyze, and optimize your experience during image post-production sessions.
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[2px] text-gray-400"
+          >
+             <span>Trust Certified</span>
+             <span className="w-1 h-1 bg-gray-300 rounded-full mt-1.5" />
+             <span>GDPR Compliant</span>
+             <span className="w-1 h-1 bg-gray-300 rounded-full mt-1.5" />
+             <span>Last Updated: {lastUpdated}</span>
+          </motion.div>
         </div>
       </section>
 
-      {/* Main Layout */}
-      <div className="container mx-auto px-4 py-16 max-w-6xl">
-        <div className="flex flex-col lg:flex-row gap-12">
-
-          {/* Sticky TOC */}
-          <aside className="w-full lg:w-64 shrink-0">
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sticky top-32">
-              <p className="text-xs font-extrabold uppercase tracking-widest text-[#626262] mb-4">Contents</p>
-              <nav className="flex flex-col gap-0.5">
+      {/* Main Grid Layout */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="flex flex-col xl:flex-row gap-16">
+          
+          {/* Sidebar Navigation */}
+          <aside className="xl:w-80 shrink-0 hidden xl:block">
+            <div className="sticky top-32">
+              <div className="mb-6 pl-4 border-l-2 border-brandPrimary/20">
+                <p className="text-[10px] font-black uppercase tracking-[2px] text-[#011]">Policy Sections</p>
+                <p className="text-xs text-gray-400 font-bold">Quick navigation</p>
+              </div>
+              <nav className="flex flex-col space-y-1">
                 {toc.map((item) => (
-                  <a
+                  <button
                     key={item.id}
-                    href={`#${item.id}`}
-                    className="text-xs text-[#626262] hover:text-[#EE3A39] py-1.5 border-l-2 border-gray-100 hover:border-[#EE3A39] pl-3 transition-all font-medium leading-snug"
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={cn(
+                      "group flex items-center justify-between text-left px-4 py-3 rounded-xl transition-all duration-300 border border-transparent",
+                      activeSection === item.id 
+                        ? "bg-[#011] text-white shadow-lg shadow-[#011]/10 -translate-x-2" 
+                        : "hover:bg-grayLight/50 text-gray-500 hover:text-[#011] hover:border-gray-100"
+                    )}
                   >
-                    {item.label}
-                  </a>
+                    <div className="flex items-center gap-3">
+                      <span className={cn(
+                        "text-[9px] font-black uppercase tracking-[1px]",
+                        activeSection === item.id ? "text-brandPrimary" : "text-gray-300 group-hover:text-gray-400"
+                      )}>{item.number}</span>
+                      <span className="text-[11px] font-black uppercase tracking-[1px]">{item.label}</span>
+                    </div>
+                    <ChevronRight size={12} className={cn(
+                      "transition-all",
+                      activeSection === item.id ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                    )} />
+                  </button>
                 ))}
               </nav>
 
-              <div className="mt-8 pt-6 border-t border-gray-100 space-y-2">
-                <p className="text-xs font-extrabold uppercase tracking-widest text-[#626262] mb-3">Related</p>
-                <Link href="/privacy-policy" className="flex items-center gap-2 text-xs text-[#626262] hover:text-[#EE3A39] transition-colors font-medium py-1">
-                  → Privacy Policy
-                </Link>
-                <Link href="/terms-and-conditions" className="flex items-center gap-2 text-xs text-[#626262] hover:text-[#EE3A39] transition-colors font-medium py-1">
-                  → Terms & Conditions
-                </Link>
+              <div className="mt-12 space-y-4">
+                 <Link href="/privacy-policy" className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-brandPrimary transition-colors">
+                    <span className="w-8 h-[1px] bg-gray-200 group-hover:bg-brandPrimary transition-colors" /> Privacy
+                 </Link>
+                 <Link href="/terms-and-conditions" className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-brandPrimary transition-colors">
+                    <span className="w-8 h-[1px] bg-gray-200 group-hover:bg-brandPrimary transition-colors" /> Terms
+                 </Link>
               </div>
             </div>
           </aside>
 
-          {/* Content */}
-          <main className="flex-1 bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-12 space-y-12">
-
-            {/* Intro Banner */}
-            <div className="p-6 bg-[#EE3A39]/5 border border-[#EE3A39]/15 rounded-2xl text-sm text-[#626262] leading-relaxed">
-              By continuing to use our website, you consent to the use of cookies as described in this policy. You may withdraw your consent at any time by adjusting your browser settings or using the opt-out mechanisms described below.
+          {/* Core Content */}
+          <main className="flex-1 max-w-4xl">
+            {/* Quick Summary Box */}
+            <div className="p-8 md:p-10 bg-[#011] rounded-[2.5rem] text-white mb-20 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brandPrimary/20 blur-[60px] rounded-full" />
+              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                <div className="w-16 h-16 rounded-2xl bg-brandPrimary flex items-center justify-center shrink-0 shadow-2xl shadow-brandPrimary/20">
+                  <Cookie size={32} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">Cookie Statement</h3>
+                  <p className="text-white/70 text-sm leading-relaxed font-bold">
+                    By continues engagement with our studio platform, you consent to our use of technical and analytics cookies. You can audit and control these at any time.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <Section id="what-are-cookies" icon={<Cookie size={18} />} number="1" title="What Are Cookies?">
+            <Section id="what-are-cookies" icon={<Cookie size={20} />} number="1" title="The Basics">
               <p>
-                Cookies are small text files placed on your device (computer, smartphone, or tablet) when you visit a website. They are widely used to make websites work more efficiently, remember your preferences, and provide information to website owners.
+                Cookies are tiny data packets stored on your device that help us recognize your session, remember your login state, and optimize your studio dashboard.
               </p>
-              <p>
-                Cookies cannot run programs or deliver viruses. They are uniquely assigned to your device and can only be read by the web server that set them.
-              </p>
-              <p className="font-semibold text-[#011] pt-1">There are two main types:</p>
-              <ul className="space-y-2 mt-1">
-                <Bullet><strong className="text-[#011]">Session Cookies:</strong> Temporary cookies that expire when you close your browser. Used to maintain your session while browsing.</Bullet>
-                <Bullet><strong className="text-[#011]">Persistent Cookies:</strong> Remain stored on your device for a set period — or until deleted manually — and are re-activated each time you visit the site that set them.</Bullet>
-              </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                 <div className="p-6 bg-grayLight rounded-2xl border border-gray-100 italic">
+                    <strong className="text-[#011]">Session Packets:</strong> Temporary markers that vanish when you close your browser. Essential for live editing sessions.
+                 </div>
+                 <div className="p-6 bg-grayLight rounded-2xl border border-gray-100 italic">
+                    <strong className="text-[#011]">Persistent Packets:</strong> Locked markers that remember your language and UI theme preferences across multiple days.
+                 </div>
+              </div>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="how-we-use" icon={<Eye size={18} />} number="2" title="How We Use Cookies">
-              <p>BLACKFOX DIGITAL uses cookies and similar local storage technologies for the following purposes:</p>
-              <ul className="space-y-2 mt-2">
-                <Bullet>To ensure the website functions correctly and securely</Bullet>
-                <Bullet>To remember your preferences and settings between visits</Bullet>
-                <Bullet>To analyze how visitors use our website — anonymously and in aggregate</Bullet>
-                <Bullet>To improve site performance and user experience</Bullet>
-                <Bullet>To understand where traffic comes from and which pages are most popular</Bullet>
+            <Section id="how-we-use" icon={<Eye size={20} />} number="2" title="Studio Usage">
+              <p>BLACKFOX DIGITAL deploys tracking technologies strictly for high-tier performance. We use them to:</p>
+              <ul className="space-y-3 mt-6">
+                <Bullet>Validate secure access to your private production folders</Bullet>
+                <Bullet>Remember your chosen color profiles and file format settings</Bullet>
+                <Bullet>Audit studio load times to maintain our 24-hour delivery promise</Bullet>
+                <Bullet>Determine which retouching services are trending in your region</Bullet>
               </ul>
-              <p className="mt-3">
-                We do <strong className="text-[#011]">not</strong> use cookies to serve targeted advertising, and we do not sell your data to any third party.
-              </p>
+              <div className="mt-8 p-6 bg-brandPrimary/5 border border-brandPrimary/10 rounded-2xl text-center">
+                <p className="text-xs font-black uppercase tracking-[2px] text-brandPrimary">Strict Privacy Policy</p>
+                <p className="text-[11px] font-bold text-[#011] mt-1">We do NOT sell data to ad-networks or use tracking for third-party marketing.</p>
+              </div>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="essential" icon={<Shield size={18} />} number="3" title="Essential / Strictly Necessary Cookies">
+            <Section id="essential" icon={<Shield size={20} />} number="3" title="Technical Necessity">
               <p>
-                These cookies are required for the website to function correctly. They enable core features like session management and security. They cannot be disabled without impairing site functionality.
+                These cookies are strictly required for the platform to exist. Without them, you cannot log in or submit image batches securely.
               </p>
               <CookieTable rows={[
-                { name: "__csrf_token", provider: "BLACKFOX DIGITAL", purpose: "Protects contact and enquiry forms against cross-site request forgery (CSRF) attacks", expiry: "Session" },
-                { name: "lang_code", provider: "BLACKFOX DIGITAL", purpose: "Stores your preferred language setting", expiry: "1 year" },
+                { name: "__csrf_token", provider: "Blackfox Studio", purpose: "Cyber-security shield for client contact portals", expiry: "Session" },
+                { name: "auth_state", provider: "Blackfox Studio", purpose: "Maintains your production dashboard session", expiry: "14 Days" },
               ]} />
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="analytics" icon={<BarChart2 size={18} />} number="4" title="Analytics Cookies">
+            <Section id="analytics" icon={<BarChart2 size={20} />} number="4" title="Performance Insights">
               <p>
-                We use privacy-friendly analytics tools to understand how visitors interact with our website — which pages are most popular, how long users stay, and where they arrive from. This helps us improve the site over time.
+                We use privacy-first, cookie-less analytics (via Plausible) to monitor site health without invading your personal digital footprint.
               </p>
-              <p>
-                Unlike traditional analytics platforms, our analytics tools are designed with privacy in mind: <strong className="text-[#011]">no personal data is collected</strong>, <strong className="text-[#011]">no cross-site tracking</strong>, and <strong className="text-[#011]">no cookies are shared with third-party ad networks</strong>.
-              </p>
-
-              <div className="bg-[#F8F8F8] rounded-2xl p-5 border border-gray-100 mt-4">
-                <p className="font-extrabold text-[#011] mb-2">📊 Plausible Analytics (Self-hosted)</p>
-                <p>
-                  We use a self-hosted instance of{" "}
-                  <a href="https://plausible.io" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline font-medium">Plausible Analytics</a>
-                  {" "}— an open-source, GDPR-compliant analytics tool. Plausible does not use cookies and does not collect personally identifiable information. All data is aggregated and stored on our own infrastructure.
-                </p>
-                <div className="mt-3 p-4 bg-green-50 border border-green-100 rounded-xl text-green-700 text-xs font-medium">
-                  ✅ Cookie-free — Plausible Analytics does not set any cookies on your device.
-                </div>
-                <p className="mt-3 text-xs">
-                  Learn more:{" "}
-                  <a href="https://plausible.io/privacy-focused-web-analytics" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline font-medium">
-                    How Plausible respects your privacy →
-                  </a>
-                </p>
-              </div>
-
-              <div className="bg-[#F8F8F8] rounded-2xl p-5 border border-gray-100 mt-4">
-                <p className="font-extrabold text-[#011] mb-2">⚡ Vercel Speed Insights</p>
-                <p>
-                  Our website is hosted on Vercel. We use Vercel Speed Insights to monitor real-world performance metrics (Core Web Vitals). This tool collects anonymized performance data to help us optimize page load times and user experience.
-                </p>
-                <CookieTable rows={[
-                  { name: "va-*", provider: "Vercel", purpose: "Tracks anonymized performance metrics (Core Web Vitals)", expiry: "Session" },
-                ]} />
-                <p className="mt-3 text-xs">
-                  Learn more:{" "}
-                  <a href="https://vercel.com/docs/speed-insights/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline font-medium">
-                    Vercel Speed Insights Privacy →
-                  </a>
-                </p>
+              <div className="mt-8 bg-[#011] rounded-[2rem] p-8 text-white relative overflow-hidden">
+                 <div className="absolute top-0 right-0 w-24 h-full bg-brandPrimary/10 blur-[40px] -skew-x-12" />
+                 <h4 className="text-sm font-black uppercase tracking-[3px] text-brandPrimary mb-4">Privacy Optimization</h4>
+                 <p className="text-white/70 text-sm font-bold leading-relaxed mb-6">
+                    Our Vercel Speed Insights tool tracks real-world performance metrics so we can ensure our global asset delivery is always lightning-fast.
+                 </p>
+                 <CookieTable rows={[
+                    { name: "va-*", provider: "Vercel SDK", purpose: "Aggregated performance & speed metrics", expiry: "Session" },
+                 ]} />
               </div>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="preference" icon={<Settings size={18} />} number="5" title="Preference / Functional Cookies">
+            <Section id="managing" icon={<Settings size={20} />} number="7" title="User Control Desk">
               <p>
-                These cookies enable the website to remember choices you make — such as your language preference — to provide a more personalized experience between visits.
+                You hold absolute authority over your cookie ecosystem. You can wipe, block, or audit these trackers via your browser&apos;s master settings.
               </p>
-              <CookieTable rows={[
-                { name: "lang_id", provider: "BLACKFOX DIGITAL", purpose: "Stores your preferred language/locale for the site", expiry: "1 year" },
-                { name: "cookie_consent", provider: "BLACKFOX DIGITAL", purpose: "Records your cookie consent choice so we don't ask again", expiry: "1 year" },
-              ]} />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                 <BrowserLink name="Chrome" href="https://support.google.com/chrome/answer/95647" />
+                 <BrowserLink name="Safari" href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" />
+                 <BrowserLink name="Firefox" href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" />
+                 <BrowserLink name="Edge" href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" />
+              </div>
             </Section>
 
-            <hr className="border-gray-100" />
-
-            <Section id="third-party" icon={<Eye size={18} />} number="6" title="Third-Party Services">
-              <p>
-                Our website uses a small number of external services. These are listed below along with any cookies or storage they may set. We do not integrate any advertising or social media tracking cookies.
-              </p>
-
-              <div className="bg-[#F8F8F8] rounded-2xl p-5 border border-gray-100 mt-4">
-                <p className="font-extrabold text-[#011] mb-2">🔤 Google Fonts</p>
-                <p>
-                  We use Google Fonts (loaded via <code className="bg-gray-100 px-1 py-0.5 rounded text-xs">next/font/google</code>) to render our website typography. Next.js automatically downloads and self-hosts font files at build time, which means <strong className="text-[#011]">no requests are made to Google servers at runtime</strong> and no Google cookies are set on your device.
-                </p>
-                <div className="mt-3 p-4 bg-green-50 border border-green-100 rounded-xl text-green-700 text-xs font-medium">
-                  ✅ Cookie-free — fonts are self-hosted. Google does not receive any requests from your browser.
+            <Section id="contact" icon={<Mail size={20} />} number="9" title="Legal Governance">
+              <p>For deep technical audits or data access requests, contact our privacy desk:</p>
+              <div className="mt-8 p-10 bg-[#F8F8F8] rounded-[2.5rem] border border-gray-100 relative group transition-colors hover:bg-white hover:shadow-2xl">
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Compliance Team</p>
+                    <p className="text-xl font-black uppercase tracking-tighter text-[#011]">Data Protection Officer</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-8 pt-6 border-t border-gray-200/50">
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-1">Email Desk</p>
+                      <a href="mailto:info@theblackfoxstudio.com" className="text-sm font-black text-[#011] hover:text-brandPrimary transition-all uppercase tracking-widest leading-none">
+                        info@theblackfoxstudio.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className="bg-[#F8F8F8] rounded-2xl p-5 border border-gray-100 mt-4">
-                <p className="font-extrabold text-[#011] mb-2">🗺️ Google Maps (Contact Page)</p>
-                <p>
-                  Our contact page embeds a Google Maps iframe to display our office location. When this iframe is loaded, Google may set cookies on your device to track map interactions.
-                </p>
-                <CookieTable rows={[
-                  { name: "NID, CONSENT, SOCS", provider: "Google Maps", purpose: "Map personalization, user preferences, and consent management", expiry: "Up to 2 years" },
-                ]} />
-                <p className="mt-3 text-xs">
-                  Learn more:{" "}
-                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline font-medium">
-                    Google Privacy Policy →
-                  </a>
-                </p>
-              </div>
             </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="managing" icon={<Settings size={18} />} number="7" title="Managing & Disabling Cookies">
-              <p>
-                You have the right to accept or reject cookies (other than strictly essential ones). You can manage cookie settings directly through your browser. Note that disabling certain cookies may affect the functionality of this website.
-              </p>
-
-              <p className="font-semibold text-[#011] pt-2">Cookie settings in popular browsers:</p>
-              <ul className="space-y-2 mt-2">
-                <Bullet>
-                  <BrowserLink name="Google Chrome" href="https://support.google.com/chrome/answer/95647" />
-                </Bullet>
-                <Bullet>
-                  <BrowserLink name="Mozilla Firefox" href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" />
-                </Bullet>
-                <Bullet>
-                  <BrowserLink name="Apple Safari" href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" />
-                </Bullet>
-                <Bullet>
-                  <BrowserLink name="Microsoft Edge" href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" />
-                </Bullet>
-              </ul>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="updates" icon={<Cookie size={18} />} number="8" title="Updates to This Cookie Policy">
-              <p>
-                BLACKFOX DIGITAL may update this Cookie Policy from time to time to reflect changes in technology, regulation, or our use of cookies. When we make significant updates, we will revise the "Last updated" date at the top of this page.
-              </p>
-              <p>
-                We encourage you to check this page periodically to stay informed about how we use cookies.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="contact" icon={<Mail size={18} />} number="9" title="Contact Us">
-              <p>If you have any questions or concerns about this Cookie Policy, please contact us:</p>
-              <div className="mt-4 bg-[#F8F8F8] rounded-2xl p-6 border border-gray-100 space-y-3 text-[#011]">
-                <p className="font-extrabold text-lg">BLACKFOX DIGITAL</p>
-                <p>House 560, Road 08, Adabor, Dhaka 1207, Bangladesh</p>
-                <p>
-                  Email:{" "}
-                  <a href="mailto:info@theblackfoxstudio.com" className="text-[#EE3A39] hover:underline font-medium">
-                    info@theblackfoxstudio.com
-                  </a>
-                </p>
-                <p>Phone: (+88) 019 24 482 868</p>
-              </div>
-            </Section>
-
           </main>
         </div>
       </div>
-
     </div>
   );
 }
+

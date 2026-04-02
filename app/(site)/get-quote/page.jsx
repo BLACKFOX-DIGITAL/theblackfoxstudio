@@ -2,8 +2,15 @@ import { services as mockServices } from "@/lib/mock-data";
 import { ArrowRight, Calculator, UploadCloud, Users, Mail, Image as ImageIcon, Sparkles, Building2, Workflow } from "lucide-react";
 
 export const metadata = {
-  title: "Request a Custom Quote | Blackfox Studio",
-  description: "Get a comprehensive, custom-tailored quote for your ongoing high-volume image post-production needs.",
+  title: "Request a Custom Quote — Image Editing | BLACKFOX DIGITAL",
+  description: "Get a custom quote for high-volume image post-production. Background removal, retouching, clipping path and more. Bulk pricing available. Reply within 2 hours.",
+  alternates: { canonical: "https://theblackfoxstudio.com/get-quote" },
+  openGraph: {
+    title: "Request a Custom Quote | BLACKFOX DIGITAL",
+    description: "Tailored pricing for high-volume image editing. Submit your requirements and receive a custom quote within 2 hours.",
+    url: "https://theblackfoxstudio.com/get-quote",
+    type: "website",
+  },
 };
 
 export default function GetQuotePage() {
@@ -126,8 +133,8 @@ export default function GetQuotePage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2">Additional Operational Context</label>
-                    <textarea rows="4" placeholder="e.g. We require precise layer masking output in PSD. Target turnaround is 12 hours max..." className="w-full px-5 py-4 bg-[#F8F8F8] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#EE3A39]/20 focus:border-[#EE3A39] transition-all resize-none font-medium"></textarea>
+                    <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2">Project Details & Special Requirements</label>
+                    <textarea rows="4" placeholder="e.g. Output in layered PSD. Target turnaround is 12 hours. Backgrounds must be pure white RGB 255..." className="w-full px-5 py-4 bg-[#F8F8F8] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#EE3A39]/20 focus:border-[#EE3A39] transition-all resize-none font-medium"></textarea>
                   </div>
                 </div>
 

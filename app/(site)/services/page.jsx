@@ -5,9 +5,14 @@ import { ArrowRight, CheckCircle, Scissors, Zap, Award, Sparkles } from "lucide-
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 
 export const metadata = {
-  title: "Image Post Production Services | Blackfox Limited",
-  description: "Professional image editing and retouching services for e-commerce, fashion, and commercial photography.",
+  title: "Outsource Image Editing & Retouching — 20+ Services | BLACKFOX DIGITAL",
+  description: "Outsource bulk photo editing and white label retouching to BLACKFOX DIGITAL. Background removal, clipping path, ghost mannequin, product retouch and 20+ services for photographers, agencies, and e-commerce brands. From $0.29/image.",
+  alternates: { canonical: "https://theblackfoxstudio.com/services" },
   openGraph: {
+    title: "Outsource Image Editing & Retouching | BLACKFOX DIGITAL",
+    description: "Outsource bulk photo editing to 80+ professional retouchers. 20+ services from $0.29/image. White label available for agencies.",
+    url: "https://theblackfoxstudio.com/services",
+    type: "website",
     images: ["/logo.png", "/hero-2.jpg"],
   },
 };

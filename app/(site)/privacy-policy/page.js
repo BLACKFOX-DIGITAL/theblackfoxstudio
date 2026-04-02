@@ -1,260 +1,298 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ShieldCheck, Eye, Lock, Users, FileText, Mail } from "lucide-react";
+import { ShieldCheck, Eye, Lock, Users, FileText, Mail, ChevronRight, Scale, Info, Database } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-export const metadata = {
-  title: "Privacy Policy – Blackfox Digital",
-  description: "Read the Privacy Policy of Blackfox Digital. Understand how we collect, use, and protect your personal data.",
-  openGraph: {
-    images: ["/logo.png"],
-  },
-};
-
-const Section = ({ id, icon, title, children }) => (
-  <section id={id} className="scroll-mt-24">
-    <div className="flex items-center gap-3 mb-5">
-      <div className="w-10 h-10 rounded-xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center shrink-0">
+const Section = ({ id, icon, number, title, children }) => (
+  <section id={id} className="scroll-mt-32 mb-16 last:mb-0">
+    <div className="flex items-center gap-4 mb-8">
+      <div className="w-12 h-12 rounded-2xl bg-brandPrimary/10 text-brandPrimary flex items-center justify-center shrink-0 shadow-sm border border-brandPrimary/5">
         {icon}
       </div>
-      <h2 className="text-xl font-extrabold text-[#011] tracking-tight">{title}</h2>
+      <div className="flex flex-col">
+        <span className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Clause {number}</span>
+        <h2 className="text-2xl md:text-3xl font-black text-[#011] tracking-tighter uppercase leading-none">
+          {title}
+        </h2>
+      </div>
     </div>
-    <div className="text-[#626262] text-sm leading-relaxed space-y-3 pl-[52px]">
+    <div className="text-[#626262] text-sm md:text-base leading-relaxed space-y-4 pl-0 md:pl-16 font-medium">
       {children}
     </div>
   </section>
 );
 
 const Bullet = ({ children }) => (
-  <li className="flex items-start gap-2">
-    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#EE3A39] shrink-0 inline-block" />
-    <span>{children}</span>
+  <li className="flex items-start gap-3 group">
+    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brandPrimary shrink-0 shadow-[0_0_8px_rgba(238,58,57,0.4)] group-hover:scale-125 transition-transform" />
+    <span className="group-hover:text-[#011] transition-colors">{children}</span>
   </li>
 );
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = "23 March 2026";
+  const lastUpdated = "24 March 2026";
+  const [activeSection, setActiveSection] = useState("");
 
   const toc = [
-    { id: "information-we-collect", label: "Information We Collect" },
-    { id: "how-we-use-data", label: "How We Use Your Data" },
-    { id: "data-sharing", label: "Data Sharing & Disclosure" },
-    { id: "data-retention", label: "Data Retention" },
-    { id: "your-rights", label: "Your Rights" },
-    { id: "cookies", label: "Cookies & Tracking" },
-    { id: "security", label: "Data Security" },
-    { id: "third-party", label: "Third-Party Services" },
-    { id: "children", label: "Children's Privacy" },
-    { id: "changes", label: "Changes to This Policy" },
-    { id: "contact", label: "Contact Us" },
+    { id: "information-we-collect", label: "Collection", number: "01" },
+    { id: "how-we-use-data", label: "Usage", number: "02" },
+    { id: "data-sharing", label: "Sharing", number: "03" },
+    { id: "data-retention", label: "Retention", number: "04" },
+    { id: "your-rights", label: "Your Rights", number: "05" },
+    { id: "cookies", label: "Tracking", number: "06" },
+    { id: "security", label: "Security", number: "07" },
+    { id: "third-party", label: "Third Parties", number: "08" },
+    { id: "contact", label: "Privacy Desk", number: "09" },
   ];
 
-  return (
-    <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "-100px 0px -70% 0px" }
+    );
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-gray-200 overflow-hidden bg-white">
-        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/8 blur-[150px] rounded-full pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
-            Legal
-          </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Privacy Policy
-          </h1>
-          <p className="text-lg text-[#626262] mb-4 font-medium">
-            This policy describes how <strong className="text-[#011]">Blackfox Digital</strong> ("we", "us", or "our") collects, uses, and protects your personal information when you use our website and services.
-          </p>
-          <p className="text-sm text-gray-400">
-            Last updated: <span className="font-semibold text-[#626262]">{lastUpdated}</span>
-          </p>
+    toc.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 120,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white text-[#011] scroll-smooth">
+      {/* Hero Header */}
+      <section className="relative pt-32 pb-24 border-b border-gray-100 overflow-hidden bg-grayLight/30">
+        <div className="absolute top-0 left-0 w-full h-full bg-grid-gray/[0.03] -z-10" />
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 bg-brandPrimary/10 border border-brandPrimary/20 text-brandPrimary rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
+          >
+            Data Sovereignty
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
+          >
+            Privacy <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">Governance.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-[#626262] mb-10 font-bold leading-relaxed max-w-2xl mx-auto"
+          >
+            A high-level overview of our commitment to data integrity, protection, and your individual rights as a BLACKFOX DIGITAL client.
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[2px] text-gray-400"
+          >
+             <span>ISO Compliant Protocols</span>
+             <span className="w-1 h-1 bg-gray-300 rounded-full mt-1.5" />
+             <span>Secure Asset Custody</span>
+             <span className="w-1 h-1 bg-gray-300 rounded-full mt-1.5" />
+             <span>Revision: {lastUpdated}</span>
+          </motion.div>
         </div>
       </section>
 
-      {/* Main Layout: TOC + Content */}
-      <div className="container mx-auto px-4 py-16 max-w-6xl">
-        <div className="flex flex-col lg:flex-row gap-12">
-
-          {/* Sticky Table of Contents */}
-          <aside className="w-full lg:w-64 shrink-0">
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sticky top-32">
-              <p className="text-xs font-extrabold uppercase tracking-widest text-[#626262] mb-4">Contents</p>
-              <nav className="flex flex-col gap-1">
+      {/* Main Grid Layout */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="flex flex-col xl:flex-row gap-16">
+          
+          {/* Sidebar Navigation */}
+          <aside className="xl:w-80 shrink-0 hidden xl:block">
+            <div className="sticky top-32">
+              <div className="mb-6 pl-4 border-l-2 border-brandPrimary/20">
+                <p className="text-[10px] font-black uppercase tracking-[2px] text-[#011]">Governance Frame</p>
+                <p className="text-xs text-gray-400 font-bold">Policy breakdown</p>
+              </div>
+              <nav className="flex flex-col space-y-1">
                 {toc.map((item) => (
-                  <a
+                  <button
                     key={item.id}
-                    href={`#${item.id}`}
-                    className="text-sm text-[#626262] hover:text-[#EE3A39] py-1.5 border-l-2 border-gray-100 hover:border-[#EE3A39] pl-3 transition-all font-medium"
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={cn(
+                      "group flex items-center justify-between text-left px-4 py-3 rounded-xl transition-all duration-300 border border-transparent",
+                      activeSection === item.id 
+                        ? "bg-[#011] text-white shadow-lg shadow-[#011]/10 -translate-x-2" 
+                        : "hover:bg-grayLight/50 text-gray-500 hover:text-[#011] hover:border-gray-100"
+                    )}
                   >
-                    {item.label}
-                  </a>
+                    <div className="flex items-center gap-3">
+                      <span className={cn(
+                        "text-[9px] font-black uppercase tracking-[1px]",
+                        activeSection === item.id ? "text-brandPrimary" : "text-gray-300 group-hover:text-gray-400"
+                      )}>{item.number}</span>
+                      <span className="text-[11px] font-black uppercase tracking-[1px]">{item.label}</span>
+                    </div>
+                    <ChevronRight size={12} className={cn(
+                      "transition-all",
+                      activeSection === item.id ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                    )} />
+                  </button>
                 ))}
               </nav>
+
+              <div className="mt-12 space-y-4">
+                 <Link href="/terms-and-conditions" className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-brandPrimary transition-colors">
+                    <span className="w-8 h-[1px] bg-gray-200 group-hover:bg-brandPrimary transition-colors" /> Terms
+                 </Link>
+                 <Link href="/cookies-policy" className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-brandPrimary transition-colors">
+                    <span className="w-8 h-[1px] bg-gray-200 group-hover:bg-brandPrimary transition-colors" /> Cookies
+                 </Link>
+              </div>
             </div>
           </aside>
 
-          {/* Policy Content */}
-          <main className="flex-1 bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-12 space-y-12">
-
-            {/* Intro */}
-            <div className="p-6 bg-[#EE3A39]/5 border border-[#EE3A39]/15 rounded-2xl text-sm text-[#626262] leading-relaxed">
-              By accessing or using the website at{" "}
-              <a href="https://theblackfoxstudio.com/" className="text-[#EE3A39] hover:underline font-semibold">
-                theblackfoxstudio.com
-              </a>{" "}
-              or engaging with our image post-production services, you agree to the terms set out in this Privacy Policy. Please read it carefully. If you do not agree, you should not use our website or services.
+          {/* Core Content */}
+          <main className="flex-1 max-w-4xl">
+            {/* Quick Summary Box */}
+            <div className="p-8 md:p-10 bg-[#011] rounded-[2.5rem] text-white mb-20 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brandPrimary/20 blur-[60px] rounded-full" />
+              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                <div className="w-16 h-16 rounded-2xl bg-brandPrimary flex items-center justify-center shrink-0 shadow-2xl shadow-brandPrimary/20">
+                  <ShieldCheck size={32} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">Privacy Mandate</h3>
+                  <p className="text-white/70 text-sm leading-relaxed font-bold">
+                    We treat your image assets and personal data with the same precision we apply to our post-production. Zero data resale, absolute asset security.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <Section id="information-we-collect" icon={<FileText size={18} />} title="Information We Collect">
-              <p>We collect information you voluntarily provide and data generated automatically when you use our website.</p>
-              <p className="font-semibold text-[#011] pt-1">Information you provide:</p>
-              <ul className="space-y-1.5 mt-1">
-                <Bullet>Full name, business name, and email address (via contact and free trial forms)</Bullet>
-                <Bullet>Phone number, company website, and file-sharing links</Bullet>
-                <Bullet>Image files and creative assets submitted for editing</Bullet>
-                <Bullet>Messages, project briefs, and instructions submitted through our website</Bullet>
-              </ul>
-              <p className="font-semibold text-[#011] pt-3">Automatically collected data:</p>
-              <ul className="space-y-1.5 mt-1">
-                <Bullet>IP address, browser type, operating system, and device information</Bullet>
-                <Bullet>Pages visited, session duration, and referral source</Bullet>
-                <Bullet>Cookie identifiers and usage analytics data</Bullet>
-              </ul>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="how-we-use-data" icon={<Eye size={18} />} title="How We Use Your Data">
-              <p>Blackfox Digital uses your data solely for legitimate business and operational purposes:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>To respond to your enquiries, free trial requests, and project briefs</Bullet>
-                <Bullet>To deliver and improve our image post-production services</Bullet>
-                <Bullet>To process payments and issue invoices</Bullet>
-                <Bullet>To send project updates and service communications</Bullet>
-                <Bullet>To analyze website traffic and improve user experience</Bullet>
-                <Bullet>To comply with legal obligations and respond to lawful requests</Bullet>
-              </ul>
-              <p className="mt-3">We do <strong className="text-[#011]">not</strong> sell, rent, or trade your personal information to third parties for marketing purposes.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="data-sharing" icon={<Users size={18} />} title="Data Sharing & Disclosure">
-              <p>We may share your information only in the following limited circumstances:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet><strong className="text-[#011]">Service Providers:</strong> Trusted third-party partners who assist in operating our website or delivering services (e.g. cloud storage, payment processors, communication tools), bound by confidentiality obligations.</Bullet>
-                <Bullet><strong className="text-[#011]">Legal Requirements:</strong> If required by law, court order, or government authority, we may disclose data in compliance with that obligation.</Bullet>
-                <Bullet><strong className="text-[#011]">Business Transfers:</strong> In the event of a merger, acquisition, or asset sale, your data may be transferred as part of that transaction. You will be notified beforehand.</Bullet>
-              </ul>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="data-retention" icon={<Lock size={18} />} title="Data Retention">
-              <p>We retain your personal data for as long as necessary to fulfil the purposes outlined in this policy:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>Client data and project files are retained for the duration of our business relationship and up to 3 years following its conclusion, for archival and legal purposes.</Bullet>
-                <Bullet>Free trial submissions and general enquiries are retained for up to 12 months.</Bullet>
-                <Bullet>Analytics and usage data is retained in aggregated, anonymized form.</Bullet>
-              </ul>
-              <p className="mt-3">Once data is no longer required, it is securely deleted or anonymized.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="your-rights" icon={<ShieldCheck size={18} />} title="Your Rights">
-              <p>Depending on your jurisdiction (including the EU/EEA under GDPR), you may have the following rights regarding your personal data:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet><strong className="text-[#011]">Right of Access:</strong> Request a copy of the personal data we hold about you.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Rectification:</strong> Ask us to correct inaccurate or incomplete data.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Erasure:</strong> Request deletion of your data where it is no longer necessary.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Restrict Processing:</strong> Ask us to stop using your data in certain ways.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Data Portability:</strong> Receive your data in a commonly used, machine-readable format.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Object:</strong> Object to processing based on legitimate interests or for direct marketing.</Bullet>
-                <Bullet><strong className="text-[#011]">Right to Withdraw Consent:</strong> Where processing is based on consent, you may withdraw it at any time.</Bullet>
-              </ul>
-              <p className="mt-3">To exercise any of these rights, contact us at{" "}
-                <a href="mailto:info@theblackfoxstudio.com" className="text-[#EE3A39] hover:underline font-medium">
-                  info@theblackfoxstudio.com
-                </a>. We will respond within 30 days.
-              </p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="cookies" icon={<Eye size={18} />} title="Cookies & Tracking Technologies">
-              <p>Our website uses cookies and similar tracking technologies to enhance your experience and analyze website traffic.</p>
-              <p className="font-semibold text-[#011] pt-2">Types of cookies we use:</p>
-              <ul className="space-y-1.5 mt-1">
-                <Bullet><strong className="text-[#011]">Essential Cookies:</strong> Required for the website to function correctly. Cannot be disabled.</Bullet>
-                <Bullet><strong className="text-[#011]">Analytics Cookies:</strong> Used via Google Analytics to understand how visitors interact with our site. All data is anonymized.</Bullet>
-                <Bullet><strong className="text-[#011]">Preference Cookies:</strong> Store your settings and preferences between visits.</Bullet>
-              </ul>
-              <p className="mt-3">You can manage cookie preferences through your browser settings or via our Cookie Policy page. Disabling certain cookies may affect site functionality.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="security" icon={<Lock size={18} />} title="Data Security">
-              <p>Blackfox Digital implements industry-standard technical and organizational security measures to protect your personal data against unauthorized access, disclosure, modification, or destruction. These include:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet>HTTPS encryption on all website pages and data transfers</Bullet>
-                <Bullet>Strict access controls limiting data access to authorized personnel only</Bullet>
-                <Bullet>Secure, encrypted file storage for all submitted image assets</Bullet>
-                <Bullet>Regular security audits and system monitoring</Bullet>
-              </ul>
-              <p className="mt-3">Despite these measures, no method of transmission over the internet is 100% secure. If you suspect a security breach affecting your data, please contact us immediately.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="third-party" icon={<Users size={18} />} title="Third-Party Services">
-              <p>Our website integrates with the following third-party services which may independently process your data. We encourage you to review their privacy policies:</p>
-              <ul className="space-y-1.5 mt-2">
-                <Bullet><strong className="text-[#011]">Google Analytics</strong> – Website traffic analysis. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline">Privacy Policy</a></Bullet>
-                <Bullet><strong className="text-[#011]">Google Fonts</strong> – Web typography rendering. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline">Privacy Policy</a></Bullet>
-                <Bullet><strong className="text-[#011]">Tawk.to</strong> – Live chat support platform. <a href="https://www.tawk.to/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline">Privacy Policy</a></Bullet>
-                <Bullet><strong className="text-[#011]">Vercel</strong> – Website hosting and performance analytics. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#EE3A39] hover:underline">Privacy Policy</a></Bullet>
-              </ul>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="children" icon={<Users size={18} />} title="Children's Privacy">
-              <p>Our website and services are not directed at individuals under the age of <strong className="text-[#011]">16 years</strong>. We do not knowingly collect personal data from children. If you believe a child has provided us with personal information, please contact us immediately and we will take steps to delete the data.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="changes" icon={<FileText size={18} />} title="Changes to This Policy">
-              <p>Blackfox Digital reserves the right to update this Privacy Policy at any time. When we make significant changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify you via email or a prominent notice on the website.</p>
-              <p className="mt-2">We encourage you to review this policy periodically for the latest information on our privacy practices. Continued use of our services following any changes constitutes acceptance of the revised policy.</p>
-            </Section>
-
-            <hr className="border-gray-100" />
-
-            <Section id="contact" icon={<Mail size={18} />} title="Contact Us">
-              <p>If you have any questions, concerns, or requests regarding this Privacy Policy or the handling of your personal data, please contact us:</p>
-              <div className="mt-4 bg-[#F8F8F8] rounded-2xl p-6 border border-gray-100 space-y-3 text-[#011]">
-                <p className="font-extrabold text-lg">Blackfox Digital</p>
-                <p>House 560, Road 08, Adabor, Dhaka 1207, Bangladesh</p>
-                <p>
-                  Email:{" "}
-                  <a href="mailto:info@theblackfoxstudio.com" className="text-[#EE3A39] hover:underline font-medium">
-                    info@theblackfoxstudio.com
-                  </a>
-                </p>
-                <p>Phone: (+88) 019 24 482 868</p>
+            <Section id="information-we-collect" icon={<Database size={20} />} number="1" title="Data Acquisition">
+              <p>We collect essential information to facilitate our production cycle and client communication.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary flex items-center gap-2">
+                    <Info size={14} /> Explicit Data
+                  </h4>
+                  <ul className="space-y-2">
+                    <Bullet>Contact signatures (Name, Email, Business)</Bullet>
+                    <Bullet>Production assets (Image Files, Briefs)</Bullet>
+                    <Bullet>Workflow metadata (File URLs, Instructions)</Bullet>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary flex items-center gap-2">
+                    <Info size={14} /> Technical Log
+                  </h4>
+                  <ul className="space-y-2">
+                    <Bullet>Network identity (Anonymized IP)</Bullet>
+                    <Bullet>Browser environment (Type, Version)</Bullet>
+                    <Bullet>Interaction history (Heatmaps, Clicks)</Bullet>
+                  </ul>
+                </div>
               </div>
-              <p className="mt-4">
-                You also have the right to lodge a complaint with your local data protection authority if you believe your rights have been infringed. For EU residents, this is typically the supervisory authority in your country of residence.
-              </p>
             </Section>
 
-          </main>
+            <Section id="how-we-use-data" icon={<Scale size={20} />} number="2" title="Utilization Frame">
+              <p>BLACKFOX DIGITAL utilizes your data exclusively for operational excellence:</p>
+              <ul className="space-y-3 mt-6">
+                <Bullet>Validating and executing high-tier boutique image retouching</Bullet>
+                <Bullet>Securing B2B communication channels for project iterations</Bullet>
+                <Bullet>Optimizing regional server load for faster asset delivery</Bullet>
+                <Bullet>Complying with international fiscal and tax regulations</Bullet>
+              </ul>
+              <div className="mt-8 p-6 bg-red-50 border border-red-100 rounded-2xl text-center">
+                 <p className="text-[11px] font-black text-brandPrimary uppercase tracking-widest">The Non-Marketing Guarantee</p>
+                 <p className="text-xs font-bold text-[#011] mt-1">Your data is never sold to advertising networks, period.</p>
+              </div>
+            </Section>
 
+            <Section id="data-retention" icon={<Lock size={20} />} number="4" title="Retention Protocols">
+              <p>We maintain a lean data footprint. Retention is dictated by business necessity and legal mandate:</p>
+              <div className="mt-8 space-y-4">
+                 <div className="flex items-center gap-6 p-6 bg-grayLight rounded-2xl border border-gray-100">
+                    <div className="text-2xl font-black text-[#011]">3Y</div>
+                    <div className="text-xs font-bold text-[#626262]">Client records and fiscal transactional history.</div>
+                 </div>
+                 <div className="flex items-center gap-6 p-6 bg-grayLight rounded-2xl border border-gray-100">
+                    <div className="text-2xl font-black text-[#011]">12M</div>
+                    <div className="text-xs font-bold text-[#626262]">Inquiry metadata and general lead communication logs.</div>
+                 </div>
+                 <div className="flex items-center gap-6 p-6 bg-grayLight rounded-2xl border border-gray-100">
+                    <div className="text-2xl font-black text-[#011] uppercase tracking-tighter text-brandPrimary">Instant</div>
+                    <div className="text-xs font-bold text-[#626262]">Proprietary image assets can be purged immediately upon job completion request.</div>
+                 </div>
+              </div>
+            </Section>
+
+            <Section id="your-rights" icon={<ShieldCheck size={20} />} number="5" title="Individual Sovereignty">
+              <p>You maintain absolute control over your digital identity. Under global frameworks, you hold the right to:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                 {[
+                   "Audit & Access Records",
+                   "Rectify Incomplete Data",
+                   "Request Global Erasure",
+                   "Restrict Automated Usage",
+                   "Data Format Portability",
+                   "Object to Processing"
+                 ].map((right, idx) => (
+                   <div key={idx} className="flex items-center gap-3 p-4 border border-gray-100 rounded-xl hover:border-brandPrimary/20 transition-colors">
+                      <div className="w-1.5 h-1.5 bg-brandPrimary rounded-full" />
+                      <span className="text-xs font-black uppercase tracking-tight text-[#011]">{right}</span>
+                   </div>
+                 ))}
+              </div>
+            </Section>
+
+            <Section id="contact" icon={<Mail size={20} />} number="9" title="Governance Desk">
+              <p>For escalation, audit requests, or technical inquiries regarding your privacy:</p>
+              <div className="mt-8 p-10 bg-[#F8F8F8] rounded-[2.5rem] border border-gray-100 relative group transition-colors hover:bg-white hover:shadow-2xl">
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">DPO Center</p>
+                    <p className="text-xl font-black uppercase tracking-tighter text-[#011]">Privacy & Security Division</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-8 pt-6 border-t border-gray-200/50">
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-1">Email Enquiries</p>
+                      <a href="mailto:info@theblackfoxstudio.com" className="text-sm font-black text-[#011] hover:text-brandPrimary transition-all uppercase tracking-widest leading-none">
+                        info@theblackfoxstudio.com
+                      </a>
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-1">HQ Response Time</p>
+                      <p className="text-xs font-black text-[#011] uppercase tracking-widest">{"<"} 24 Business Hours</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Section>
+          </main>
         </div>
       </div>
-
     </div>
   );
 }
+

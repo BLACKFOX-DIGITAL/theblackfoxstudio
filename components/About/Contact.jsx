@@ -38,7 +38,7 @@ export default function Contact() {
     >
       <div className="px-8">
         <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
-          Blackfox Limited, formerly known as Blackfox Digital
+          BLACKFOX DIGITAL
         </h4>
 
         <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
@@ -196,7 +196,7 @@ export const SkeletonTwo = ({ scrollYProgress }) => {
   return (
     <div className="relative flex flex-col items-start gap-10 h-full  ">
       <div>
-        <FeatureTitle>Blackfox Limited</FeatureTitle>
+        <FeatureTitle>BLACKFOX DIGITAL</FeatureTitle>
         <FeatureDescription>
           Address: House 560, Road 08, Adabor, Dhaka 1207
         </FeatureDescription>
@@ -244,7 +244,7 @@ export const SkeletonTwo = ({ scrollYProgress }) => {
       </div>
 
       <div>
-        <FeatureTitle>Blackfox Digital</FeatureTitle>
+        <FeatureTitle>BLACKFOX DIGITAL</FeatureTitle>
         <FeatureDescription>
           Kha15/B (3rd Floor), Khapara, Khilkhet, Dhaka 1229
         </FeatureDescription>

@@ -1,4 +1,4 @@
-# Blackfox Digital - Static Frontend
+# BLACKFOX DIGITAL - Static Frontend
 
 Professional image post-production studio website. This version is a **pure frontend demonstration**, meaning it runs entirely in the browser using static mock data and has no database or server-side dependencies.
 
