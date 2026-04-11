@@ -79,8 +79,8 @@ export default function CookiePolicyPage() {
     { id: "preference", label: "Preferences", number: "05" },
     { id: "third-party", label: "External", number: "06" },
     { id: "managing", label: "Controls", number: "07" },
-    { id: "updates", label: "Policy Shift", number: "08" },
-    { id: "contact", label: "Legal Desk", number: "09" },
+    { id: "updates", label: "Updates", number: "08" },
+    { id: "contact", label: "Contact Us", number: "09" },
   ];
 
   useEffect(() => {
@@ -219,7 +219,7 @@ export default function CookiePolicyPage() {
                 <div>
                   <h3 className="text-xl font-black uppercase tracking-tight mb-2">Cookie Statement</h3>
                   <p className="text-white/70 text-sm leading-relaxed font-bold">
-                    By continues engagement with our studio platform, you consent to our use of technical and analytics cookies. You can audit and control these at any time.
+                    By continuing to use our studio platform, you consent to our use of technical and analytics cookies. You can audit and control these at any time.
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function CookiePolicyPage() {
               </div>
             </Section>
 
-            <Section id="managing" icon={<Settings size={20} />} number="7" title="User Control Desk">
+            <Section id="managing" icon={<Settings size={20} />} number="7" title="Managing Cookies">
               <p>
                 You hold absolute authority over your cookie ecosystem. You can wipe, block, or audit these trackers via your browser&apos;s master settings.
               </p>
@@ -291,7 +291,7 @@ export default function CookiePolicyPage() {
               </div>
             </Section>
 
-            <Section id="contact" icon={<Mail size={20} />} number="9" title="Legal Governance">
+            <Section id="contact" icon={<Mail size={20} />} number="9" title="Contact Us">
               <p>For deep technical audits or data access requests, contact our privacy desk:</p>
               <div className="mt-8 p-10 bg-[#F8F8F8] rounded-[2.5rem] border border-gray-100 relative group transition-colors hover:bg-white hover:shadow-2xl">
                 <div className="space-y-6">

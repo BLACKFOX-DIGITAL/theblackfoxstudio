@@ -187,7 +187,7 @@ export default function TermsPage() {
                 <div>
                   <h3 className="text-xl font-black uppercase tracking-tight mb-2">Binding Agreement</h3>
                   <p className="text-white/70 text-sm leading-relaxed font-bold">
-                    By accessing <a href="/" className="text-brandPrimary hover:underline uppercase tracking-widest text-[10px]">theblackfoxstudio.com</a>, you entering a legally binding agreement. If you do not agree to these terms, please stop using the site immediately.
+                    By accessing <a href="/" className="text-brandPrimary hover:underline uppercase tracking-widest text-[10px]">theblackfoxstudio.com</a>, you are entering a legally binding agreement. If you do not agree to these terms, please stop using the site immediately.
                   </p>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function TermsPage() {
 
             <Section id="changes" icon={<Clock size={20} />} number="2" title="Term Maintenance">
               <p>
-                BLACKFOX DIGITAL evolves rapidly. We reserves the right to modify these Terms at any time. Significant shifts will be broadcast via email or clear dashboard notices.
+                BLACKFOX DIGITAL evolves rapidly. We reserve the right to modify these Terms at any time. Significant shifts will be broadcast via email or clear dashboard notices.
               </p>
               <p>
                 Continuous engagement with our studio following updates implies full acceptance. We recommend auditing this ledger periodically.

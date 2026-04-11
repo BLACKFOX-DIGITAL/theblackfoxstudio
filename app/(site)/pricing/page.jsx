@@ -27,7 +27,7 @@ export default function PricingPage() {
       name: 'Starter',
       volume: 'Up to 100 images / month',
       icon: <CheckCircle className="text-[#EE3A39] w-8 h-8 mb-4" />,
-      desc: 'Perfect for small boutiques testing new inventory.',
+      desc: 'Right for you if: you\'re testing a new supplier, running a small store, or have an occasional batch to clear.',
       features: ['Standard 24hr Turnaround', 'Basic Quality Assurance', 'Email Support', 'JPG/PNG Delivery']
     },
     {
@@ -35,14 +35,14 @@ export default function PricingPage() {
       volume: 'Up to 500 images / month',
       popular: true,
       icon: <Building2 className="text-white w-8 h-8 mb-4" />,
-      desc: 'Optimized for growing brands with regular drops.',
+      desc: 'Right for you if: you run regular catalog drops, seasonal collections, or process 100–500 images consistently each month.',
       features: ['Priority 18hr Turnaround', 'Multi-level Quality Assurance', 'Dedicated Slack Channel', 'Any Format (PSD, TIFF)']
     },
     {
       name: 'Enterprise',
       volume: '1,000+ images / month',
       icon: <Crown className="text-[#EE3A39] w-8 h-8 mb-4" />,
-      desc: 'Scalable pipeline for high-output global retailers.',
+      desc: 'Right for you if: you need a production infrastructure — high weekly volume, predictable SLA, white-label, or API integration.',
       features: ['Custom SLA (8-12hr Turnaround)', 'Dedicated Project Manager', 'API Integration', 'Custom Style Guidelines']
     }
   ];
@@ -52,7 +52,10 @@ export default function PricingPage() {
     { question: 'Are there any hidden setup fees?', answer: 'No. We believe in 100% transparent pricing. You only pay for the images we edit based on the agreed complexity rate.' },
     { question: 'How do I pay?', answer: 'Invoices are generated bi-weekly or monthly based on the actual number of images delivered. We accept Wire Transfers, Credit Cards, and PayPal.' },
     { question: 'What if an image requires multiple services?', answer: 'If an image needs background removal + high-end product retouching, we will provide a custom blended rate prior to execution so there are no surprises.' },
-    { question: 'Can I test the quality before signing an SLA?', answer: 'Absolutely. We offer a 10-image free trial with zero obligations so you can verify our precision and turnaround time.' }
+    { question: 'Can I test the quality before signing an SLA?', answer: 'Absolutely. We offer a 10-image free trial with zero obligations so you can verify our precision and turnaround time.' },
+    { question: 'What happens if I\'m not happy with an edited image?', answer: 'We offer unlimited revisions on every order. If an image doesn\'t meet the standard we agreed on, we fix it at no extra cost. Our multi-tier QC means revision requests are rare — but the guarantee is always there.' },
+    { question: 'Can you match my brand\'s specific editing style?', answer: 'Yes. During onboarding we document your brand guidelines — color tone, shadow style, background preference, skin retouching level, and more. All subsequent batches are edited to those documented standards for consistency across your entire catalog.' },
+    { question: 'Is there a minimum order size?', answer: 'No minimum. You can submit a single image or 10,000 — we handle both. Volume discounts kick in automatically at 101 images/month, so there\'s no commitment required to benefit from lower rates as you grow.' }
   ];
 
   const faqLd = {
@@ -186,7 +189,7 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 
-                <Link href="/take-free-trial" className={`block text-center w-full py-3 rounded-xl font-bold transition-all text-sm ${
+                <Link href="/free-trial" className={`block text-center w-full py-3 rounded-xl font-bold transition-all text-sm ${
                   pkg.popular 
                     ? 'bg-[#EE3A39] text-white hover:bg-red-600 shadow-md' 
                     : 'bg-[#F8F8F8] border border-gray-200 text-[#011] hover:border-[#EE3A39] hover:text-[#EE3A39]'

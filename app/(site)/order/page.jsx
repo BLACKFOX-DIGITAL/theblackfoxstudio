@@ -31,8 +31,8 @@ export default function OrderPage({ searchParams }) {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-200 rounded-md text-xs font-bold mb-4 uppercase tracking-[2px] text-gray-500">
               <ShieldCheck size={14} className="text-[#EE3A39]" /> Secure Checkout
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">Setup Your Order</h1>
-            <p className="text-lg text-[#626262] max-w-2xl">Upload your assets, specify instructions, and let our dedicated lab handle the rest.</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">Place Your Order</h1>
+            <p className="text-lg text-[#626262] max-w-2xl">Tell us what you need. Upload your files, specify your brief, and we'll confirm pricing and start within 2 hours.</p>
           </div>
           <div className="flex bg-white border border-gray-200 p-1.5 rounded-2xl shadow-sm">
              <div className="flex items-center gap-3 px-4 py-2 opacity-50">

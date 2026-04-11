@@ -34,10 +34,10 @@ export default function TakeFreeTrialPage() {
   };
 
   const benefits = [
-    { text: "Fast turnaround (24 hours)", icon: Clock },
-    { text: "No credit card required", icon: Shield },
-    { text: "Up to 10 images free", icon: Sparkles },
-    { text: "Keep 100% of final files", icon: CheckCircle2 },
+    { text: "Editing starts within 2 hours of upload", icon: Clock },
+    { text: "No payment info required — ever", icon: Shield },
+    { text: "Up to 10 images, professionally edited, free", icon: Sparkles },
+    { text: "Full-res files delivered — no watermarks, no catch", icon: CheckCircle2 },
   ];
 
   const nextSteps = [
@@ -70,13 +70,13 @@ export default function TakeFreeTrialPage() {
                 Free Trial
               </div>
               <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter text-[#011] leading-none uppercase">
-                Free Image Editing Trial — <br />
+                See Exactly What We Can Do — On Your Own Images. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">
-                  No Credit Card Required
+                  Free. No Card. 24 Hours.
                 </span>
               </h1>
               <p className="text-base md:text-lg text-[#011] font-bold mb-0">
-                Submit up to 10 images and receive professionally edited results within 24 hours.
+                We don't show you curated samples. Send your actual product shots, fashion images, or property photos — we'll edit them to our commercial standard and send them back.
               </p>
             </div>
 
@@ -137,9 +137,9 @@ export default function TakeFreeTrialPage() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
               
               <div className="relative z-10">
-                <h3 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">Start Your Free Trial</h3>
+                <h3 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">Submit Your Images</h3>
                 <p className="text-[#626262] mb-12 font-bold text-lg leading-relaxed max-w-xl">
-                  Submit up to 10 images. Our production team reviews and begins editing within 2 hours — results delivered in 24 hours.
+                  Tell us what you need, upload your files, and our production team starts within 2 hours. Edited results back in 24 hours — no commitment required.
                 </p>
                 
                 <div className="w-full">

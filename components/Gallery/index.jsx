@@ -207,13 +207,13 @@ const Gallery = ({ data = [] }) => {
                     </div>
 
                     <div className="absolute top-5 right-5 z-20 bg-white/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-[#011] text-[10px] font-black uppercase tracking-[2px] flex items-center gap-2 opacity-100 group-hover:opacity-0 transition-opacity duration-500 shadow-xl">
-                      <MousePointer2 size={12} className="text-[#EE3A39]" /> Raw Comparison
+                      <MousePointer2 size={12} className="text-[#EE3A39]" /> Hover to See Before
                     </div>
- 
+
                     <div className="absolute inset-x-5 bottom-5 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out bg-[#011]/80 backdrop-blur-xl px-5 py-5 rounded-[1.5rem] border border-white/5 shadow-2xl overflow-hidden">
                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE3A39]/10 blur-[40px] rounded-full pointer-events-none"></div>
                        <span className="relative z-10 text-white text-[11px] font-black uppercase tracking-[3px] flex items-center justify-center gap-3">
-                         <Maximize2 size={16} className="text-[#EE3A39] animate-pulse"/> Interactive Suite
+                         <Maximize2 size={16} className="text-[#EE3A39] animate-pulse"/> Click to Compare Side-by-Side
                        </span>
                     </div>
 
@@ -232,13 +232,16 @@ const Gallery = ({ data = [] }) => {
           <div className="w-16 h-16 rounded-3xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center mx-auto mb-8 shadow-inner">
             <Star size={32} className="fill-[#EE3A39]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">Like what you see?</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">This Is What Your Images Could Look Like.</h2>
           <p className="text-xl text-[#011] mb-10 font-bold">
-            Try our service with 10 free images — no credit card needed. Experience the quality difference today.
+            Send us 10 of your actual images — we'll edit them to commercial standard and deliver within 24 hours. No credit card. No commitment.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
              <Link href="/free-trial" className="px-12 py-5 bg-[#EE3A39] text-white font-black rounded-2xl text-sm uppercase tracking-[3px] hover:bg-black hover:-translate-y-1 transition-all shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
-               Start Free Trial
+               Get 10 Free Edits
+             </Link>
+             <Link href="/get-quote" className="px-12 py-5 bg-[#011] text-white font-black rounded-2xl text-sm uppercase tracking-[3px] hover:-translate-y-1 transition-all shadow-xl flex items-center justify-center gap-2">
+               Get a Custom Quote <ArrowRight size={16} />
              </Link>
           </div>
         </div>

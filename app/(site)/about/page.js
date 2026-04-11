@@ -31,10 +31,10 @@ export default function AboutPage() {
               Our Story
             </div>
             <h1 className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
-              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">BLACKFOX DIGITAL</span> <br className="hidden md:block"/> Narrative Since 2016
+              80+ Specialists. 500,000+ Images. <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Built Since 2016.</span>
             </h1>
             <p className="text-base md:text-lg text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
-              Professional image post-production services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect editing. 24-hour delivery.
+              We started as a 5-person studio in Dhaka with one goal: deliver human-edited, commercial-grade photo retouching that global brands could actually rely on. Ten years later, we're processing 5,000+ images a day for 500+ clients across 30 countries.
             </p>
           </motion.div>
         </div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 ))}
               </div>
               <p className="mt-12 text-[#626262] leading-relaxed max-w-lg">
-                Our operations have expanded globally, providing specialized support for e-commerce giants and boutique photographers across the **USA, Europe, Asia and beyond**.
+                Our operations have expanded globally, providing specialized support for e-commerce giants and boutique photographers across the <strong>USA, Europe, Asia and beyond</strong>.
               </p>
             </div>
             <div className="lg:w-1/2 relative">
@@ -203,6 +203,10 @@ export default function AboutPage() {
               <div className="flex flex-col text-center">
                 <span className="text-[#EE3A39] font-bold uppercase text-xs tracking-widest mb-1">Primary Support</span>
                 <span className="text-[#011] font-medium">(+88) 019 24 482 868</span>
+              </div>
+              <div className="flex flex-col text-center">
+                <span className="text-[#EE3A39] font-bold uppercase text-xs tracking-widest mb-1">Email</span>
+                <a href="mailto:info@theblackfoxstudio.com" className="text-[#011] font-medium hover:text-[#EE3A39] transition-colors">info@theblackfoxstudio.com</a>
               </div>
             </div>
           </div>

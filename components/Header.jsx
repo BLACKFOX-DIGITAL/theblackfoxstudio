@@ -54,14 +54,6 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
 
   const links = [
     {
-      name: "home",
-      url: "/",
-    },
-    {
-      name: "about",
-      url: "/about",
-    },
-    {
       name: "our services",
       icon: <RiArrowDownSFill className="w-[16px] lg:size-[.833vw] " />,
       url: "/services",
@@ -70,6 +62,14 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
     {
       name: "portfolio",
       url: "/portfolio",
+    },
+    {
+      name: "pricing",
+      url: "/pricing",
+    },
+    {
+      name: "about",
+      url: "/about",
     },
     {
       name: "blog",

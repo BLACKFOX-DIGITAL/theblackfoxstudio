@@ -89,7 +89,7 @@ export default function PrivacyPolicyPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block px-4 py-1.5 bg-brandPrimary/10 border border-brandPrimary/20 text-brandPrimary rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
           >
-            Data Sovereignty
+            Privacy Policy
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
           >
-            Privacy <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">Governance.</span>
+            Privacy <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">Policy.</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -130,7 +130,7 @@ export default function PrivacyPolicyPage() {
           <aside className="xl:w-80 shrink-0 hidden xl:block">
             <div className="sticky top-32">
               <div className="mb-6 pl-4 border-l-2 border-brandPrimary/20">
-                <p className="text-[10px] font-black uppercase tracking-[2px] text-[#011]">Governance Frame</p>
+                <p className="text-[10px] font-black uppercase tracking-[2px] text-[#011]">Policy Sections</p>
                 <p className="text-xs text-gray-400 font-bold">Policy breakdown</p>
               </div>
               <nav className="flex flex-col space-y-1">
@@ -181,7 +181,7 @@ export default function PrivacyPolicyPage() {
                   <ShieldCheck size={32} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">Privacy Mandate</h3>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">Our Commitment</h3>
                   <p className="text-white/70 text-sm leading-relaxed font-bold">
                     We treat your image assets and personal data with the same precision we apply to our post-production. Zero data resale, absolute asset security.
                   </p>
@@ -189,7 +189,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </div>
 
-            <Section id="information-we-collect" icon={<Database size={20} />} number="1" title="Data Acquisition">
+            <Section id="information-we-collect" icon={<Database size={20} />} number="1" title="What We Collect">
               <p>We collect essential information to facilitate our production cycle and client communication.</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
                 <div className="space-y-4">
@@ -215,7 +215,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </Section>
 
-            <Section id="how-we-use-data" icon={<Scale size={20} />} number="2" title="Utilization Frame">
+            <Section id="how-we-use-data" icon={<Scale size={20} />} number="2" title="How We Use Your Data">
               <p>BLACKFOX DIGITAL utilizes your data exclusively for operational excellence:</p>
               <ul className="space-y-3 mt-6">
                 <Bullet>Validating and executing high-tier boutique image retouching</Bullet>
@@ -229,7 +229,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </Section>
 
-            <Section id="data-retention" icon={<Lock size={20} />} number="4" title="Retention Protocols">
+            <Section id="data-retention" icon={<Lock size={20} />} number="4" title="Data Retention">
               <p>We maintain a lean data footprint. Retention is dictated by business necessity and legal mandate:</p>
               <div className="mt-8 space-y-4">
                  <div className="flex items-center gap-6 p-6 bg-grayLight rounded-2xl border border-gray-100">
@@ -247,7 +247,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </Section>
 
-            <Section id="your-rights" icon={<ShieldCheck size={20} />} number="5" title="Individual Sovereignty">
+            <Section id="your-rights" icon={<ShieldCheck size={20} />} number="5" title="Your Rights">
               <p>You maintain absolute control over your digital identity. Under global frameworks, you hold the right to:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
                  {[
@@ -266,13 +266,13 @@ export default function PrivacyPolicyPage() {
               </div>
             </Section>
 
-            <Section id="contact" icon={<Mail size={20} />} number="9" title="Governance Desk">
+            <Section id="contact" icon={<Mail size={20} />} number="9" title="Contact Us">
               <p>For escalation, audit requests, or technical inquiries regarding your privacy:</p>
               <div className="mt-8 p-10 bg-[#F8F8F8] rounded-[2.5rem] border border-gray-100 relative group transition-colors hover:bg-white hover:shadow-2xl">
                 <div className="space-y-6">
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">DPO Center</p>
-                    <p className="text-xl font-black uppercase tracking-tighter text-[#011]">Privacy & Security Division</p>
+                    <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-1">Privacy Team</p>
+                    <p className="text-xl font-black uppercase tracking-tighter text-[#011]">BLACKFOX DIGITAL</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-8 pt-6 border-t border-gray-200/50">
                     <div>

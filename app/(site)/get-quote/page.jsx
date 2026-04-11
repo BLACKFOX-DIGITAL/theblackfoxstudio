@@ -1,5 +1,5 @@
 import { services as mockServices } from "@/lib/mock-data";
-import { ArrowRight, Calculator, UploadCloud, Users, Mail, Image as ImageIcon, Sparkles, Building2, Workflow } from "lucide-react";
+import { ArrowRight, Calculator, UploadCloud, Users, Mail, Image as ImageIcon, Sparkles, Building2, Workflow, Clock, ShieldCheck } from "lucide-react";
 
 export const metadata = {
   title: "Request a Custom Quote — Image Editing | BLACKFOX DIGITAL",
@@ -155,26 +155,26 @@ export default function GetQuotePage() {
                      <Sparkles size={18} className="text-[#EE3A39]" />
                    </div>
                    <div>
-                     <p className="font-bold tracking-wide">Dedicated Resources</p>
-                     <p className="text-sm text-gray-400 leading-relaxed mt-1">Enterprise accounts receive a dedicated team of retouchers tuned to your exact style.</p>
+                     <p className="font-bold tracking-wide">Dedicated Specialist Team</p>
+                     <p className="text-sm text-gray-400 leading-relaxed mt-1">Enterprise accounts get a dedicated team tuned to your brand guidelines — not a random queue.</p>
                    </div>
                  </li>
                  <li className="flex gap-4">
                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                     <Sparkles size={18} className="text-[#EE3A39]" />
+                     <Clock size={18} className="text-[#EE3A39]" />
                    </div>
                    <div>
-                     <p className="font-bold tracking-wide">SLA Guarantees</p>
-                     <p className="text-sm text-gray-400 leading-relaxed mt-1">We lock in rigid turnaround times. If we miss it, the image is free.</p>
+                     <p className="font-bold tracking-wide">Locked SLA Turnaround</p>
+                     <p className="text-sm text-gray-400 leading-relaxed mt-1">We commit to a delivery window in writing. If we miss it, the batch is free.</p>
                    </div>
                  </li>
                  <li className="flex gap-4">
                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                     <Sparkles size={18} className="text-[#EE3A39]" />
+                     <ShieldCheck size={18} className="text-[#EE3A39]" />
                    </div>
                    <div>
-                     <p className="font-bold tracking-wide">Volume Tiers</p>
-                     <p className="text-sm text-gray-400 leading-relaxed mt-1">Our dynamic pricing engine automatically applies your bulk tier discounts as your volume grows.</p>
+                     <p className="font-bold tracking-wide">Volume Discounts Applied Automatically</p>
+                     <p className="text-sm text-gray-400 leading-relaxed mt-1">10% off from 100 images, 15% from 500, 20% from 1,000. No negotiation needed.</p>
                    </div>
                  </li>
                </ul>
@@ -182,7 +182,7 @@ export default function GetQuotePage() {
 
             <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm text-center">
               <p className="text-[#626262] font-medium mb-3">Prefer to speak to someone?</p>
-              <p className="text-2xl font-black text-[#011] mb-1">(+88) 018 41 482 868</p>
+              <p className="text-2xl font-black text-[#011] mb-1">(+88) 019 24 482 868</p>
               <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">Available 24/7</p>
             </div>
           </div>

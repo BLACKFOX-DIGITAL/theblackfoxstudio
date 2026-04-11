@@ -12,7 +12,15 @@ const posts = [
 ];
 
 export async function generateMetadata({ params }) {
-  const post = posts.find((p) => p.slug === params.slug) ?? posts[0];
+  const post = posts.find((p) => p.slug === params.slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | BLACKFOX DIGITAL Blog",
+      description: "This blog post does not exist.",
+      robots: { index: false },
+    };
+  }
 
   return {
     title: `${post.title} | BLACKFOX DIGITAL Blog`,

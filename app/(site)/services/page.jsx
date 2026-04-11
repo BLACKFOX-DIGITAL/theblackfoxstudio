@@ -53,21 +53,21 @@ export default function ServicesPage() {
         <div className="absolute top-[-50%] left-[-10%] w-[50%] h-[100%] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10 text-center max-w-5xl">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
-            <Sparkles size={16} /> Image Editing At Its Best
+            <Sparkles size={16} /> 20+ Specialized Services
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Retouch In A Way That <br className="hidden md:block" /> Makes You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">Stand Out.</span>
+            Outsource Photo Editing <br className="hidden md:block" /> to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">80+ Specialists.</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium mb-12 max-w-4xl mx-auto">
-            We are here to retouch your raw images, turning your pictures into the ultimate commercial assets. Explore our comprehensive suite of post-production solutions below.
+            Background removal, clipping path, ghost mannequin, jewelry retouching and 20+ more — all human-edited, from $0.29/image, delivered in 24 hours.
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/portfolio" className="px-8 py-4 bg-white text-[#011] border border-gray-200 font-bold rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
-              View Our Gallery
-            </Link>
             <Link href="/free-trial" className="px-8 py-4 bg-[#EE3A39] text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all flex items-center gap-2">
-              Start Free Trial <ArrowRight size={18} />
+              Get 10 Free Edits <ArrowRight size={18} />
+            </Link>
+            <Link href="/pricing" className="px-8 py-4 bg-white text-[#011] border border-gray-200 font-bold rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+              View Pricing
             </Link>
           </div>
         </div>
@@ -78,9 +78,9 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 max-w-[1400px]">
           
           <div className="mb-16 text-center">
-            <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">Our Processing Pipeline</h2>
+            <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">Every Service. One Studio.</h2>
             <p className="text-xl text-[#626262] max-w-2xl mx-auto">
-              From raw capture to final delivery, we execute complex workflows at scale with surgical precision. 
+              20+ specialized editing services handled by dedicated specialist teams — no generalists, no shortcuts.
             </p>
           </div>
 
@@ -150,14 +150,17 @@ export default function ServicesPage() {
       <section className="py-24 bg-white border-t border-gray-200">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <Award size={48} className="mx-auto mb-6 text-[#EE3A39]" />
-          <h2 className="text-4xl font-extrabold text-[#011] mb-6 tracking-tight">Ready to scale your studio?</h2>
+          <h2 className="text-4xl font-extrabold text-[#011] mb-6 tracking-tight">Not sure where to start?</h2>
           <p className="text-xl text-[#626262] mb-10 leading-relaxed">
-            Stop turning away clients because you can't edit fast enough. Outsource the heavy lifting to our 24/7 dedicated production lab.
+            Send us 10 images free — no credit card, no commitment. See the quality on your own files before you decide anything.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <Link href="/contact" className="px-10 py-5 bg-[#EE3A39] text-white font-bold rounded-2xl text-lg hover:bg-red-700 hover:-translate-y-1 transition-all shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
-               Talk to Sales
-             </Link>
+            <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-bold rounded-2xl text-lg hover:bg-red-700 hover:-translate-y-1 transition-all shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
+              Get 10 Free Edits
+            </Link>
+            <Link href="/get-quote" className="px-10 py-5 bg-[#011] text-white font-bold rounded-2xl text-lg hover:-translate-y-1 transition-all shadow-xl flex items-center justify-center gap-2">
+              Get a Custom Quote <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>

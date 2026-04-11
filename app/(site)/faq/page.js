@@ -136,7 +136,7 @@ export default function FrequentlyAskedQuestionsPage() {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-[#626262] leading-relaxed font-bold mb-12 max-w-2xl mx-auto"
           >
-            Find clear answers to your queries about our high-tier boutique image processing and studio workflows.
+            Answers to the questions we hear most from new clients — pricing, turnaround, file formats, and how we work.
           </motion.p>
 
           <motion.div 
@@ -257,12 +257,12 @@ export default function FrequentlyAskedQuestionsPage() {
               link="mailto:info@theblackfoxstudio.com"
               label="info@theblackfoxstudio.com"
             />
-            <SupportCard 
-              icon={<MessageSquare className="text-brandPrimary" />} 
-              title="Live Chat" 
-              desc="Quick answers for ongoing production files."
-              link="#"
-              label="Open Chat Interface"
+            <SupportCard
+              icon={<MessageSquare className="text-brandPrimary" />}
+              title="WhatsApp"
+              desc="Quick answers for ongoing production queries."
+              link="/contact"
+              label="Message Us Now"
             />
             <SupportCard 
               icon={<ShieldCheck className="text-brandPrimary" />} 
@@ -290,7 +290,7 @@ export default function FrequentlyAskedQuestionsPage() {
                    Still have <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">questions?</span>
                 </h2>
                 <p className="text-gray-400 text-lg md:text-xl font-bold mb-12 leading-relaxed">
-                   Our boutique studio team is on standby 24/7. Let&apos;s clear up any doubts about your next high-volume batch.
+                   Can't find what you need? Our team replies within 2 hours, 24/7. Ask us anything about pricing, volume, process, or your specific brief.
                 </p>
                 <div className="flex flex-wrap justify-center gap-6">
                   <Link href="/contact" className="bg-brandPrimary hover:bg-white hover:text-brandPrimary text-white px-10 py-5 rounded-2xl font-black text-[10px] tracking-[4px] uppercase flex items-center gap-3 transition-all duration-500 shadow-xl shadow-brandPrimary/20">

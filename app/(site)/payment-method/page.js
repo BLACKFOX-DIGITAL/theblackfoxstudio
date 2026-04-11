@@ -86,7 +86,7 @@ export default function PaymentMethodPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block px-4 py-1.5 bg-brandPrimary/10 border border-brandPrimary/20 text-brandPrimary rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm"
           >
-            Financial Logistics
+            Payment Methods
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -262,7 +262,7 @@ export default function PaymentMethodPage() {
 
             <Section id="refunds" icon={<BadgeCheck size={20} />} number="6" title="Satisfaction & Refund Policy">
               <p>
-                We operate a **Quality-First** guarantee. If you are not satisfied with the output:
+                We operate a <strong className="text-[#011]">Quality-First</strong> guarantee. If you are not satisfied with the output:
               </p>
               <ul className="space-y-4 mt-8">
                 <Bullet>

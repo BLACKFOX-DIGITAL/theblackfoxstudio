@@ -38,7 +38,20 @@ export default function BlogPostPage({ params }) {
     }
   ];
 
-  const post = posts.find(p => p.slug === params.slug) || posts[0];
+  const post = posts.find(p => p.slug === params.slug);
+
+  if (!post) {
+    return (
+      <main className="min-h-screen bg-[#F8F8F8] flex flex-col items-center justify-center text-center px-4 py-32">
+        <p className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] mb-4">404 — Not Found</p>
+        <h1 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-6 uppercase">This post doesn&apos;t exist yet.</h1>
+        <p className="text-base font-bold text-[#626262] mb-10 max-w-md">More expert guides are coming soon. In the meantime, explore our existing resources.</p>
+        <Link href="/blog" className="px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl hover:-translate-y-1 transition-all flex items-center gap-2">
+          Back to Blog <ArrowLeft size={14} />
+        </Link>
+      </main>
+    );
+  }
 
   const blogPostingSchema = {
     "@context": "https://schema.org",

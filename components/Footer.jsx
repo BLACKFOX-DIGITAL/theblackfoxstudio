@@ -17,15 +17,15 @@ const Footer = ({ dbSettings = {} }) => {
   return (
     <footer className="bg-white border-t border-gray-200 pt-16 pb-8 mt-auto">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12 items-start">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 items-start">
+
           {/* Brand & Socials */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-1">
             <Link href="/" className="inline-block">
               <Image src={dbSettings.logoUrl || "/logo.png"} alt="BLACKFOX DIGITAL Logo" width={220} height={50} className="object-contain object-left h-[44px] w-auto pointer-events-none" />
             </Link>
             <p className="text-[#626262] leading-relaxed text-sm max-w-sm">
-              Superior Image Post-Production Services. We operate a highly secure, 24/7 backend infrastructure to scale your editing needs limitlessly.
+              80+ specialist editors. 5,000+ images daily. Human-edited, commercial-grade post-production trusted by 500+ brands across 30 countries.
             </p>
             <div className="flex gap-3 pt-2">
               {[
@@ -41,9 +41,57 @@ const Footer = ({ dbSettings = {} }) => {
             </div>
           </div>
 
+          {/* Services */}
+          <div className="lg:pt-2">
+            <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Our Services</h4>
+            <ul className="space-y-3">
+              {[
+                { name: "Background Removal", url: "/services/background-removal-service" },
+                { name: "Clipping Path", url: "/services/clipping-path-service" },
+                { name: "Ghost Mannequin", url: "/services/ghost-mannequin-service" },
+                { name: "Beauty Retouch", url: "/services/beauty-skin-retouching-service" },
+                { name: "Jewelry Retouch", url: "/services/jewelry-retouching-service" },
+                { name: "Real Estate Editing", url: "/services/real-estate-photo-editing" },
+                { name: "Car Photo Editing", url: "/services/car-photo-editing-service" },
+                { name: "View All Services →", url: "/services" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <Link href={link.url} className="group flex items-center gap-2 text-sm font-bold text-[#626262] hover:text-[#EE3A39] transition-all">
+                    <RiArrowRightLine size={14} className="text-gray-300 group-hover:text-[#EE3A39] group-hover:translate-x-1 transition-all shrink-0" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company Links */}
+          <div className="lg:pt-2">
+            <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Company</h4>
+            <ul className="space-y-3">
+              {[
+                { name: "About Us", url: "/about" },
+                { name: "Portfolio", url: "/portfolio" },
+                { name: "Pricing", url: "/pricing" },
+                { name: "Get a Quote", url: "/get-quote" },
+                { name: "Free Trial", url: "/free-trial" },
+                { name: "FAQ", url: "/faq" },
+                { name: "Payment Methods", url: "/payment-method" },
+                { name: "Privacy Policy", url: "/privacy-policy" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <Link href={link.url} className="group flex items-center gap-2 text-sm font-bold text-[#626262] hover:text-[#EE3A39] transition-all">
+                    <RiArrowRightLine size={14} className="text-gray-300 group-hover:text-[#EE3A39] group-hover:translate-x-1 transition-all shrink-0" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Bangladesh HQ */}
           <div className="lg:pt-2">
-            <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Bangladesh HQ</h4>
+            <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Contact Us</h4>
             <ul className="space-y-5 text-[#626262]">
               <li className="flex items-start gap-4">
                 <div className="w-8 h-8 rounded-xl bg-[#F8F8F8] flex items-center justify-center text-[#EE3A39] shrink-0 shadow-sm">
@@ -59,8 +107,8 @@ const Footer = ({ dbSettings = {} }) => {
                   <RiPhoneFill size={14} />
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Phone Line</span>
-                   <a href={`tel:${dbSettings.phone1 || "(+88) 019 24 482 868"}`} className="text-sm font-bold text-[#011] hover:text-[#EE3A39] transition-colors">{dbSettings.phone1 || "(+88) 019 24 482 868"}</a>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Phone</span>
+                   <a href={`tel:${dbSettings.phone1 || "+8801924482868"}`} className="text-sm font-bold text-[#011] hover:text-[#EE3A39] transition-colors">{dbSettings.phone1 || "(+88) 019 24 482 868"}</a>
                 </div>
               </li>
               <li className="flex items-center gap-4 group">
@@ -68,33 +116,11 @@ const Footer = ({ dbSettings = {} }) => {
                   <RiMailFill size={14} />
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Email Us</span>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Email</span>
                    <a href={`mailto:${dbSettings.email || "info@theblackfoxstudio.com"}`} className="text-sm font-bold text-[#011] hover:text-[#EE3A39] transition-colors">{dbSettings.email || "info@theblackfoxstudio.com"}</a>
                 </div>
               </li>
             </ul>
-          </div>
-
-          {/* Quick Navigation */}
-          <div className="lg:pt-2">
-            <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Useful Links</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-              {[
-                { name: "Terms & Conditions", url: "/terms-and-conditions" },
-                { name: "Payment Method", url: "/payment-method" },
-                { name: "FAQ", url: "/faq" },
-                { name: "Privacy Policy", url: "/privacy-policy" },
-                { name: "Cookies Policy", url: "/cookies-policy" },
-                { name: "About Us", url: "/about" },
-                { name: "Our Services", url: "/services" },
-                { name: "Order Now", url: "/order" }
-              ].map((link, i) => (
-                <Link key={i} href={link.url} className="group flex items-center gap-2 text-sm font-bold text-[#626262] hover:text-[#EE3A39] transition-all">
-                  <RiArrowRightLine size={14} className="text-gray-300 group-hover:text-[#EE3A39] group-hover:translate-x-1 transition-all" />
-                  {link.name}
-                </Link>
-              ))}
-            </div>
           </div>
 
         </div>
@@ -104,9 +130,13 @@ const Footer = ({ dbSettings = {} }) => {
           <p className="text-[#626262] text-xs font-bold uppercase tracking-widest">
             {dbSettings.copyright || `© ${new Date().getFullYear()} BLACKFOX DIGITAL. All Rights Reserved.`}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <Link href="/terms-and-conditions" className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-[#EE3A39] transition-colors">Terms</Link>
+            <span className="text-gray-200">|</span>
+            <Link href="/cookies-policy" className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-[#EE3A39] transition-colors">Cookies</Link>
+            <span className="text-gray-200">|</span>
             <div className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] bg-[#EE3A39]/5 px-4 py-2 rounded-full border border-[#EE3A39]/10">
-              Quality Priority
+              Human-Edited. Always.
             </div>
           </div>
         </div>

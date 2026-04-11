@@ -147,15 +147,15 @@ export default function ContactInfoClient() {
               {/* Quick CTA Card */}
               <div className="bg-[#011] rounded-[2.5rem] p-10 text-white relative overflow-hidden group w-full shadow-2xl shadow-[#011]/30">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE3A39]/20 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:scale-125 transition-transform duration-1000" />
-                <h4 className="font-black text-2xl mb-3 relative z-10 uppercase tracking-tighter">Free Trial</h4>
+                <h4 className="font-black text-2xl mb-3 relative z-10 uppercase tracking-tighter">10 Free Edits</h4>
                 <p className="text-gray-400 text-sm mb-8 relative z-10 leading-relaxed font-medium">
-                  Experience boutique quality on your images today. No credit card required.
+                  Send us your actual images. We'll edit them to commercial standard and deliver in 24 hours — no credit card, no commitment.
                 </p>
                 <Link
                   href="/free-trial"
                   className="relative z-10 inline-flex items-center gap-2 text-sm font-black text-[#EE3A39] hover:text-white transition-all group/cta uppercase tracking-[3px]"
                 >
-                  Get Started <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" />
+                  Start Free Trial <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>

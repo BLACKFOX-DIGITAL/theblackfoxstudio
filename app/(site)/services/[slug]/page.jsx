@@ -232,7 +232,7 @@ export default function ServicePage({ params }) {
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase leading-tight">{title} <br className="hidden md:block"/> <span className="text-[#EE3A39]">Before & After Results</span></h2>
-            <p className="text-base font-bold text-[#626262] leading-relaxed">Drag the slider to compare original raw files against our studio-grade delivery. Experience the technical transformation of every edge, shadow, and color profile.</p>
+            <p className="text-base font-bold text-[#626262] leading-relaxed">Real results from real orders. Drag the slider to compare what we receive against what we deliver — no cherry-picked samples, no special treatment for the portfolio.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {dbPortfolio.map((item, idx) => (
@@ -375,7 +375,7 @@ export default function ServicePage({ params }) {
               
               {/* Trust Sub-text */}
               <p className="text-center text-[10px] font-black uppercase tracking-[2px] text-gray-400">
-                Over 5,000,000 images delivered worldwide.
+                500,000+ images delivered worldwide. 500+ active clients.
               </p>
 
             </div>
@@ -396,10 +396,10 @@ export default function ServicePage({ params }) {
               <h2 className="text-3xl md:text-5xl font-black mb-10 text-[#011] tracking-tighter uppercase">Our Professional <br className="hidden md:block"/> Editing Workflow</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
-                  { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Batch precision starts with a clean file transfer via FTP or Cloud.' },
-                  { icon: <CheckCircle size={24} />, title: '2. Expert Edit', desc: 'Your brand guidelines are the blueprint for pixel perfection.' },
-                  { icon: <FileCheck size={24} />, title: '3. Multi-Tier QC', desc: 'Every pixel is audited by lead editors before approval.' },
-                  { icon: <Truck size={24} />, title: '4. Fast Delivery', desc: 'Ready-to-publish files delivered in your chosen format.' }
+                  { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Send files via FTP, Dropbox, WeTransfer, or Google Drive. We confirm receipt and start within 2 hours.' },
+                  { icon: <CheckCircle size={24} />, title: '2. Specialist Edit', desc: 'A dedicated team edits your images — not generalists. Your brief and brand guidelines drive every decision.' },
+                  { icon: <FileCheck size={24} />, title: '3. Multi-Tier QC', desc: 'A senior editor reviews every file before delivery. We fix issues before you see them.' },
+                  { icon: <Truck size={24} />, title: '4. 24-Hour Delivery', desc: 'Files delivered in your required format — PNG, PSD, TIFF, JPEG — on time, every time.' }
                 ].map((step, idx) => (
                   <div key={idx} className="flex flex-col items-start translate-y-0 hover:-translate-y-1 transition-transform duration-500 bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100/50">
                     <div className="w-12 h-12 bg-[#EE3A39]/10 border border-[#EE3A39]/20 rounded-xl flex items-center justify-center text-[#EE3A39] mb-4 shadow-sm">
@@ -447,7 +447,7 @@ export default function ServicePage({ params }) {
         <div className="container mx-auto px-6 md:px-12 max-w-5xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase">{title} FAQ</h2>
-            <p className="text-[#626262] text-base font-bold leading-relaxed">Everything you need to know about our precision workflow.</p>
+            <p className="text-[#626262] text-base font-bold leading-relaxed">Common questions from clients before their first order. If yours isn't here, email us — we reply fast.</p>
           </div>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, idx) => (
@@ -470,7 +470,7 @@ export default function ServicePage({ params }) {
           <div className="flex justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-black text-[#011] mb-3 uppercase tracking-tighter">Related Services</h2>
-              <p className="text-[#626262] text-base font-bold">Compliment your workflow with these retouching options.</p>
+              <p className="text-[#626262] text-base font-bold">Complement your workflow with these related services.</p>
             </div>
             <Link href="/services" className="hidden sm:flex text-[#EE3A39] font-black items-center gap-2 hover:text-[#011] transition-colors text-[10px] uppercase tracking-[3px]">
               View All <ArrowRight size={14} />
@@ -512,11 +512,16 @@ export default function ServicePage({ params }) {
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase">Try This Service Free</h2>
           <p className="text-base font-bold text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Upload up to 10 images right now. Let us prove our professional quality before you commit to bulk studio volumes. No credit card required.
+            Send us 10 of your actual images. We'll edit them to our commercial standard and deliver within 24 hours. No credit card. No commitment.
           </p>
-          <Link href="/free-trial" className="bg-white text-[#EE3A39] px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center mx-auto hover:bg-[#011] hover:text-white transition-all shadow-2xl hover:-translate-y-1 w-max">
-            <Zap className="fill-current" size={16} /> Get Your Free Trial
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/free-trial" className="bg-white text-[#EE3A39] px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center hover:bg-[#011] hover:text-white transition-all shadow-2xl hover:-translate-y-1">
+              <Zap className="fill-current" size={16} /> Get 10 Free Edits
+            </Link>
+            <Link href="/get-quote" className="bg-white/10 border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center hover:bg-white/20 transition-all hover:-translate-y-1">
+              Get a Custom Quote <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 

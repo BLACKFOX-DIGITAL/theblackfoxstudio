@@ -36,9 +36,14 @@ export default function PortfolioPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    "name": "BLACKFOX DIGITAL Portfolio",
-    "description": "Before and after image editing portfolio",
-    "url": "https://theblackfoxstudio.com/portfolio"
+    "name": "BLACKFOX DIGITAL — Before & After Image Editing Portfolio",
+    "description": "Real before and after results from 500,000+ professionally edited images across 20+ service categories including background removal, ghost mannequin, beauty retouching, jewelry retouching, and e-commerce photo editing.",
+    "url": "https://theblackfoxstudio.com/portfolio",
+    "provider": {
+      "@type": "Organization",
+      "name": "BLACKFOX DIGITAL",
+      "url": "https://theblackfoxstudio.com"
+    }
   };
 
   return (

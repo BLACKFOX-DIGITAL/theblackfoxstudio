@@ -26,31 +26,31 @@ export default function Hero() {
   const slideData = [
     {
       img: "/home_slider_woman.png",
-      title: "Image Post-Production for Global Brands",
+      title: "5,000+ Images Edited Daily — Delivered in 24 Hours",
       subtitle: "Editing At Scale",
-      description: "Premium photo editing and retouching services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect results. 24-hour delivery. Trusted by 500+ brands worldwide.",
+      description: "Premium photo editing and retouching services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect results. From $0.29/image. Trusted by 500+ brands worldwide.",
       bgImage: null, // First slide uses custom layout
       isGraphic: true,
     },
     {
       img: "/hero-1.jpg",
-      title: "Image Post-Production for Global Brands",
+      title: "Human Retouchers, Not AI — Commercial-Grade Quality",
       subtitle: "Flawless Execution",
-      description: "Remove blemishes, smooth skin, and retain natural textures. Perfect for glamour and fashion.",
+      description: "Every image edited by a specialist using frequency separation, dodge & burn, and natural texture preservation. Perfect for beauty, fashion, and glamour.",
       isGraphic: false,
     },
     {
       img: "/hero-2.jpg",
-      title: "Image Post-Production for Global Brands",
+      title: "Pantone-Accurate Color Correction at Scale",
       subtitle: "Vibrant & Accurate",
-      description: "Fix white balance, saturation, and exposure to represent your products in their truest light.",
+      description: "Fix white balance, saturation, and exposure to represent your products in their truest light. Multi-SKU batch recoloring with zero color drift across your catalog.",
       isGraphic: false,
     },
     {
       img: "/hero-3.jpg",
-      title: "Image Post-Production for Global Brands",
+      title: "From Clipping Paths to Ghost Mannequin — One Studio",
       subtitle: "End-to-End Solutions",
-      description: "From clipping paths to complex image manipulations, we handle thousands of images overnight.",
+      description: "20+ specialized editing services under one roof. We handle thousands of images overnight so your team doesn't have to.",
       isGraphic: false,
     }
   ];

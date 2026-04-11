@@ -136,6 +136,60 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 1.55. SOCIAL PROOF STRIP */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { text: "BLACKFOX DIGITAL transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", author: "James R.", role: "E-Commerce Manager", loc: "United States" },
+              { text: "We process 2,000+ fashion images monthly. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
+              { text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", author: "Lars K.", role: "Brand Manager", loc: "Germany" },
+            ].map((t, i) => (
+              <div key={i} className="flex gap-4 items-start p-6 bg-[#F8F8F8] rounded-2xl border border-gray-100">
+                <span className="text-[#EE3A39] text-2xl leading-none mt-0.5 flex-shrink-0">"</span>
+                <div>
+                  <p className="text-sm font-bold text-[#011] leading-relaxed mb-3">{t.text}</p>
+                  <p className="text-[10px] font-black uppercase tracking-[2px] text-[#EE3A39]">{t.author} — {t.role}, {t.loc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 1.6. HOW IT WORKS — WORKFLOW */}
+      <section className="py-24 relative overflow-hidden bg-[#F8F8F8]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#EE3A39]/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
+
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
+            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
+              Our 5-step process is engineered for unmatched speed, security, and flawless execution.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
+            <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[2px] bg-[#EE3A39]/20 z-0"></div>
+
+            {workflowSteps.map((step, idx) => (
+              <div key={idx} className="relative z-10 bg-white p-6 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#EE3A39] text-white font-bold flex items-center justify-center text-sm shadow-md border-2 border-white">
+                  {idx + 1}
+                </div>
+                <div className="w-14 h-14 bg-[#F8F8F8] border border-gray-100 rounded-2xl flex items-center justify-center text-[#EE3A39] mb-5 shadow-sm">
+                   <step.icon size={26} />
+                </div>
+                <h4 className="text-lg font-bold text-[#011] mb-3">{step.title}</h4>
+                <p className="text-[#626262] text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       {/* 2. FEATURED SERVICES (DYNAMIC) */}
       <section className="py-24 relative z-20 bg-white border-y border-gray-200">
         <div className="container mx-auto px-4 max-w-[1400px]">
@@ -216,7 +270,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
              {[
                { name: "Background Removal", price: "0.29", sub: "/image", icon: Scissors, popular: true, note: "Perfect for E-commerce" },
-               { name: "Clipping Path", price: "0.25", sub: "/image", icon: Target, note: "Hand-drawn precision" },
+               { name: "Clipping Path", price: "0.25", sub: "/image", icon: Target, bestValue: true, note: "Hand-drawn precision" },
                { name: "Ghost Mannequin", price: "0.75", sub: "/image", icon: ImageIcon, note: "Professional 3D effect" },
                { name: "Beauty Retouch", price: "2.00", sub: "/image", icon: Zap, note: "Magazine-quality skin" },
                { name: "Product Retouch", price: "0.99", sub: "/image", icon: Layers, note: "Shadows & Reflections" },
@@ -231,6 +285,7 @@ export default function Home() {
                          <div className="flex items-center gap-2 mb-0.5">
                             <h3 className="font-extrabold text-lg text-[#011] uppercase tracking-tight">{row.name}</h3>
                             {row.popular && <span className="bg-[#EE3A39] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest">Popular</span>}
+                            {row.bestValue && <span className="bg-[#011] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest">Best Value</span>}
                          </div>
                          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{row.note}</p>
                       </div>
@@ -277,43 +332,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. HIGHLY ACCURATE WORKFLOW - COMPACT HORIZONTAL */}
-      <section className="py-24 relative overflow-hidden bg-[#F8F8F8]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#EE3A39]/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-          
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
-            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
-              Our 5-step process is engineered for unmatched speed, security, and flawless execution.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
-            {/* Optional background connecting line for desktop */}
-            <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[2px] bg-[#EE3A39]/20 z-0"></div>
-
-            {workflowSteps.map((step, idx) => (
-              <div key={idx} className="relative z-10 bg-white p-6 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center text-center">
-                
-                {/* Step Number Badge */}
-                <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#EE3A39] text-white font-bold flex items-center justify-center text-sm shadow-md border-2 border-white">
-                  {idx + 1}
-                </div>
-
-                <div className="w-14 h-14 bg-[#F8F8F8] border border-gray-100 rounded-2xl flex items-center justify-center text-[#EE3A39] mb-5 shadow-sm">
-                   <step.icon size={26} />
-                </div>
-                
-                <h4 className="text-lg font-bold text-[#011] mb-3">{step.title}</h4>
-                <p className="text-[#626262] text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
       {/* 4. THE BLACKFOX DIGITAL DIFFERENCE */}
       <section className="py-24 bg-white text-[#011] overflow-hidden relative border-t border-gray-100">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
@@ -326,13 +344,13 @@ export default function Home() {
                 Our Guarantee
               </div>
               <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
-                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">BLACKFOX DIGITAL</span>
+                Zero Revisions. Zero Surprises. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Your Catalog, Delivered Perfect.</span>
               </h2>
               <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
-                We don't just edit photos; we build backend infrastructures that allow studios, photographers, and e-commerce giants to scale limitlessly.
+                80+ specialist editors. Multi-tier QC. 24-hour delivery. We've processed 500,000+ images so your team can focus on growing your business — not managing retouching.
               </p>
               <Link href="/free-trial" className="inline-flex px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all items-center gap-2">
-                Test Our Infrastructure <ArrowRight size={14} />
+                Test Our Quality Free <ArrowRight size={14} />
               </Link>
             </div>
 
@@ -350,48 +368,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. INDUSTRIES WE SERVE - LIGHT PREMIUM DIRECTORY */}
-      <section className="py-24 bg-[#F8F8F8] text-[#011] relative overflow-hidden border-y border-gray-100">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
-          
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-5">Industries We Serve</h2>
-            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto leading-relaxed">
-              Our infrastructure is engineered to handle the unique technical requirements of global industries.
-            </p>
+      {/* 5. CLIENT RESULTS BY SEGMENT */}
+      <section className="py-24 bg-[#011] text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+              Proven Results
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">What Clients Achieve With Us</h2>
+            <p className="text-gray-400 font-bold text-base max-w-2xl mx-auto">Real outcomes from brands and studios that outsource their photo editing to BLACKFOX DIGITAL.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.62 1.96v14.16a2 2 0 0 0 1.62 1.96L8 23a4 4 0 0 0 8 0l4.38-1.46a2 2 0 0 0 1.62-1.96V5.42a2 2 0 0 0-1.62-1.96Z"/><path d="M12 2v21"/><path d="M16 2v21"/><path d="M8 2v21"/></svg>, title: "Fashion & Apparel", desc: "Ghost mannequin, high-end model retouching, and flatlay precision." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>, title: "E-Commerce", desc: "Optimized product images for Amazon, eBay, and enterprise marketplaces." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>, title: "Real Estate", desc: "Surgical interior, exterior, and HDR aerial property enhancement." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>, title: "Jewelry", desc: "High-clarity precision retouching for diamonds, gems, and precious metals." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>, title: "Food & Beverage", desc: "Vibrant, appetizing color correction for commercial food photography." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>, title: "Automotive", desc: "Advanced car photo editing, background replacement, and color grading." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>, title: "Beauty", desc: "High-end frequency separation, skin smoothing, and blemish correction." },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>, title: "Photography Studios", desc: "Very high volume clients who outsource bulk editing and workflows." }
-            ].map((industry, i) => (
-              <div key={i} className="bg-white border border-gray-100 p-8 rounded-[2rem] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 group">
-                <div className="w-14 h-14 bg-[#F8F8F8] rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#EE3A39] transition-all duration-300">
-                  <div className="text-[#EE3A39] group-hover:text-white transition-colors duration-300">
-                    {industry.icon}
+              {
+                segment: "Amazon & E-Commerce Sellers",
+                result: "Zero listing rejections",
+                detail: "Amazon FBA sellers processing 500–2,000 images/week achieve 100% white background compliance on first delivery — no re-submissions, no delayed launches.",
+                stat: "500+ images/week",
+                statLabel: "Typical weekly volume",
+              },
+              {
+                segment: "Fashion & Apparel Brands",
+                result: "2,000+ images/month at boutique quality",
+                detail: "Fashion labels get ghost mannequin, digital ironing, and model retouching across entire seasonal catalogs — consistent brand look, every batch.",
+                stat: "24-hour",
+                statLabel: "Standard turnaround",
+              },
+              {
+                segment: "Jewelry Retailers",
+                result: "Editorial-quality every shot",
+                detail: "Jewelry brands get diamond facet enhancement, metal polishing, and focus-stacking alignment — the kind of precision that was previously only available at top agencies.",
+                stat: "$2.50/image",
+                statLabel: "Starting price",
+              },
+              {
+                segment: "Photo Studios & Agencies",
+                result: "Scalable white-label infrastructure",
+                detail: "Studios outsource bulk retouching under their own brand, with custom SLAs, dedicated PMs, and API integration — no overhead of hiring in-house editors.",
+                stat: "Enterprise SLA",
+                statLabel: "Available for 1,000+/mo",
+              },
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-[2rem] p-8 hover:bg-white/10 hover:border-[#EE3A39]/30 transition-all duration-300 group">
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] mb-2">{item.segment}</p>
+                    <h4 className="text-xl font-extrabold text-white tracking-tight">{item.result}</h4>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-2xl font-black text-[#EE3A39] tracking-tighter leading-tight">{item.stat}</p>
+                    <p className="text-[9px] font-black uppercase tracking-[2px] text-gray-500 mt-0.5">{item.statLabel}</p>
                   </div>
                 </div>
-                <h4 className="text-xl font-extrabold mb-3 tracking-tight text-[#011]">{industry.title}</h4>
-                <p className="text-sm text-[#626262] leading-relaxed font-medium transition-colors">
-                  {industry.desc}
-                </p>
+                <p className="text-sm text-gray-400 leading-relaxed font-medium">{item.detail}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-20 text-center">
-            <Link href="/portfolio" className="inline-flex items-center gap-3 px-8 py-4 bg-[#011] text-white uppercase font-black tracking-[3px] text-[10px] rounded-2xl hover:bg-[#EE3A39] hover:-translate-y-1 transition-all shadow-xl group cursor-pointer">
-              See How We Help Your Industry <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          <div className="mt-16 text-center">
+            <Link href="/free-trial" className="inline-flex items-center gap-2 px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all group">
+              Get Your Free Sample Edits <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
+
         </div>
       </section>
 
@@ -446,10 +488,10 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
           <h2 className="text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">
-            Try Our Image Editing Service Free
+            10 Free Edits. No Credit Card. Results in 24 Hours.
           </h2>
           <p className="text-base font-bold text-[#626262] mb-8 max-w-2xl mx-auto leading-relaxed">
-            Send us a few test shots and we'll edit them for free — no credit card, no commitment. Just great edits.
+            Send us your images and we'll show you the quality before you commit to anything — no contracts, no risk.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
             <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
