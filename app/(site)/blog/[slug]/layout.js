@@ -12,7 +12,8 @@ const posts = [
 ];
 
 export async function generateMetadata({ params }) {
-  const post = posts.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     return {

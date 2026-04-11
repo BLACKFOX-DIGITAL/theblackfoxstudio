@@ -10,7 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export default function BlogPostPage({ params }) {
+export default function BlogPostPage({ params: paramsPromise }) {
+  const params = React.use(paramsPromise);
   const posts = [
     { 
       slug: 'future-of-ecommerce-retouching', 

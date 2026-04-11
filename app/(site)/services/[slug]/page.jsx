@@ -10,8 +10,8 @@ import { cn } from '@/lib/utils';
 const BASE_URL = "https://theblackfoxstudio.com";
 
 // Dynamically generate metadata for SEO
-export function generateMetadata({ params }) {
-  const slug = params.slug;
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
   const dbService = services.find(s => s.slug === slug);
 
   const title = dbService?.pageTitle || `${dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} | BLACKFOX DIGITAL`;
@@ -37,8 +37,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function ServicePage({ params }) {
-  const slug = params.slug;
+export default async function ServicePage({ params: paramsPromise }) {
+  const params = await paramsPromise;
+  const { slug } = params;
   
   // 1. Fetch from Mock records
   const dbService = services.find(s => s.slug === slug);

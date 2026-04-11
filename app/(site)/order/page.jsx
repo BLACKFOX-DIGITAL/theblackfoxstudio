@@ -10,9 +10,9 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function OrderPage({ searchParams }) {
+export default async function OrderPage({ searchParams }) {
   // Extract query parameter if passed from 'Order Now' clicks
-  const serviceSlug = searchParams?.service;
+  const { service: serviceSlug } = await searchParams;
   
   const allServices = mockServices;
   const preselectedService = allServices.find(s => s.slug === serviceSlug) || null;
