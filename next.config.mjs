@@ -62,6 +62,12 @@ const nextConfig = {
       },
     ];
   },
+
+  experimental: {
+    // Disable worker threads if the server environment is unstable during build
+    workerThreads: false,
+    cpus: 1,
+  },
 };
 
 export default nextConfig;
