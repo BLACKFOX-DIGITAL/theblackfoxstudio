@@ -2,12 +2,12 @@ module.exports = {
   apps: [
     {
       name: "theblackfoxstudio",
-      script: "npm",
-      args: "start -- -p 3020",
-      instances: "max",
-      exec_mode: "cluster",
+      script: "node_modules/.bin/next",
+      args: "start -p 3020",
+      instances: 1,
       env: {
         NODE_ENV: "production",
+        PORT: 3020,
       },
     },
   ],
