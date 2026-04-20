@@ -44,9 +44,7 @@ export default async function ServicePage({ params: paramsPromise }) {
   // 1. Fetch from Mock records
   const dbService = services.find(s => s.slug === slug);
   const rawPortfolio = mockPortfolio.filter(p => p.category === slug);
-  const dbPortfolio = rawPortfolio.length >= 3 
-    ? rawPortfolio.slice(0, 3) 
-    : [...rawPortfolio, ...Array(3 - rawPortfolio.length).fill(rawPortfolio[0] || mockPortfolio[0])];
+  const dbPortfolio = rawPortfolio;
   const dbRelatedServices = services.filter(s => s.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 3);
 
   // 2. Data Definitions
@@ -227,6 +225,7 @@ export default async function ServicePage({ params: paramsPromise }) {
         </div>
       </section>
 
+      
       {/* 2. PRECISION COMPARISON */}
       <section className="py-24 bg-[#F8F8F8] relative overflow-hidden">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none"></div>
@@ -235,9 +234,9 @@ export default async function ServicePage({ params: paramsPromise }) {
             <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase leading-tight">{title} <br className="hidden md:block"/> <span className="text-[#EE3A39]">Before & After Results</span></h2>
             <p className="text-base font-bold text-[#626262] leading-relaxed">Real results from real orders. Drag the slider to compare what we receive against what we deliver — no cherry-picked samples, no special treatment for the portfolio.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 max-w-7xl mx-auto">
             {dbPortfolio.map((item, idx) => (
-              <div key={idx} className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#F8F8F8] group transition-all duration-700 hover:scale-[1.02]">
+              <div key={idx} className="relative w-full h-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white group transition-all duration-700 hover:scale-[1.01]">
                 <BeforeAfterSlider 
                   label={`${title} Comparison ${idx+1}`} 
                   beforeImage={item.beforeImage} 
@@ -246,7 +245,7 @@ export default async function ServicePage({ params: paramsPromise }) {
                   afterAlt={afterAlt}
                 />
                 <div className="absolute top-6 left-6 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                   <div className="bg-white/40 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full shadow-lg">
+                   <div className="bg-white/60 backdrop-blur-md border border-white/30 px-5 py-2.5 rounded-2xl shadow-xl">
                       <span className="text-[#011] text-[10px] font-black uppercase tracking-[3px]">Boutique Retouch</span>
                    </div>
                 </div>
