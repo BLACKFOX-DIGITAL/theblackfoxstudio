@@ -1,14 +1,13 @@
 export const metadata = {
-  title: "Payment Methods | BLACKFOX DIGITAL",
-  description:
-    "View accepted payment methods at BLACKFOX DIGITAL — including PayPal, bank transfer, and other secure options for image retouching services.",
+  title: "Payment Methods — Secure Billing | BLACKFOX DIGITAL",
+  description: "Accepted payment methods at BLACKFOX DIGITAL: PayPal, Payoneer, Wise, bank wire, and all major credit cards. PCI-DSS compliant. Net-30 available for enterprises.",
   alternates: { canonical: "https://theblackfoxstudio.com/payment-method" },
   openGraph: {
     title: "Payment Methods | BLACKFOX DIGITAL",
+    description: "PayPal, Payoneer, Wise, bank wire, and all major credit cards. PCI-DSS compliant. Net-30 available for enterprise accounts.",
     url: "https://theblackfoxstudio.com/payment-method",
     type: "website",
   },
-  robots: { index: true, follow: false },
 };
 
 export default function PaymentMethodLayout({ children }) {

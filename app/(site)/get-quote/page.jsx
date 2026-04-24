@@ -13,6 +13,29 @@ export const metadata = {
   },
 };
 
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theblackfoxstudio.com" },
+    { "@type": "ListItem", "position": 2, "name": "Get a Quote", "item": "https://theblackfoxstudio.com/get-quote" },
+  ],
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Custom Image Editing Quote",
+  "provider": {
+    "@type": "Organization",
+    "name": "BLACKFOX DIGITAL",
+    "url": "https://theblackfoxstudio.com",
+  },
+  "description": "Get a custom volume-based quote for professional image post-production services including background removal, clipping path, ghost mannequin, and more.",
+  "areaServed": "Worldwide",
+  "url": "https://theblackfoxstudio.com/get-quote",
+};
+
 export default function GetQuotePage() {
 
   // Fetch all published services to populate options
@@ -20,6 +43,8 @@ export default function GetQuotePage() {
 
   return (
     <main className="w-full bg-[#F8F8F8] min-h-screen pt-32 pb-24 font-sans text-[#011] relative overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       
       {/* Decorative Background */}
       <div className="absolute top-10 left-[-10%] w-[500px] h-[500px] bg-[#EE3A39]/10 blur-[150px] rounded-full pointer-events-none"></div>
@@ -32,7 +57,7 @@ export default function GetQuotePage() {
             <Calculator size={14} className="text-[#EE3A39]" /> Enterprise Pricing
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-6 leading-tight">
-            Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Volume.</span><br/>Priced for Scale.
+            Get a Custom Quote for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Image Editing.</span>
           </h1>
           <p className="text-base md:text-xl text-[#626262] leading-relaxed">
             Whether you process 500 or 50,000 images a month, our infrastructure scales with you. Tell us about your workflow to get a custom, volume-adjusted rate card.

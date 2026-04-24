@@ -7,18 +7,33 @@ export const metadata = {
   title: "Place an Order — Image Retouching | BLACKFOX DIGITAL",
   description: "Start a new image retouching order with BLACKFOX DIGITAL. Background removal, clipping path, ghost mannequin, beauty retouch and more. 24-hour delivery.",
   alternates: { canonical: "https://theblackfoxstudio.com/order" },
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: "Place an Order — Image Retouching | BLACKFOX DIGITAL",
+    description: "Start a new image retouching order. Background removal, clipping path, ghost mannequin, beauty retouch and more. 24-hour delivery.",
+    url: "https://theblackfoxstudio.com/order",
+    type: "website",
+  },
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theblackfoxstudio.com" },
+    { "@type": "ListItem", "position": 2, "name": "Place Order", "item": "https://theblackfoxstudio.com/order" },
+  ],
 };
 
 export default async function OrderPage({ searchParams }) {
   // Extract query parameter if passed from 'Order Now' clicks
   const { service: serviceSlug } = await searchParams;
-  
+
   const allServices = mockServices;
   const preselectedService = allServices.find(s => s.slug === serviceSlug) || null;
 
   return (
     <main className="w-full bg-[#F8F8F8] min-h-screen pt-32 pb-24 font-sans text-[#011] relative overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       
       {/* Decorative Background Blur */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EE3A39]/5 blur-[120px] rounded-full pointer-events-none"></div>
@@ -31,7 +46,7 @@ export default async function OrderPage({ searchParams }) {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-200 rounded-md text-xs font-bold mb-4 uppercase tracking-[2px] text-gray-500">
               <ShieldCheck size={14} className="text-[#EE3A39]" /> Secure Checkout
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">Place Your Order</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">Place a Photo Editing Order</h1>
             <p className="text-lg text-[#626262] max-w-2xl">Tell us what you need. Upload your files, specify your brief, and we'll confirm pricing and start within 2 hours.</p>
           </div>
           <div className="flex bg-white border border-gray-200 p-1.5 rounded-2xl shadow-sm">
