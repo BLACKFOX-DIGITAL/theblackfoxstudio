@@ -6,14 +6,13 @@ import React from "react";
 
 export const metadata = {
   title: "Free Trial — Image Editing Service | BLACKFOX DIGITAL",
-  description: "Try BLACKFOX DIGITAL's professional image editing service for free. Submit up to 10 images — background removal, retouching, ghost mannequin and more. No credit card. Results in 24 hours.",
+  description: "Submit up to 10 images free — background removal, retouching, ghost mannequin and more. No credit card required. Results delivered in 24 hours.",
   alternates: { canonical: "https://theblackfoxstudio.com/free-trial" },
   openGraph: {
     title: "Free Image Editing Trial | BLACKFOX DIGITAL",
     description: "Submit up to 10 images and test our quality risk-free. No credit card required. 24-hour delivery.",
     url: "https://theblackfoxstudio.com/free-trial",
     type: "website",
-    images: ["/hero-2.jpg"],
   },
 };
 
@@ -22,15 +21,20 @@ export default function TakeFreeTrialPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Free Image Editing Trial",
+    "description": "Test BLACKFOX DIGITAL's professional image post-production with a free trial — up to 10 images edited to commercial standard, delivered in 24 hours. No credit card required.",
+    "serviceType": "Image Post-Production",
+    "areaServed": "Worldwide",
     "provider": {
       "@type": "Organization",
-      "name": "BLACKFOX DIGITAL"
+      "name": "BLACKFOX DIGITAL",
+      "url": "https://theblackfoxstudio.com",
     },
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
-    }
+      "priceCurrency": "USD",
+      "description": "Up to 10 images edited free — no credit card required",
+    },
   };
 
   const benefits = [
@@ -61,7 +65,7 @@ export default function TakeFreeTrialPage() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10 pt-32 pb-24 max-w-7xl">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
           
           {/* Left Column: Copy & Trust Signals (STICKY) */}
           <div className="lg:w-5/12 flex flex-col lg:sticky lg:top-32 space-y-6">
@@ -69,10 +73,10 @@ export default function TakeFreeTrialPage() {
               <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold w-max mb-6 uppercase tracking-widest shadow-sm">
                 Free Trial
               </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter text-[#011] leading-none uppercase">
-                See Exactly What We Can Do — On Your Own Images. <br />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tighter text-[#011] leading-none uppercase">
+                Free Image Editing Trial — Test Our Quality On Your Own Photos. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">
-                  Free. No Card. 24 Hours.
+                  10 Images. No Card. 24-Hour Delivery.
                 </span>
               </h1>
               <p className="text-base md:text-lg text-[#011] font-bold mb-0">
@@ -128,16 +132,39 @@ export default function TakeFreeTrialPage() {
                 ))}
               </div>
             </div>
+
+            {/* Services eligible for free trial */}
+            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-white shadow-sm">
+              <h4 className="text-[10px] font-black text-[#011] tracking-[3px] mb-5 uppercase">Services You Can Trial</h4>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: "Background Removal", href: "/services/background-removal" },
+                  { label: "Clipping Path", href: "/services/clipping-path" },
+                  { label: "Ghost Mannequin", href: "/services/ghost-mannequin" },
+                  { label: "Photo Retouching", href: "/services/photo-retouching" },
+                  { label: "Color Correction", href: "/services/color-correction" },
+                  { label: "Image Masking", href: "/services/image-masking" },
+                ].map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className="px-4 py-2 rounded-xl bg-white border border-gray-100 text-[11px] font-black uppercase tracking-wider text-[#626262] hover:text-[#EE3A39] hover:border-[#EE3A39]/30 transition-all shadow-sm"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Embedded Form (SCROLLS) */}
           <div className="lg:w-7/12 w-full z-20">
-            <div className="bg-white rounded-[3.5rem] p-8 sm:p-14 border border-gray-100 shadow-2xl relative overflow-hidden">
+            <div className="bg-white rounded-2xl md:rounded-[3.5rem] p-6 sm:p-10 md:p-14 border border-gray-100 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#EE3A39] to-orange-500" />
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
               
               <div className="relative z-10">
-                <h3 className="text-4xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">Submit Your Images</h3>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">Start Your Free Image Editing Trial</h3>
                 <p className="text-[#626262] mb-12 font-bold text-lg leading-relaxed max-w-xl">
                   Tell us what you need, upload your files, and our production team starts within 2 hours. Edited results back in 24 hours — no commitment required.
                 </p>
@@ -149,7 +176,7 @@ export default function TakeFreeTrialPage() {
             </div>
 
             {/* Quick Support / Contact */}
-            <div className="mt-10 p-10 flex flex-col md:flex-row items-center justify-between gap-8 bg-grayLight rounded-[3rem] border border-white">
+            <div className="mt-10 p-5 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 bg-grayLight rounded-2xl md:rounded-[3rem] border border-white">
                <div className="text-center md:text-left">
                   <p className="text-[10px] font-black uppercase tracking-[3px] text-brandPrimary mb-2">Need Immediate Help?</p>
                   <p className="text-sm font-bold text-[#011]">Talk to a production specialist via live chat or email.</p>

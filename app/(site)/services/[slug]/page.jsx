@@ -1,6 +1,10 @@
 import { services, portfolio as mockPortfolio, faqs as mockFaqs } from '@/lib/mock-data';
+
+export async function generateStaticParams() {
+  return services.map(s => ({ slug: s.slug }));
+}
 import { ArrowRight, CheckCircle, Download, MonitorPlay, FileCheck, Truck, Zap, Star, ShieldCheck, DollarSign, Clock, Layers } from 'lucide-react';
-import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSliderClient';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,8 +18,10 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const dbService = services.find(s => s.slug === slug);
 
-  const title = dbService?.pageTitle || `${dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} | BLACKFOX DIGITAL`;
-  const description = dbService?.schemaDescription || dbService?.shortDescription || `Professional ${slug.replace(/-/g, ' ')} services for global e-commerce brands and photographers.`;
+  const serviceTitle = dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const title = dbService?.pageTitle || `${serviceTitle} | BLACKFOX DIGITAL`;
+  const rawDesc = dbService?.shortDescription || `Professional ${slug.replace(/-/g, ' ')} services for global e-commerce brands. From $0.35/image. 24-hour delivery.`;
+  const description = rawDesc.length > 160 ? rawDesc.slice(0, 157).replace(/\s+\S*$/, '') + '...' : rawDesc;
   const url = `${BASE_URL}/services/${slug}`;
 
   return {
@@ -27,7 +33,6 @@ export async function generateMetadata({ params }) {
       description,
       url,
       type: "website",
-      images: dbService?.heroImage ? [{ url: `${BASE_URL}${dbService.heroImage}`, alt: dbService.title }] : ["/logo.png"],
     },
     twitter: {
       card: "summary_large_image",
@@ -45,7 +50,7 @@ export default async function ServicePage({ params: paramsPromise }) {
   const dbService = services.find(s => s.slug === slug);
   const rawPortfolio = mockPortfolio.filter(p => p.category === slug);
   const dbPortfolio = rawPortfolio;
-  const dbRelatedServices = services.filter(s => s.slug !== slug).sort(() => 0.5 - Math.random()).slice(0, 3);
+  const dbRelatedServices = services.filter(s => s.slug !== slug).slice(0, 3);
 
   // 2. Data Definitions
   const title = dbService?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
@@ -174,7 +179,7 @@ export default async function ServicePage({ params: paramsPromise }) {
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[40%] bg-orange-500/3 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div className="max-w-2xl">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[2px] text-gray-400 mb-6">
@@ -188,7 +193,7 @@ export default async function ServicePage({ params: paramsPromise }) {
             <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">
               {heroLabel}
             </div>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-[1.1] uppercase">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-[1.1] uppercase">
               {title}
             </h1>
             <p className="text-base md:text-lg text-[#626262] mb-10 leading-relaxed font-bold">
@@ -206,7 +211,7 @@ export default async function ServicePage({ params: paramsPromise }) {
 
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-tr from-[#EE3A39]/20 to-orange-500/10 blur-[60px] rounded-[3rem] opacity-50"></div>
-            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-white shadow-2xl group">
+            <div className="relative aspect-[4/5] rounded-2xl md:rounded-[3rem] overflow-hidden border border-white shadow-2xl group">
               <Image 
                 src={dbService?.heroImage || dbService?.afterImage || '/logo.png'} 
                 alt={heroAlt}
@@ -234,7 +239,7 @@ export default async function ServicePage({ params: paramsPromise }) {
             <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase leading-tight">{title} <br className="hidden md:block"/> <span className="text-[#EE3A39]">Before & After Results</span></h2>
             <p className="text-base font-bold text-[#626262] leading-relaxed">Real results from real orders. Drag the slider to compare what we receive against what we deliver — no cherry-picked samples, no special treatment for the portfolio.</p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             {dbPortfolio.map((item, idx) => (
               <div key={idx} className="relative w-full h-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white group transition-all duration-700 hover:scale-[1.01]">
                 <BeforeAfterSlider 
@@ -259,7 +264,7 @@ export default async function ServicePage({ params: paramsPromise }) {
       <section className="py-24 bg-white border-y border-gray-100 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F8F8F8] rounded-bl-[100px] -z-10 opacity-50 pointer-events-none"></div>
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-start">
             
             {/* Left Content Column (8 cols) */}
             <div className="lg:col-span-8 flex flex-col gap-12 lg:gap-16">
@@ -308,7 +313,7 @@ export default async function ServicePage({ params: paramsPromise }) {
             </div>
 
             {/* Right Sidebar Widget (4 cols) - Sticky */}
-            <div className="lg:col-span-4 space-y-8 sticky top-32">
+            <div className="lg:col-span-4 space-y-8 lg:sticky lg:top-32">
               
               {/* Feature Stats Box */}
               <div className="bg-[#011] text-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
@@ -387,13 +392,13 @@ export default async function ServicePage({ params: paramsPromise }) {
       {/* 4. PROCESS STEPS */}
       <section className="py-24 bg-[#F8F8F8] border-t border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center flex-col-reverse lg:flex-row">
             
             <div>
               <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">
                 Flawless Process
               </div>
-              <h2 className="text-3xl md:text-5xl font-black mb-10 text-[#011] tracking-tighter uppercase">Our Professional <br className="hidden md:block"/> Editing Workflow</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-8 md:mb-10 text-[#011] tracking-tighter uppercase">Our Professional <br className="hidden md:block"/> Editing Workflow</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
                   { icon: <Download size={24} />, title: '1. Secure Upload', desc: 'Send files via FTP, Dropbox, WeTransfer, or Google Drive. We confirm receipt and start within 2 hours.' },
@@ -510,7 +515,7 @@ export default async function ServicePage({ params: paramsPromise }) {
           <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-inner">
              <Star className="text-white fill-white" size={32} />
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase">Try This Service Free</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase">Try This Service Free</h2>
           <p className="text-base font-bold text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
             Send us 10 of your actual images. We'll edit them to our commercial standard and deliver within 24 hours. No credit card. No commitment.
           </p>

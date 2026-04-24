@@ -4,7 +4,7 @@ import { services as dbServices, portfolio as dbPortfolio } from "@/lib/mock-dat
 
 export const metadata = {
   title: "Portfolio — Before & After Image Editing Gallery | BLACKFOX DIGITAL",
-  description: "Browse BLACKFOX DIGITAL's image editing portfolio. See real before and after results for background removal, ghost mannequin, beauty retouching and 20+ other services.",
+  description: "Browse real before & after results for background removal, ghost mannequin, beauty retouching and 20+ professional image editing services. 500,000+ images edited.",
   alternates: { canonical: "https://theblackfoxstudio.com/portfolio" },
   openGraph: {
     title: "Before & After Image Editing Portfolio | BLACKFOX DIGITAL",
@@ -42,17 +42,24 @@ export default function PortfolioPage() {
     "provider": {
       "@type": "Organization",
       "name": "BLACKFOX DIGITAL",
-      "url": "https://theblackfoxstudio.com"
-    }
+      "url": "https://theblackfoxstudio.com",
+    },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theblackfoxstudio.com" },
+      { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://theblackfoxstudio.com/portfolio" },
+    ],
   };
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <Gallery data={galleryData} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <Gallery data={galleryData} services={dbServices} />
     </main>
   );
 }

@@ -75,7 +75,7 @@ export default function TestimonialSlider({ testimonials }) {
             key={i} 
             className="snap-start flex-shrink-0 w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)]"
           >
-            <div className="bg-[#F8F8F8] p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all h-full flex flex-col cursor-grab active:cursor-grabbing">
+            <div className="bg-[#F8F8F8] p-5 md:p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all h-full flex flex-col cursor-grab active:cursor-grabbing">
               <div className="flex text-orange-400 mb-6">
                 {Array(t.stars).fill(0).map((_, s) => (
                   <span key={s} className="text-lg">★</span>

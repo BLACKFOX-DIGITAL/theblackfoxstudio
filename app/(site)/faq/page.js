@@ -126,7 +126,7 @@ export default function FrequentlyAskedQuestionsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
           >
             Ask us <span className="text-brandPrimary">anything.</span>
           </motion.h1>
@@ -249,7 +249,7 @@ export default function FrequentlyAskedQuestionsPage() {
       {/* Support Cards */}
       <section className="py-20 bg-grayLight/30 border-y border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
             <SupportCard 
               icon={<Mail className="text-brandPrimary" />} 
               title="Email Support" 
@@ -278,7 +278,7 @@ export default function FrequentlyAskedQuestionsPage() {
       {/* CTA SECTION */}
       <section className="py-24 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-           <div className="bg-[#011] rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col items-center text-center shadow-2xl">
+           <div className="bg-[#011] rounded-2xl md:rounded-[3rem] p-6 sm:p-12 md:p-20 relative overflow-hidden flex flex-col items-center text-center shadow-2xl">
               <div className="absolute top-0 right-0 w-[40%] h-full bg-brandPrimary/10 blur-[80px] rounded-full translate-x-1/4 -translate-y-1/4" />
               <div className="absolute bottom-0 left-0 w-[30%] h-full bg-blue-500/5 blur-[80px] rounded-full -translate-x-1/4 translate-y-1/4" />
               
@@ -286,7 +286,7 @@ export default function FrequentlyAskedQuestionsPage() {
                 <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-8">
                    <Zap className="text-brandPrimary fill-brandPrimary" size={32} />
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter leading-none">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 uppercase tracking-tighter leading-none">
                    Still have <span className="text-brandPrimary text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-orange-500">questions?</span>
                 </h2>
                 <p className="text-gray-400 text-lg md:text-xl font-bold mb-12 leading-relaxed">

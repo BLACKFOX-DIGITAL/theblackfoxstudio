@@ -89,7 +89,7 @@ export default function Hero() {
                         transition={{ delay: 0.5, duration: 1 }} 
                         className="absolute bottom-[-5%] xl:bottom-[-10%] right-[5%] xl:right-[8%] z-10 w-[55vw] xl:w-[50vw] 2xl:w-[45vw]"
                       >
-                        <Image src={slide.img} alt="Hero graphic" width={1184} height={1184} className="w-full h-auto object-contain drop-shadow-2xl" priority />
+                        <Image src={slide.img} alt="BLACKFOX DIGITAL professional photo editing and retouching services" width={1184} height={1184} className="w-full h-auto object-contain drop-shadow-2xl" priority />
                       </motion.div>
                     )}
                  </div>
@@ -109,7 +109,7 @@ export default function Hero() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
                   className={cn(
-                    "max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-6 lg:p-8 rounded-3xl shadow-2xl backdrop-blur-md transition-all",
+                    "max-w-[90vw] sm:max-w-md md:max-w-lg lg:max-w-xl p-4 sm:p-6 lg:p-8 rounded-3xl shadow-2xl backdrop-blur-md transition-all",
                     slide.isGraphic ? "bg-white/95" : "bg-white/10 border border-white/20"
                   )}
                 >
@@ -117,11 +117,11 @@ export default function Hero() {
                      {slide.subtitle}
                    </div>
                    
-                   <h1 className={cn("text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tighter leading-[1.05]", slide.isGraphic ? "text-[#011]" : "text-white")}>
+                   <h2 className={cn("text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tighter leading-[1.05]", slide.isGraphic ? "text-[#011]" : "text-white")}>
                      {slide.title}
-                   </h1>
+                   </h2>
                    
-                   <p className={cn("text-base lg:text-lg leading-relaxed font-medium mb-8", slide.isGraphic ? "text-[#626262]" : "text-gray-200")}>
+                   <p className={cn("text-sm sm:text-base lg:text-lg leading-relaxed font-medium mb-6 sm:mb-8", slide.isGraphic ? "text-[#626262]" : "text-gray-200")}>
                      {slide.description}
                    </p>
 
@@ -146,14 +146,27 @@ export default function Hero() {
         .swiper-button-next, .swiper-button-prev {
           color: white !important;
           background: transparent !important;
-          width: 60px !important;
-          height: 60px !important;
+          width: 40px !important;
+          height: 40px !important;
           transition: all 0.3s ease;
           opacity: 0.6;
+          display: none !important;
+        }
+        @media (min-width: 640px) {
+          .swiper-button-next, .swiper-button-prev {
+            display: flex !important;
+            width: 60px !important;
+            height: 60px !important;
+          }
         }
         .swiper-button-next:after, .swiper-button-prev:after {
-          font-size: 40px !important;
+          font-size: 24px !important;
           font-weight: 200;
+        }
+        @media (min-width: 640px) {
+          .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 40px !important;
+          }
         }
         .swiper-button-next:hover, .swiper-button-prev:hover {
           opacity: 1;
@@ -161,10 +174,16 @@ export default function Hero() {
           text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
         .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
+          width: 8px;
+          height: 8px;
           background: white;
           opacity: 0.5;
+        }
+        @media (min-width: 640px) {
+          .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+          }
         }
         .swiper-pagination-bullet-active {
           background: #EE3A39;

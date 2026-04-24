@@ -30,8 +30,8 @@ export default function AboutPage() {
             <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px] shadow-sm">
               Our Story
             </div>
-            <h1 className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
-              80+ Specialists. 500,000+ Images. <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Built Since 2016.</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase">
+              Professional Photo Editing Studio — <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">80+ Specialists. 500,000+ Images. Since 2016.</span>
             </h1>
             <p className="text-base md:text-lg text-[#011] leading-relaxed font-bold max-w-3xl mx-auto">
               We started as a 5-person studio in Dhaka with one goal: deliver human-edited, commercial-grade photo retouching that global brands could actually rely on. Ten years later, we're processing 5,000+ images a day for 500+ clients across 30 countries.
@@ -43,7 +43,7 @@ export default function AboutPage() {
       {/* 2. THE STORY */}
       <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="relative">
               <div className="flex flex-col gap-6 relative z-10">
@@ -117,7 +117,7 @@ export default function AboutPage() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: idx * 0.1 } }
                 }}
-                className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#EE3A39]/30 transition-all duration-300 group"
+                className="bg-white p-5 md:p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#EE3A39]/30 transition-all duration-300 group"
               >
                 <div className="w-16 h-16 rounded-2xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#EE3A39] group-hover:text-white transition-all duration-300">
                   {feature.icon}
@@ -133,7 +133,7 @@ export default function AboutPage() {
       {/* 4. GLOBAL PRESENCE */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
             <div className="lg:w-1/2">
               <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px] shadow-sm">Global Footprint</div>
               <h2 className="text-3xl md:text-4xl font-black text-[#011] tracking-tighter uppercase mb-8">Professional Photo Editing Services for USA, Europe & Beyond</h2>
@@ -238,28 +238,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* SCHEMA MARKUP */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "BLACKFOX DIGITAL",
-            "url": "https://theblackfoxstudio.com",
-            "foundingDate": "2016",
-            "numberOfEmployees": "80",
-            "description": "Professional image post-production studio helping global brands with high-volume photo editing and retouching.",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "House 560, Road 08, Adabor",
-              "addressLocality": "Dhaka",
-              "addressCountry": "BD"
-            },
-            "telephone": "+8801924482868"
-          })
-        }}
-      />
     </div>
   );
 }
@@ -273,7 +251,7 @@ function TeamGrid() {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
       {teamList.map((member, idx) => (
         <TeamMemberCard key={idx} member={member} idx={idx} />
       ))}
@@ -301,11 +279,11 @@ function TeamMemberCard({ member, idx }) {
           className="absolute inset-0 w-full h-full backface-hidden rounded-3xl overflow-hidden border border-gray-100 shadow-sm z-20 bg-white"
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
-          <Image 
-            src={member.avatar || "/logo.png"} 
-            alt={member.name} 
-            fill 
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
+          <Image
+            src={member.avatar || "/logo.png"}
+            alt={`${member.name} — ${member.role} at BLACKFOX DIGITAL`}
+            fill
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
             unoptimized
           />
           <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-[#011] via-[#011]/80 to-transparent">

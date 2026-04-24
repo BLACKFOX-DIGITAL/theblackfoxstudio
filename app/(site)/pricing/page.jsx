@@ -5,7 +5,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 
 export const metadata = {
   title: 'Bulk Photo Editing Pricing & Volume Discounts | BLACKFOX DIGITAL',
-  description: 'Transparent outsource photo editing pricing. Background removal from $0.29/image. Bulk and white label discounts for agencies processing 100+ images/month. No hidden fees.',
+  description: 'Transparent photo editing pricing from $0.29/image. Background removal, retouching & more. Volume discounts up to 20% for agencies. No hidden fees.',
   alternates: { canonical: 'https://theblackfoxstudio.com/pricing' },
   openGraph: {
     title: 'Pricing & Volume Discounts | BLACKFOX DIGITAL',
@@ -18,6 +18,7 @@ export const metadata = {
 export default function PricingPage() {
   const serviceRates = mockServices.map(s => ({
     service: s.title,
+    slug: s.slug,
     price: `$${s.priceStarting?.toFixed(2) || '0.29'}`,
     desc: s.shortDescription || 'Professional high-volume editing solution.'
   }));
@@ -68,12 +69,30 @@ export default function PricingPage() {
     })),
   };
 
+  const pricingLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'Professional Photo Editing Services',
+    'provider': {
+      '@type': 'Organization',
+      'name': 'BLACKFOX DIGITAL',
+      'url': 'https://theblackfoxstudio.com',
+    },
+    'areaServed': 'Worldwide',
+    'offers': mockServices.map(s => ({
+      '@type': 'Offer',
+      'name': s.title,
+      'description': s.shortDescription || 'Professional high-volume editing solution.',
+      'price': s.priceStarting?.toFixed(2) || '0.29',
+      'priceCurrency': 'USD',
+      'url': `https://theblackfoxstudio.com/services/${s.slug}`,
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F8F8] text-[#011] pb-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingLd) }} />
 
       {/* 1. HERO */}
       <section className="relative pt-32 pb-24 border-b border-gray-200 overflow-hidden bg-white">
@@ -84,10 +103,10 @@ export default function PricingPage() {
           <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
             Pricing
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
-            Smart Pricing for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Scaling Teams</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
+            Photo Editing Pricing — <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Per Image Rates & Volume Discounts</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-base md:text-xl lg:text-2xl text-[#626262] leading-relaxed font-medium max-w-2xl mx-auto">
             Transparent, per-image rates that scale down as your volume scales up. Never pay for more than what you use.
           </p>
         </div>
@@ -106,7 +125,11 @@ export default function PricingPage() {
               {serviceRates.map((pkg, idx) => (
                 <div key={idx} className="p-6 md:p-8 flex items-center justify-between hover:bg-[#F8F8F8] transition-colors group">
                   <div>
-                    <h3 className="text-lg font-extrabold text-[#011] mb-1 group-hover:text-[#EE3A39] transition-colors">{pkg.service}</h3>
+                    <h3 className="text-lg font-extrabold text-[#011] mb-1 group-hover:text-[#EE3A39] transition-colors">
+                      <Link href={`/services/${pkg.slug}`} className="hover:text-[#EE3A39] transition-colors">
+                        {pkg.service}
+                      </Link>
+                    </h3>
                     <p className="text-sm text-[#626262]">{pkg.desc}</p>
                   </div>
                   <div className="text-right shrink-0 pl-4">
@@ -146,7 +169,7 @@ export default function PricingPage() {
               <p className="text-[#626262] text-xs font-bold mb-3 uppercase tracking-widest">501–1000 Images</p>
               <h4 className="text-2xl font-extrabold text-[#EE3A39]">15% Off</h4>
             </div>
-            <div className="bg-[#EE3A39] border border-[#EE3A39] p-6 rounded-2xl text-center shadow-xl shadow-[#EE3A39]/20 transform scale-105">
+            <div className="bg-[#EE3A39] border border-[#EE3A39] p-6 rounded-2xl text-center shadow-xl shadow-[#EE3A39]/20 transform lg:scale-105">
               <Sparkles size={18} className="text-white mx-auto mb-2 opacity-80" />
               <p className="text-white/80 text-xs font-bold mb-2 uppercase tracking-widest">1000+ Images</p>
               <h4 className="text-2xl font-extrabold text-white">20% Off</h4>
@@ -163,7 +186,7 @@ export default function PricingPage() {
             <p className="text-[#626262] text-lg">Find the right service level for your operational needs.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-end">
             {packages.map((pkg, idx) => (
               <div key={idx} className={`relative p-8 rounded-3xl border transition-all duration-300 ${
                 pkg.popular 
@@ -224,7 +247,7 @@ export default function PricingPage() {
       {/* 6. CTA */}
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="bg-[#011] rounded-3xl p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
+          <div className="bg-[#011] rounded-3xl p-6 sm:p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#EE3A39]/20 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative z-10">Not sure which rate applies to you?</h2>
             <p className="text-xl text-gray-400 mb-10 font-medium relative z-10">Send us your raw images. We&apos;ll edit 10 for free and give you an exact quote.</p>

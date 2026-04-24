@@ -31,7 +31,7 @@ export default async function OrderPage({ searchParams }) {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-200 rounded-md text-xs font-bold mb-4 uppercase tracking-[2px] text-gray-500">
               <ShieldCheck size={14} className="text-[#EE3A39]" /> Secure Checkout
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">Place Your Order</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">Place Your Order</h1>
             <p className="text-lg text-[#626262] max-w-2xl">Tell us what you need. Upload your files, specify your brief, and we'll confirm pricing and start within 2 hours.</p>
           </div>
           <div className="flex bg-white border border-gray-200 p-1.5 rounded-2xl shadow-sm">
@@ -65,7 +65,7 @@ export default async function OrderPage({ searchParams }) {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Step 1: Project Scope */}
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
+            <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-[#EE3A39]"></div>
               <h2 className="text-xl font-extrabold mb-6 flex items-center gap-2">Project Scope</h2>
               
@@ -103,11 +103,11 @@ export default async function OrderPage({ searchParams }) {
             </div>
 
             {/* Step 2: Assets & Instructions */}
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
+            <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-[#011]"></div>
               <h2 className="text-xl font-extrabold mb-6 flex items-center gap-2">Assets & Instructions</h2>
               
-              <div className="border-2 border-dashed border-gray-200 bg-[#F8F8F8] rounded-2xl p-10 text-center hover:border-[#EE3A39]/50 hover:bg-[#EE3A39]/5 transition-colors cursor-pointer mb-6 group">
+              <div className="border-2 border-dashed border-gray-200 bg-[#F8F8F8] rounded-2xl p-6 md:p-10 text-center hover:border-[#EE3A39]/50 hover:bg-[#EE3A39]/5 transition-colors cursor-pointer mb-6 group">
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:scale-110 transition-transform">
                   <UploadCloud size={32} className="text-[#EE3A39]" />
                 </div>
@@ -125,7 +125,7 @@ export default async function OrderPage({ searchParams }) {
             </div>
 
             {/* Step 3: Contact Info */}
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100">
+            <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-sm border border-gray-100">
               <h2 className="text-xl font-extrabold mb-6">Contact Information</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -154,7 +154,7 @@ export default async function OrderPage({ searchParams }) {
 
           {/* Sticky Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white p-8 rounded-[2rem] shadow-[0_15px_50px_rgba(0,0,0,0.06)] border border-gray-100 sticky top-32">
+            <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-[0_15px_50px_rgba(0,0,0,0.06)] border border-gray-100 lg:sticky lg:top-32">
               <h3 className="text-xl font-extrabold mb-6">Order Summary</h3>
               
               {preselectedService ? (

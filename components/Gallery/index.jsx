@@ -7,7 +7,7 @@ import { MousePointer2, Maximize2, X, ChevronLeft, ChevronRight, CheckCircle2, G
 import { Compare } from "@/components/ui/compare";
 import Link from "next/link";
 
-const Gallery = ({ data = [] }) => {
+const Gallery = ({ data = [], services = [] }) => {
   const [category, setCategory] = useState("all");
   const [selectedImage, setSelectedImage] = useState(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -77,7 +77,7 @@ const Gallery = ({ data = [] }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase"
+            className="text-2xl sm:text-3xl md:text-5xl font-black mb-5 tracking-tighter text-[#011] leading-none uppercase"
           >
             Image Editing Portfolio — <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Before & After Results</span>
           </motion.h1>
@@ -111,7 +111,7 @@ const Gallery = ({ data = [] }) => {
       </section>
 
       {/* 2. FILTER TABS */}
-      <section className="sticky top-[108px] z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100 shadow-sm py-4 mb-10 group/filter">
+      <section className="sticky top-[90px] lg:top-[108px] z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100 shadow-sm py-4 mb-10 group/filter">
         <div className="container mx-auto px-4 relative">
           
           {showLeftArrow && (
@@ -139,7 +139,7 @@ const Gallery = ({ data = [] }) => {
               setShowLeftArrow(scrollLeft > 10);
               setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
             }}
-            className="flex overflow-x-auto no-scrollbar justify-start gap-2 md:gap-3 px-12 md:px-0 scroll-smooth items-center"
+            className="flex overflow-x-auto no-scrollbar justify-start gap-2 md:gap-3 px-4 sm:px-12 md:px-0 scroll-smooth items-center"
           >
             {categories.map((ele, ind) => (
               <button
@@ -167,7 +167,7 @@ const Gallery = ({ data = [] }) => {
           </div>
         ) : (
           <motion.div
-            className="columns-1 md:columns-2 lg:columns-3 gap-8"
+            className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 lg:gap-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -186,7 +186,7 @@ const Gallery = ({ data = [] }) => {
                     animate="visible"
                     exit="exit"
                     onClick={() => setSelectedImage(ele)}
-                    className="relative w-full break-inside-avoid overflow-hidden rounded-[2rem] bg-[#F8F8F8] shadow-sm hover:shadow-2xl border border-gray-100 group cursor-zoom-in transition-all duration-500 mb-8"
+                    className="relative w-full break-inside-avoid overflow-hidden rounded-2xl md:rounded-[2rem] bg-[#F8F8F8] shadow-sm hover:shadow-2xl border border-gray-100 group cursor-zoom-in transition-all duration-500 mb-4 md:mb-6 lg:mb-8"
                   >
                     {/* Crimson Badge */}
                     <div className="absolute top-5 left-5 z-20 bg-[#EE3A39] px-3 py-1.5 rounded-full text-white text-[9px] font-black uppercase tracking-[2px] shadow-lg pointer-events-none">
@@ -232,7 +232,7 @@ const Gallery = ({ data = [] }) => {
           <div className="w-16 h-16 rounded-3xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center mx-auto mb-8 shadow-inner">
             <Star size={32} className="fill-[#EE3A39]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">This Is What Your Images Could Look Like.</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">This Is What Your Images Could Look Like.</h2>
           <p className="text-xl text-[#011] mb-10 font-bold">
             Send us 10 of your actual images — we'll edit them to commercial standard and deliver within 24 hours. No credit card. No commitment.
           </p>
@@ -247,7 +247,27 @@ const Gallery = ({ data = [] }) => {
         </div>
       </section>
 
-      {/* 5. ZOOM MODAL */}
+      {/* 5. BROWSE BY SERVICE — static links for crawlability */}
+      {services.length > 0 && (
+        <section className="py-16 bg-[#F8F8F8] border-t border-gray-100 mt-0">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-8 text-center">Browse by Service</h2>
+            <div className="flex flex-wrap justify-center gap-3">
+              {services.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/services/${s.slug}`}
+                  className="px-5 py-2.5 rounded-xl bg-white border border-gray-100 text-[11px] font-black uppercase tracking-wider text-[#626262] hover:text-[#EE3A39] hover:border-[#EE3A39]/30 transition-all shadow-sm"
+                >
+                  {s.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 6. ZOOM MODAL */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -269,7 +289,7 @@ const Gallery = ({ data = [] }) => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 40 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-6xl h-[75vh] md:h-[90vh] bg-[#011] rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] border border-white/5"
+              className="relative w-full max-w-6xl h-[75vh] md:h-[90vh] bg-[#011] rounded-2xl md:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] border border-white/5"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="w-full h-full relative group/compare cursor-col-resize">

@@ -104,7 +104,7 @@ export default function BlogPostPage({ params: paramsPromise }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-[#011] leading-tight uppercase"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-10 tracking-tighter text-[#011] leading-tight uppercase"
           >
             {post.title}
           </motion.h1>
@@ -156,10 +156,10 @@ export default function BlogPostPage({ params: paramsPromise }) {
           <div dangerouslySetInnerHTML={{ __html: post.content }} className="text-[#333] leading-relaxed space-y-10" />
           
           <style dangerouslySetInnerHTML={{__html: `
-            .lead { font-size: 1.5rem; color: #011; font-weight: 800; line-height: 1.4; border-left: 4px solid #EE3A39; padding-left: 1.5rem; margin-bottom: 3.5rem; text-transform: uppercase; letter-spacing: -0.04em; }
-            article h2 { font-size: 2.25rem; font-weight: 900; color: #011; margin-top: 4.5rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: -0.05em; line-height: 1.1; }
-            article h3 { font-size: 1.5rem; font-weight: 800; color: #011; margin-top: 3.5rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.02em; }
-            article p { margin-bottom: 2rem; color: #444; font-weight: 500; line-height: 1.9; font-size: 1.125rem; }
+            .lead { font-size: clamp(1.1rem, 3vw, 1.5rem); color: #011; font-weight: 800; line-height: 1.4; border-left: 4px solid #EE3A39; padding-left: 1.5rem; margin-bottom: 3.5rem; text-transform: uppercase; letter-spacing: -0.04em; }
+            article h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 900; color: #011; margin-top: 4.5rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: -0.05em; line-height: 1.1; }
+            article h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; color: #011; margin-top: 3.5rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.02em; }
+            article p { margin-bottom: 2rem; color: #444; font-weight: 500; line-height: 1.9; font-size: clamp(1rem, 2vw, 1.125rem); }
             article strong { color: #011; font-weight: 800; }
             article blockquote { background: #F8F8F8; padding: 2.5rem; border-radius: 1.5rem; border-left: none; margin: 3.5rem 0; text-align: center; quote: none; }
             article blockquote p { font-size: 1.35rem !important; color: #011 !important; font-weight: 800 !important; font-style: italic; margin-bottom: 0 !important; line-height: 1.5 !important; }
@@ -190,7 +190,7 @@ export default function BlogPostPage({ params: paramsPromise }) {
         </motion.article>
 
         {/* 3. Simplified CTA */}
-        <div className="mt-32 p-12 bg-[#011] rounded-[2.5rem] text-white text-center shadow-2xl relative overflow-hidden group">
+        <div className="mt-20 md:mt-32 p-6 md:p-12 bg-[#011] rounded-2xl md:rounded-[2.5rem] text-white text-center shadow-2xl relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-32 h-32 bg-brandPrimary/10 blur-[60px] rounded-full group-hover:scale-150 transition-all duration-1000" />
            <p className="text-[10px] font-black uppercase tracking-[4px] text-brandPrimary mb-4">End of Report</p>
            <h3 className="text-3xl font-black mb-6 uppercase tracking-tight">Need Absolute Scaling?</h3>

@@ -91,7 +91,7 @@ export default function BlogClient({ initialPosts }) {
                   <p className="text-[#626262]">Try adjusting your search or category filter.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                   {filteredPosts.map((post, idx) => (
                     <Link href={`/blog/${post.slug}`} key={idx} className="group bg-white rounded-[2.5rem] overflow-hidden hover:shadow-[0_30px_60px_rgba(238,58,57,0.1)] hover:-translate-y-2 border border-gray-100 transition-all duration-500 flex flex-col h-full shadow-sm relative">
                       
@@ -107,7 +107,7 @@ export default function BlogClient({ initialPosts }) {
                          </div>
                       </div>
                       
-                      <div className="p-8 flex flex-col flex-1">
+                      <div className="p-5 md:p-8 flex flex-col flex-1">
                         <div className="flex items-center gap-3 mb-4">
                           <span className="flex items-center gap-1.5 text-[10px] font-black text-gray-400 uppercase tracking-widest"><Clock size={12} className="text-[#EE3A39]"/> {post.readTime}</span>
                         </div>
@@ -140,7 +140,7 @@ export default function BlogClient({ initialPosts }) {
           <div className="w-16 h-16 rounded-3xl bg-[#EE3A39]/10 text-[#EE3A39] flex items-center justify-center mx-auto mb-8 shadow-inner">
             <Star size={32} className="fill-[#EE3A39]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">Ready to transform your images?</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#011] mb-6 tracking-tighter uppercase">Ready to transform your images?</h2>
           <p className="text-xl text-[#011] mb-10 font-bold">
             Start with 10 free images — no credit card needed. Experience the quality difference today.
           </p>

@@ -60,12 +60,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-  @apply bg-white lg:!size-[3.125vw] text-gray after:text-gray after:!text-[.938vw];
+  @apply bg-white lg:!size-[3.125vw] text-gray after:text-gray after:!text-[.938vw] !hidden sm:!flex;
 }
 
 .brand-gap {

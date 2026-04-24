@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
+import BeforeAfterSlider from "@/components/ui/BeforeAfterSliderClient";
 import { cn } from "@/lib";
 import { services } from "@/lib/mock-data";
 import Image from "next/image";
@@ -9,8 +9,14 @@ import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, Ch
 
 export const metadata = {
   title: "Outsource Photo Editing & Retouching Services | BLACKFOX DIGITAL",
-  description: "Outsource photo editing to BLACKFOX DIGITAL — 80+ professional retouchers delivering background removal, clipping path, ghost mannequin, beauty retouch and 20+ services. From $0.29/image. 24-hour delivery. Trusted by 500+ global brands. Free trial.",
+  description: "Outsource photo editing to BLACKFOX DIGITAL — background removal, clipping path, ghost mannequin & 20+ services. From $0.29/image. 24hr delivery. Free trial.",
   alternates: { canonical: "https://theblackfoxstudio.com/" },
+  openGraph: {
+    title: "Outsource Photo Editing & Retouching Services | BLACKFOX DIGITAL",
+    description: "80+ specialist editors. 5,000+ images/day. Background removal from $0.29. Trusted by 500+ global brands. Free 10-image trial.",
+    url: "https://theblackfoxstudio.com/",
+    type: "website",
+  },
 };
 
 export default function Home() {
@@ -87,13 +93,16 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
 
+      {/* Single H1 for SEO — visually hidden, screen-reader accessible */}
+      <h1 className="sr-only">Outsource Photo Editing &amp; Retouching Services — BLACKFOX DIGITAL</h1>
+
       {/* 1. EPIC HERO */}
       <Hero />
 
       {/* 1.5. BRAND TRUST BAR - UPSCALED AUTHORITY ZONE */}
       <section className="bg-[#011] py-12 relative z-30 border-y border-white/5">
         <div className="container mx-auto px-4 max-w-[1400px]">
-          <div className="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-between gap-6 md:gap-4">
             
             <div className="flex items-center gap-4 text-white group">
               <span className="text-[#EE3A39] text-2xl group-hover:scale-125 transition-transform duration-300">★</span>
@@ -146,7 +155,7 @@ export default function Home() {
               { text: "We process 2,000+ fashion images monthly. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
               { text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", author: "Lars K.", role: "Brand Manager", loc: "Germany" },
             ].map((t, i) => (
-              <div key={i} className="flex gap-4 items-start p-6 bg-[#F8F8F8] rounded-2xl border border-gray-100">
+              <div key={i} className="flex gap-4 items-start p-4 md:p-6 bg-[#F8F8F8] rounded-2xl border border-gray-100">
                 <span className="text-[#EE3A39] text-2xl leading-none mt-0.5 flex-shrink-0">"</span>
                 <div>
                   <p className="text-sm font-bold text-[#011] leading-relaxed mb-3">{t.text}</p>
@@ -164,7 +173,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
 
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
             <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
               Our 5-step process is engineered for unmatched speed, security, and flawless execution.
             </p>
@@ -196,7 +205,7 @@ export default function Home() {
           
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Our Image Post-Production Services</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Our Image Post-Production Services</h2>
               <p className="text-base font-bold text-[#626262]">
                 Professional photo editing and retouching services for e-commerce, fashion and enterprise clients worldwide. Quality is our #1 Priority.
               </p>
@@ -206,7 +215,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
             {dbServices.map((service) => {
               // Map DB slugs or titles to precise old image paths for the visual Wow factor
               const slug = service.slug || "";
@@ -233,7 +242,7 @@ export default function Home() {
                    </div>
 
                    {/* Content Container */}
-                   <div className="p-8 flex-grow flex flex-col">
+                   <div className="p-5 md:p-8 flex-grow flex flex-col">
                      <Link href={`/services/${slug}`} className="block">
                        <h3 className="text-xl font-extrabold text-[#011] mb-3 uppercase tracking-wide group-hover:text-[#EE3A39] transition-colors">{service.title}</h3>
                      </Link>
@@ -263,7 +272,7 @@ export default function Home() {
              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
                Direct Rates
              </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Transparent Pricing Snapshot</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Transparent Pricing Snapshot</h2>
             <p className="text-[#626262] font-bold text-base max-w-2xl mx-auto">Straightforward per-image rates with absolute transparency. No contracts, just results.</p>
           </div>
           
@@ -322,7 +331,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
-              <h3 className="text-white text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2">Order 1000+ Images?</h3>
+              <h3 className="text-white text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tighter mb-2">Order 1000+ Images?</h3>
               <p className="text-white text-base font-bold">Get 20% Off on Bulk Orders across all photo editing categories.</p>
             </div>
             <Link href="/contact" className="px-8 py-4 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:bg-white hover:text-[#011] hover:-translate-y-1 transition-all flex items-center gap-2">
@@ -337,13 +346,13 @@ export default function Home() {
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] border border-[#EE3A39]/20 rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px]">
                 Our Guarantee
               </div>
-              <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
                 Zero Revisions. Zero Surprises. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Your Catalog, Delivered Perfect.</span>
               </h2>
               <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
@@ -356,7 +365,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                {differences.map((diff, idx) => (
-                 <div key={idx} className="bg-[#F8F8F8] rounded-3xl p-8 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                 <div key={idx} className="bg-[#F8F8F8] rounded-3xl p-5 md:p-8 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <diff.icon size={32} className="text-[#EE3A39] mb-6" />
                     <h4 className="text-xl font-bold text-[#011] mb-3">{diff.title}</h4>
                     <p className="text-[#626262] leading-relaxed text-sm">{diff.desc}</p>
@@ -377,7 +386,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
               Proven Results
             </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">What Clients Achieve With Us</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">What Clients Achieve With Us</h2>
             <p className="text-gray-400 font-bold text-base max-w-2xl mx-auto">Real outcomes from brands and studios that outsource their photo editing to BLACKFOX DIGITAL.</p>
           </div>
 
@@ -412,7 +421,7 @@ export default function Home() {
                 statLabel: "Available for 1,000+/mo",
               },
             ].map((item, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-[2rem] p-8 hover:bg-white/10 hover:border-[#EE3A39]/30 transition-all duration-300 group">
+              <div key={i} className="bg-white/5 border border-white/10 rounded-[2rem] p-5 md:p-8 hover:bg-white/10 hover:border-[#EE3A39]/30 transition-all duration-300 group">
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] mb-2">{item.segment}</p>
@@ -442,7 +451,7 @@ export default function Home() {
         <div className="absolute left-[-20%] bottom-[-20%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16 md:mb-24 relative">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
           </div>
           
           <TestimonialSlider testimonials={homepageTestimonials} />
@@ -462,7 +471,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {[
               { title: "How to Prepare Images for Amazon", tag: "Guide" },
               { title: "Ghost Mannequin vs Flat Lay", tag: "Comparison" },
@@ -473,7 +482,7 @@ export default function Home() {
                    <div className="absolute inset-0 bg-[#011]/20 group-hover:bg-transparent transition-colors z-10"></div>
                    <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white text-[#EE3A39] text-[10px] font-black uppercase tracking-widest rounded-lg">{post.tag}</div>
                 </div>
-                <div className="p-8">
+                <div className="p-5 md:p-8">
                    <h4 className="text-xl font-bold text-[#011] mb-4 group-hover:text-[#EE3A39] transition-colors">{post.title}</h4>
                    <span className="text-[#EE3A39] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">Read Story <ArrowRight size={14}/></span>
                 </div>
@@ -487,7 +496,7 @@ export default function Home() {
       <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">
             10 Free Edits. No Credit Card. Results in 24 Hours.
           </h2>
           <p className="text-base font-bold text-[#626262] mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -512,21 +521,31 @@ export default function Home() {
             "@type": "ProfessionalService",
             "name": "BLACKFOX DIGITAL",
             "url": "https://theblackfoxstudio.com",
-            "description": "Professional image post-production services including background removal, clipping path, and retouching.",
+            "logo": "https://theblackfoxstudio.com/logo.png",
+            "email": "info@theblackfoxstudio.com",
+            "telephone": "+8801924482868",
+            "description": "Professional image post-production studio — background removal, clipping path, ghost mannequin, beauty retouching and 20+ services. 80+ specialist editors. 24-hour delivery.",
             "foundingDate": "2016",
             "numberOfEmployees": "80",
             "areaServed": "Worldwide",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "House 560, Road 08",
+              "streetAddress": "House 560, Road 08, Adabor",
               "addressLocality": "Dhaka",
-              "addressCountry": "BD"
+              "postalCode": "1207",
+              "addressCountry": "BD",
             },
-            "telephone": "+8801924482868",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Image Editing Services"
-            }
+              "name": "Image Editing Services",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Background Removal" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clipping Path" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ghost Mannequin" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beauty Retouching" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Color Correction" } },
+              ],
+            },
           })
         }}
       />

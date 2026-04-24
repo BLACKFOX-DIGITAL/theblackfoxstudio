@@ -15,9 +15,9 @@ import TeamsIcon from "./TeamsIcon";
 
 const Footer = ({ dbSettings = {} }) => {
   return (
-    <footer className="bg-white border-t border-gray-200 pt-16 pb-8 mt-auto">
+    <footer className="bg-white border-t border-gray-200 pt-10 md:pt-16 pb-8 mt-auto">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 mb-10 md:mb-12 items-start">
 
           {/* Brand & Socials */}
           <div className="space-y-6 lg:col-span-1">

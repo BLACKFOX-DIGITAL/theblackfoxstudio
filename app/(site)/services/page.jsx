@@ -2,24 +2,47 @@ import { services as mockServices } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Scissors, Zap, Award, Sparkles } from "lucide-react";
-import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
+import BeforeAfterSlider from "@/components/ui/BeforeAfterSliderClient";
 
 export const metadata = {
-  title: "Outsource Image Editing & Retouching — 20+ Services | BLACKFOX DIGITAL",
-  description: "Outsource bulk photo editing and white label retouching to BLACKFOX DIGITAL. Background removal, clipping path, ghost mannequin, product retouch and 20+ services for photographers, agencies, and e-commerce brands. From $0.29/image.",
+  title: "Photo Editing & Retouching Services — 20+ | BLACKFOX DIGITAL",
+  description: "Outsource photo editing to BLACKFOX DIGITAL — background removal, clipping path, ghost mannequin & 20+ services. From $0.29/image. White label for agencies.",
   alternates: { canonical: "https://theblackfoxstudio.com/services" },
   openGraph: {
-    title: "Outsource Image Editing & Retouching | BLACKFOX DIGITAL",
+    title: "Photo Editing & Retouching Services | BLACKFOX DIGITAL",
     description: "Outsource bulk photo editing to 80+ professional retouchers. 20+ services from $0.29/image. White label available for agencies.",
     url: "https://theblackfoxstudio.com/services",
     type: "website",
-    images: ["/logo.png", "/hero-2.jpg"],
   },
 };
 
 export default function ServicesPage() {
-  // Use mock services instead of database
   const dbServices = mockServices;
+
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Photo Editing & Retouching Services — BLACKFOX DIGITAL",
+    "description": "20+ professional image post-production services including background removal, clipping path, ghost mannequin, beauty retouching and more.",
+    "url": "https://theblackfoxstudio.com/services",
+    "numberOfItems": dbServices.length,
+    "itemListElement": dbServices.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": s.title,
+      "description": s.shortDescription || "Professional image editing service.",
+      "url": `https://theblackfoxstudio.com/services/${s.slug}`,
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theblackfoxstudio.com" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://theblackfoxstudio.com/services" },
+    ],
+  };
 
   // A helper map to assign breathtaking placeholder images to dynamic services if they lack explicit ones
   const serviceVisuals = {
@@ -47,6 +70,8 @@ export default function ServicesPage() {
 
   return (
     <main className="min-h-screen bg-[#F8F8F8] font-sans text-[#011] overflow-hidden pt-24 pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       
       {/* 1. HERO SECTION */}
       <section className="relative py-20 bg-white border-b border-gray-200 overflow-hidden">
@@ -55,10 +80,10 @@ export default function ServicesPage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
             <Sparkles size={16} /> 20+ Specialized Services
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 tracking-tighter text-[#011] drop-shadow-sm leading-tight">
             Outsource Photo Editing <br className="hidden md:block" /> to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">80+ Specialists.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#626262] leading-relaxed font-medium mb-12 max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#626262] leading-relaxed font-medium mb-10 max-w-4xl mx-auto">
             Background removal, clipping path, ghost mannequin, jewelry retouching and 20+ more — all human-edited, from $0.29/image, delivered in 24 hours.
           </p>
 
@@ -78,8 +103,8 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 max-w-[1400px]">
           
           <div className="mb-16 text-center">
-            <h2 className="text-4xl font-extrabold text-[#011] tracking-tight mb-4">Every Service. One Studio.</h2>
-            <p className="text-xl text-[#626262] max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] tracking-tight mb-4">20+ Professional Photo Editing Services — One Studio.</h2>
+            <p className="text-base md:text-xl text-[#626262] max-w-2xl mx-auto">
               20+ specialized editing services handled by dedicated specialist teams — no generalists, no shortcuts.
             </p>
           </div>
@@ -91,7 +116,7 @@ export default function ServicesPage() {
               <p>Add services in the CMS Dashboard to see them appear here.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
               {dbServices.map((service) => {
                 const slug = service.slug || "";
                 let imgBefore = service.beforeImage;
@@ -111,7 +136,7 @@ export default function ServicesPage() {
                      </div>
   
                     {/* Content Container */}
-                    <div className="p-8 flex-grow flex flex-col">
+                    <div className="p-5 md:p-8 flex-grow flex flex-col">
                       <Link href={`/services/${slug}`} className="block">
                         <h3 className="text-xl font-extrabold text-[#011] mb-3 uppercase tracking-wide group-hover:text-[#EE3A39] transition-colors">{service.title}</h3>
                       </Link>
@@ -150,8 +175,8 @@ export default function ServicesPage() {
       <section className="py-24 bg-white border-t border-gray-200">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <Award size={48} className="mx-auto mb-6 text-[#EE3A39]" />
-          <h2 className="text-4xl font-extrabold text-[#011] mb-6 tracking-tight">Not sure where to start?</h2>
-          <p className="text-xl text-[#626262] mb-10 leading-relaxed">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] mb-6 tracking-tight">Not sure where to start?</h2>
+          <p className="text-base md:text-xl text-[#626262] mb-10 leading-relaxed">
             Send us 10 images free — no credit card, no commitment. See the quality on your own files before you decide anything.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

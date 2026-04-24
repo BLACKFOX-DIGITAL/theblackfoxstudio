@@ -110,7 +110,7 @@ export default function TermsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 tracking-tighter text-[#011] leading-none uppercase"
           >
             Terms of <span className="text-brandPrimary">Service.</span>
           </motion.h1>

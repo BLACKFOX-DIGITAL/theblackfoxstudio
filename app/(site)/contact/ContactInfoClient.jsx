@@ -60,9 +60,9 @@ export default function ContactInfoClient() {
           <div className="inline-block px-4 py-1.5 bg-[#EE3A39]/10 border border-[#EE3A39]/20 text-[#EE3A39] rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
             Available 24/7/365
           </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
-            Contact BLACKFOX DIGITAL — <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">Image Post-Production Services</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-6 tracking-tighter text-[#011] leading-none uppercase">
+            Contact Our Photo Editing Studio — <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-[#ff6b6b]">We Reply Within 2 Hours, 24/7</span>
           </h1>
           <p className="text-lg md:text-xl text-[#626262] leading-relaxed font-bold max-w-3xl mx-auto mb-10">
             Our team is available 24/7 to answer your questions about pricing, bulk volumes and turnaround times.
@@ -89,10 +89,10 @@ export default function ContactInfoClient() {
       {/* CONTACT DETAILS + FORM */}
       <section className="py-24 bg-[#F8F8F8] w-full">
         <div className="container mx-auto px-4 max-w-7xl w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 w-full items-start">
 
             {/* Left: Contact Info & FAQs */}
-            <div className="lg:col-span-4 flex flex-col gap-6 w-full sticky top-32">
+            <div className="lg:col-span-4 flex flex-col gap-6 w-full lg:sticky lg:top-32">
               {contactCards.map((card, i) => {
                 const Icon = card.icon;
                 return (
@@ -123,9 +123,31 @@ export default function ContactInfoClient() {
                 );
               })}
 
+              {/* Popular Services — internal links for crawlability */}
+              <div className="bg-white rounded-[2.5rem] p-8 border border-gray-50 shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-5">Popular Services</h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { label: "Background Removal", href: "/services/background-removal" },
+                    { label: "Clipping Path", href: "/services/clipping-path" },
+                    { label: "Ghost Mannequin", href: "/services/ghost-mannequin" },
+                    { label: "Image Retouching", href: "/services/photo-retouching" },
+                    { label: "Color Correction", href: "/services/color-correction" },
+                  ].map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="px-4 py-2 rounded-xl bg-[#F8F8F8] border border-gray-100 text-[11px] font-black uppercase tracking-wider text-[#626262] hover:text-[#EE3A39] hover:border-[#EE3A39]/30 transition-all"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               {/* FAQs - Converted to Accordion for vertical space saving */}
               <div className="bg-white rounded-[2.5rem] p-8 border border-gray-50 shadow-sm">
-                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6">Common Questions</h4>
+                <h4 className="text-xs font-black uppercase tracking-[3px] text-[#011] mb-6">Frequently Asked Questions</h4>
                 <Accordion type="single" collapsible className="w-full space-y-3">
                   {[
                     { q: "How quickly do you reply?", a: "We reply within 2 hours, 24 hours a day, 7 days a week." },
@@ -164,13 +186,13 @@ export default function ContactInfoClient() {
             <div className="lg:col-span-8 flex flex-col gap-10 w-full">
 
               {/* Form Integrated with File Transfer for Cohesion */}
-              <div className="bg-white/80 backdrop-blur-md rounded-[3rem] border border-white shadow-2xl relative overflow-hidden w-full flex flex-col">
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-[3rem] border border-white shadow-2xl relative overflow-hidden w-full flex flex-col">
                 <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#EE3A39] to-orange-500" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
 
-                <div className="relative z-10 p-8 md:p-14 pb-10">
-                  <h2 className="text-3xl md:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">
-                    Submit Requirement
+                <div className="relative z-10 p-5 sm:p-8 md:p-14 pb-10">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#011] tracking-tighter mb-4 leading-none uppercase">
+                    Get a Quote for Bulk Image Editing
                   </h2>
                   <p className="text-lg text-[#626262] mb-12 font-medium leading-relaxed max-w-xl">
                     Fill out the form below and our production team will reply within 2 hours.
@@ -220,7 +242,7 @@ function MapSection() {
   const mapUrl = "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=House%20560,%20Road%2008,%20Adabor,%20Dhaka%201207+(THE%20BLACK%20FOX%20STUDIO)&t=&z=14&ie=UTF8&iwloc=B&output=embed";
 
   return (
-    <div className="bg-white rounded-[2.5rem] overflow-hidden border border-white shadow-xl relative group h-[500px]">
+    <div className="bg-white rounded-[2.5rem] overflow-hidden border border-white shadow-xl relative group h-[300px] sm:h-[400px] md:h-[500px]">
       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#EE3A39] to-orange-500 z-20" />
       
       <div className="absolute top-8 left-8 z-30">

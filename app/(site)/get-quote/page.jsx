@@ -31,19 +31,19 @@ export default function GetQuotePage() {
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-md text-xs font-bold mb-6 uppercase tracking-[2px] text-gray-500 shadow-sm">
             <Calculator size={14} className="text-[#EE3A39]" /> Enterprise Pricing
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-6 leading-tight">
             Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Volume.</span><br/>Priced for Scale.
           </h1>
-          <p className="text-xl text-[#626262] leading-relaxed">
+          <p className="text-base md:text-xl text-[#626262] leading-relaxed">
             Whether you process 500 or 50,000 images a month, our infrastructure scales with you. Tell us about your workflow to get a custom, volume-adjusted rate card.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12">
           
           {/* Main Quote Form container */}
           <div className="lg:col-span-8 space-y-8">
-            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_15px_50px_rgba(0,0,0,0.04)] border border-gray-100 relative">
+            <div className="bg-white p-5 sm:p-8 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_15px_50px_rgba(0,0,0,0.04)] border border-gray-100 relative">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#EE3A39] to-orange-400"></div>
               
               <form className="space-y-10">
@@ -126,7 +126,7 @@ export default function GetQuotePage() {
                     Assets & Requirements
                   </h3>
 
-                  <div className="border-2 border-dashed border-gray-200 bg-[#F8F8F8] rounded-2xl p-8 mb-6 hover:border-[#EE3A39]/40 transition-colors flex flex-col items-center justify-center cursor-pointer">
+                  <div className="border-2 border-dashed border-gray-200 bg-[#F8F8F8] rounded-2xl p-5 md:p-8 mb-6 hover:border-[#EE3A39]/40 transition-colors flex flex-col items-center justify-center cursor-pointer">
                     <UploadCloud size={32} className="text-gray-400 mb-3" />
                     <p className="font-bold text-sm mb-1">Upload reference images or style guides</p>
                     <p className="text-xs text-gray-500">Optional. Helps us provide a 100% accurate rate.</p>
@@ -147,7 +147,7 @@ export default function GetQuotePage() {
 
           {/* Right Information Sidebar */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-[#011] p-8 rounded-[2rem] shadow-xl text-white">
+            <div className="bg-[#011] p-6 md:p-8 rounded-[2rem] shadow-xl text-white">
                <h4 className="text-2xl font-extrabold mb-6">Why Partner With Us?</h4>
                <ul className="space-y-6">
                  <li className="flex gap-4">
