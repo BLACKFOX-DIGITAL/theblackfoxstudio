@@ -10,11 +10,92 @@ import "swiper/css/effect-creative";
 import { cn } from "@/lib";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Scissors, Layers, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { sairaCondensedClass } from "@/utils/font";
+import useMagnetic from "@/hooks/useMagnetic";
+
+const slideData = [
+  {
+    img: "/home_slider_woman.png",
+    title: "5,000+ Images Edited Daily — Delivered in 24 Hours",
+    subtitle: "Editing At Scale",
+    description: "Premium photo editing and retouching services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect results. From $0.29/image. Trusted by 500+ brands worldwide.",
+    bgImage: null,
+    isGraphic: true,
+    kinetic: "RETOUCH",
+  },
+  {
+    img: "/hero-1.jpg",
+    title: "Human Retouchers, Not AI — Commercial-Grade Quality",
+    subtitle: "Flawless Execution",
+    description: "Every image edited by a specialist using frequency separation, dodge & burn, and natural texture preservation. Perfect for beauty, fashion, and glamour.",
+    isGraphic: false,
+    kinetic: "PRECISION",
+  },
+  {
+    img: "/hero-2.jpg",
+    title: "Pantone-Accurate Color Correction at Scale",
+    subtitle: "Vibrant & Accurate",
+    description: "Fix white balance, saturation, and exposure to represent your products in their truest light. Multi-SKU batch recoloring with zero color drift across your catalog.",
+    isGraphic: false,
+    kinetic: "COMMERCE",
+  },
+  {
+    img: "/hero-3.jpg",
+    title: "From Clipping Paths to Ghost Mannequin — One Studio",
+    subtitle: "End-to-End Solutions",
+    description: "20+ specialized editing services under one roof. We handle thousands of images overnight so your team doesn't have to.",
+    isGraphic: false,
+    kinetic: "EDITORIAL",
+  },
+];
+
+function SplitTitle({ text, isLight }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const words = text.split(" ");
+  return (
+    <h2 className={cn("text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tighter leading-[1.05]", isLight ? "text-[#011]" : "text-white")}>
+      {words.map((w, i) => (
+        <span key={i} className="inline-block overflow-hidden pr-[0.3em]">
+          {mounted ? (
+            <motion.span
+              className="inline-block"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.9, delay: 0.25 + i * 0.08, ease: [0.7, 0, 0.3, 1] }}
+            >
+              {w}
+            </motion.span>
+          ) : (
+            <span className="inline-block">{w}</span>
+          )}
+        </span>
+      ))}
+    </h2>
+  );
+}
+
+function MagneticLink({ href, className, children, dataCursor }) {
+  const ref = useRef(null);
+  useMagnetic(ref);
+  return (
+    <Link
+      href={href}
+      ref={ref}
+      className={className}
+      data-cursor={dataCursor}
+      style={{ willChange: "transform", transition: "transform 0.25s cubic-bezier(0.3,0.9,0.3,1), box-shadow 0.3s, background 0.3s" }}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export default function Hero() {
   const swiperRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
@@ -22,38 +103,6 @@ export default function Hero() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const slideData = [
-    {
-      img: "/home_slider_woman.png",
-      title: "5,000+ Images Edited Daily — Delivered in 24 Hours",
-      subtitle: "Editing At Scale",
-      description: "Premium photo editing and retouching services for e-commerce brands, fashion houses and global enterprises. Pixel-perfect results. From $0.29/image. Trusted by 500+ brands worldwide.",
-      bgImage: null, // First slide uses custom layout
-      isGraphic: true,
-    },
-    {
-      img: "/hero-1.jpg",
-      title: "Human Retouchers, Not AI — Commercial-Grade Quality",
-      subtitle: "Flawless Execution",
-      description: "Every image edited by a specialist using frequency separation, dodge & burn, and natural texture preservation. Perfect for beauty, fashion, and glamour.",
-      isGraphic: false,
-    },
-    {
-      img: "/hero-2.jpg",
-      title: "Pantone-Accurate Color Correction at Scale",
-      subtitle: "Vibrant & Accurate",
-      description: "Fix white balance, saturation, and exposure to represent your products in their truest light. Multi-SKU batch recoloring with zero color drift across your catalog.",
-      isGraphic: false,
-    },
-    {
-      img: "/hero-3.jpg",
-      title: "From Clipping Paths to Ghost Mannequin — One Studio",
-      subtitle: "End-to-End Solutions",
-      description: "20+ specialized editing services under one roof. We handle thousands of images overnight so your team doesn't have to.",
-      isGraphic: false,
-    }
-  ];
 
   return (
     <section className="h-[90vh] lg:h-screen w-full relative bg-[#F8F8F8]">
@@ -73,66 +122,100 @@ export default function Hero() {
           pagination={{ clickable: true }}
           autoplay={{ delay: 6000, disableOnInteraction: false }}
           modules={[EffectCreative, Navigation, Pagination, Autoplay]}
+          onSlideChange={(s) => setActiveIdx(s.realIndex)}
         >
           {slideData.map((slide, index) => (
             <SwiperSlide key={index} className="relative overflow-hidden w-full h-full flex items-center">
-              
-              {/* Background Handle */}
+
+              {/* Background */}
               {slide.isGraphic ? (
-                 <div className="absolute inset-0 w-full h-full bg-[#EE3A39] overflow-hidden">
-                    {/* Animated Geometric overlay mimicking original first slide feel perfectly */}
-                    <div className="absolute right-0 top-0 w-[65%] lg:w-[60%] h-full bg-[#f2f2f4]" style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }}></div>
-                    {!isMobile && (
-                      <motion.div 
-                        initial={{ y: 80, opacity: 0 }} 
-                        animate={{ y: 0, opacity: 1 }} 
-                        transition={{ delay: 0.5, duration: 1 }} 
-                        className="absolute bottom-[-5%] xl:bottom-[-10%] right-[5%] xl:right-[8%] z-10 w-[55vw] xl:w-[50vw] 2xl:w-[45vw]"
-                      >
-                        <Image src={slide.img} alt="BLACKFOX DIGITAL professional photo editing and retouching services" width={1184} height={1184} className="w-full h-auto object-contain drop-shadow-2xl" priority />
-                      </motion.div>
-                    )}
-                 </div>
+                <div className="absolute inset-0 w-full h-full bg-[#EE3A39] overflow-hidden">
+                  <div className="absolute right-0 top-0 w-[65%] lg:w-[60%] h-full bg-[#f2f2f4]" style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }} />
+                  {!isMobile && (
+                    <motion.div
+                      initial={{ y: 80, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 1 }}
+                      className="absolute bottom-[-5%] xl:bottom-[-10%] right-[5%] xl:right-[8%] z-10 w-[55vw] xl:w-[50vw] 2xl:w-[45vw]"
+                    >
+                      <Image src={slide.img} alt="BLACKFOX DIGITAL professional photo editing and retouching services" width={1184} height={1184} className="w-full h-auto object-contain drop-shadow-2xl" priority />
+                    </motion.div>
+                  )}
+                </div>
               ) : (
-                 <div className="absolute inset-0 w-full h-full">
-                    <Image src={slide.img} alt={slide.title} fill className="object-cover" priority={index === 1} />
-                    {/* Subtle gradient so text remains readable on dark backgrounds */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-                 </div>
+                <div className="absolute inset-0 w-full h-full">
+                  <Image src={slide.img} alt={slide.title} fill className="object-cover" priority={index === 1} />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                </div>
               )}
 
-              {/* Foreground Content - Glassmorphic / Light Theme Styling */}
+              {/* Kinetic background word — CSS transition, no SSR mismatch */}
+              <div
+                className={cn(
+                  "absolute right-[4vw] top-[18%] pointer-events-none font-black uppercase leading-[0.85] text-right select-none",
+                  sairaCondensedClass
+                )}
+                style={{
+                  fontSize: "clamp(60px, 11vw, 180px)",
+                  letterSpacing: "-0.05em",
+                  color: slide.isGraphic ? "rgba(1,17,17,0.05)" : "rgba(255,255,255,0.08)",
+                  zIndex: 5,
+                  opacity: activeIdx === index ? 1 : 0,
+                  transform: activeIdx === index ? "translateX(0)" : "translateX(8%)",
+                  transition: "opacity 1s, transform 1.4s cubic-bezier(0.7,0,0.3,1)",
+                }}
+              >
+                {slide.kinetic}
+              </div>
+
+              {/* Foreground content */}
               <div className="container mx-auto px-4 relative z-20 h-full flex flex-col justify-center">
-                <motion.div 
+                <motion.div
+                  key={`content-${activeIdx}-${index}`}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                   className={cn(
-                    "max-w-[90vw] sm:max-w-md md:max-w-lg lg:max-w-xl p-4 sm:p-6 lg:p-8 rounded-3xl shadow-2xl backdrop-blur-md transition-all",
+                    "max-w-[90vw] sm:max-w-md md:max-w-lg lg:max-w-xl p-4 sm:p-6 lg:p-8 rounded-3xl shadow-2xl backdrop-blur-md",
                     slide.isGraphic ? "bg-white/95" : "bg-white/10 border border-white/20"
                   )}
                 >
-                   <div className={cn("inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-4 uppercase tracking-widest shadow-sm", slide.isGraphic ? "bg-[#EE3A39]/10 text-[#EE3A39]" : "bg-white/20 text-white")}>
-                     {slide.subtitle}
-                   </div>
-                   
-                   <h2 className={cn("text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tighter leading-[1.05]", slide.isGraphic ? "text-[#011]" : "text-white")}>
-                     {slide.title}
-                   </h2>
-                   
-                   <p className={cn("text-sm sm:text-base lg:text-lg leading-relaxed font-medium mb-6 sm:mb-8", slide.isGraphic ? "text-[#626262]" : "text-gray-200")}>
-                     {slide.description}
-                   </p>
+                  <div className={cn("inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-4 uppercase tracking-widest shadow-sm", slide.isGraphic ? "bg-[#EE3A39]/10 text-[#EE3A39]" : "bg-white/20 text-white")}>
+                    {slide.subtitle}
+                  </div>
 
-                   <div className="flex flex-wrap items-center gap-4">
-                     <Link href="/free-trial" className="px-8 py-4 2xl:px-10 2xl:py-5 bg-[#EE3A39] text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all flex items-center gap-2 2xl:text-lg">
-                       Start Free Trial <ArrowRight size={18} />
-                     </Link>
-                     <Link href="/portfolio" className={cn("px-8 py-4 2xl:px-10 2xl:py-5 font-bold rounded-xl border transition-all hover:-translate-y-1 2xl:text-lg", slide.isGraphic ? "bg-[#F8F8F8] text-[#011] border-gray-200 hover:bg-gray-200" : "bg-transparent text-white border-white/30 hover:bg-white/10")}>
-                       View Portfolio
-                     </Link>
-                   </div>
+                  <SplitTitle text={slide.title} isLight={slide.isGraphic} key={`title-${activeIdx}-${index}`} />
+
+                  <motion.p
+                    className={cn("text-sm sm:text-base lg:text-lg leading-relaxed font-medium mb-6 sm:mb-8", slide.isGraphic ? "text-[#626262]" : "text-gray-200")}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                  >
+                    {slide.description}
+                  </motion.p>
+
+                  <motion.div
+                    className="flex flex-wrap items-center gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.0 }}
+                  >
+                    <MagneticLink
+                      href="/free-trial"
+                      className="px-8 py-4 2xl:px-10 2xl:py-5 bg-[#EE3A39] text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] flex items-center gap-2 2xl:text-lg"
+                      dataCursor="start"
+                    >
+                      Start Free Trial <ArrowRight size={18} />
+                    </MagneticLink>
+                    <Link
+                      href="/portfolio"
+                      className={cn("px-8 py-4 2xl:px-10 2xl:py-5 font-bold rounded-xl border transition-all hover:-translate-y-1 2xl:text-lg", slide.isGraphic ? "bg-[#F8F8F8] text-[#011] border-gray-200 hover:bg-gray-200" : "bg-transparent text-white border-white/30 hover:bg-white/10")}
+                      data-cursor="view"
+                    >
+                      View Portfolio
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </div>
 
@@ -141,7 +224,6 @@ export default function Hero() {
         </Swiper>
       </Suspense>
 
-      {/* Custom CSS overrides for Swiper navigation to match light theme gracefully */}
       <style jsx global>{`
         .swiper-button-next, .swiper-button-prev {
           color: white !important;

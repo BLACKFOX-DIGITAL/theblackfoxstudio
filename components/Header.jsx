@@ -57,31 +57,38 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
       name: "our services",
       icon: <RiArrowDownSFill className="w-[16px] lg:size-[.833vw] " />,
       url: "/services",
+      curtain: "SERVICES",
       children: dynamicServices,
     },
     {
       name: "portfolio",
       url: "/portfolio",
+      curtain: "PORTFOLIO",
     },
     {
       name: "pricing",
       url: "/pricing",
+      curtain: "PRICING",
     },
     {
       name: "about",
       url: "/about",
+      curtain: "ABOUT",
     },
     {
       name: "blog",
       url: "/blog",
+      curtain: "BLOG",
     },
     {
       name: "contact",
       url: "/contact",
+      curtain: "CONTACT",
     },
     {
       name: "free trial",
       url: "/free-trial",
+      curtain: "FREE TRIAL",
     },
   ];
 
@@ -192,6 +199,7 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
                       ele.name === "free trial" && "bg-[#EE3A39] text-white hover:bg-[#d63030] hover:text-white px-6 py-2.5 rounded-full shadow-md ml-4 tracking-widest text-xs"
                     )}
                     href={ele.url}
+                    data-curtain={ele.curtain}
                   >
                     {ele?.name}
                   </Link>

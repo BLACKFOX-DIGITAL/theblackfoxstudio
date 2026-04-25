@@ -31,6 +31,7 @@ const CompareWrapper = ({ ele, ind }) => {
         className="size-full rounded-none aspect-[447/317] "
         slideMode="drag"
         autoplay={isAutoplay}
+        showHandlebar={false}
       />
     </div>
   );

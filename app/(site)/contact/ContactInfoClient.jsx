@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/About/Contact";
 import { Mail, MapPin, Phone, Clock, MessageSquare, ArrowRight, Zap } from "lucide-react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import MagneticCTA from "@/components/animations/MagneticCTA";
 
 export default function ContactInfoClient() {
   const contactCards = [
@@ -173,12 +174,12 @@ export default function ContactInfoClient() {
                 <p className="text-gray-400 text-sm mb-8 relative z-10 leading-relaxed font-medium">
                   Send us your actual images. We'll edit them to commercial standard and deliver in 24 hours — no credit card, no commitment.
                 </p>
-                <Link
+                <MagneticCTA
                   href="/free-trial"
-                  className="relative z-10 inline-flex items-center gap-2 text-sm font-black text-[#EE3A39] hover:text-white transition-all group/cta uppercase tracking-[3px]"
+                  className="relative z-10 inline-flex items-center gap-2 text-sm font-black text-[#EE3A39] hover:text-white transition-all uppercase tracking-[3px]"
                 >
-                  Start Free Trial <ArrowRight size={16} className="group-hover/cta:translate-x-1 transition-transform" />
-                </Link>
+                  Start Free Trial <ArrowRight size={16} />
+                </MagneticCTA>
               </div>
             </div>
 

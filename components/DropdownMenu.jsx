@@ -1,13 +1,25 @@
 import { cn } from "@/lib";
 import { getFontFamily } from "@/utils/font";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const DropdownMenu = ({ data, ele }) => {
   const [isHovered, setIsHovered] = useState(false);
   const pathName = usePathname();
+  const lockedRef = useRef(false);
+
+  useEffect(() => { setIsHovered(false); }, [pathName]);
+  useEffect(() => {
+    const close = () => {
+      setIsHovered(false);
+      lockedRef.current = true;
+      setTimeout(() => { lockedRef.current = false; }, 1800);
+    };
+    window.addEventListener("page-curtain-start", close);
+    return () => window.removeEventListener("page-curtain-start", close);
+  }, []);
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -32,7 +44,7 @@ const DropdownMenu = ({ data, ele }) => {
       <div className="relative" onMouseLeave={() => setIsHovered(false)}>
       <Link
         href={ele?.url}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => { if (!lockedRef.current) setIsHovered(true); }}
         className={cn(
           "text-[#011] hover:text-[#EE3A39] transition-colors duration-300 uppercase font-extrabold tracking-[2px] text-sm flex items-center gap-1",
           getFontFamily("saira-condensed"),

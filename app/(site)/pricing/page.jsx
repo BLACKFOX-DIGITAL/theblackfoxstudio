@@ -2,6 +2,8 @@ import { services as mockServices } from '@/lib/mock-data';
 import Link from 'next/link';
 import { CheckCircle, Zap, Building2, Crown, Sparkles, AlertCircle } from 'lucide-react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import SplitH2 from '@/components/animations/SplitH2';
+import MagneticCTA from '@/components/animations/MagneticCTA';
 
 export const metadata = {
   title: 'Bulk Photo Editing Pricing & Volume Discounts | BLACKFOX DIGITAL',
@@ -152,7 +154,7 @@ export default function PricingPage() {
       <section className="py-20 bg-[#F8F8F8] border-b border-gray-100">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#011] mb-4">Volume Discounts</h2>
+            <SplitH2 text="Volume Discounts" className="text-3xl md:text-5xl font-extrabold text-[#011] mb-4" />
             <p className="text-[#626262] text-lg">Send more, save more. Discounts applied automatically to your monthly invoice.</p>
           </div>
 
@@ -182,7 +184,7 @@ export default function PricingPage() {
       <section className="py-24 bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#011] mb-4">Service Tier Breakdown</h2>
+            <SplitH2 text="Service Tier Breakdown" className="text-3xl md:text-5xl font-extrabold text-[#011] mb-4" />
             <p className="text-[#626262] text-lg">Find the right service level for your operational needs.</p>
           </div>
 
@@ -228,7 +230,7 @@ export default function PricingPage() {
       {/* 5. PRICING FAQ */}
       <section className="py-24 bg-[#F8F8F8]">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-extrabold text-center text-[#011] mb-12">Frequent Questions About Pricing</h2>
+          <SplitH2 text="Frequent Questions About Pricing" className="text-3xl font-extrabold text-center text-[#011] mb-12" />
           <Accordion type="single" collapsible className="w-full space-y-3">
             {faqs.map((faq, idx) => (
               <AccordionItem key={idx} value={`item-${idx}`} className="bg-white border border-gray-100 rounded-2xl shadow-sm px-2 overflow-hidden">
@@ -249,15 +251,15 @@ export default function PricingPage() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="bg-[#011] rounded-3xl p-6 sm:p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#EE3A39]/20 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative z-10">Not sure which rate applies to you?</h2>
+            <SplitH2 text="Not sure which rate applies to you?" className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative z-10" />
             <p className="text-xl text-gray-400 mb-10 font-medium relative z-10">Send us your raw images. We&apos;ll edit 10 for free and give you an exact quote.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/free-trial" className="relative z-10 inline-flex items-center justify-center bg-[#EE3A39] hover:bg-red-700 text-white px-8 py-4 rounded-xl font-extrabold text-base hover:shadow-xl transition-all shadow-md group">
+              <MagneticCTA href="/free-trial" className="relative z-10 inline-flex items-center justify-center bg-[#EE3A39] text-white px-8 py-4 rounded-xl font-extrabold text-base hover:shadow-xl shadow-md">
                 Get 10 Free Images
-              </Link>
-              <Link href="/get-quote" className="relative z-10 inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-xl font-extrabold text-base hover:shadow-xl transition-all shadow-md backdrop-blur-sm group">
+              </MagneticCTA>
+              <MagneticCTA href="/get-quote" className="relative z-10 inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-xl font-extrabold text-base hover:shadow-xl shadow-md backdrop-blur-sm" dataCursor="contact">
                 Request Custom Quote
-              </Link>
+              </MagneticCTA>
             </div>
           </div>
         </div>

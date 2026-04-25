@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AnimationLayer from "@/components/animations/AnimationLayer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationJsonLd } from "next-seo";
 import CookieConstantWrapper from "@/components/Cookies/CookieConstantWrapper";
@@ -73,6 +74,7 @@ export default function SiteLayout({ children }) {
         ]}
         url="https://theblackfoxstudio.com"
       />
+      <AnimationLayer />
       <Toaster />
       <Header dbServices={dbServices} dbSettings={dbSettings} />
       <main className="flex-1 mt-0">

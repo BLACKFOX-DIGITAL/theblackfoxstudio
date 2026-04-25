@@ -5,6 +5,8 @@ import { services } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
 import TestimonialSlider from "@/components/ui/TestimonialSlider";
+import SplitH2 from "@/components/animations/SplitH2";
+import MagneticCTA from "@/components/animations/MagneticCTA";
 import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
 
 export const metadata = {
@@ -173,7 +175,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
 
           <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
+            <SplitH2 text="Our Image Editing Workflow" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5" />
             <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
               Our 5-step process is engineered for unmatched speed, security, and flawless execution.
             </p>
@@ -205,7 +207,7 @@ export default function Home() {
           
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Our Image Post-Production Services</h2>
+              <SplitH2 text="Our Image Post-Production Services" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4" />
               <p className="text-base font-bold text-[#626262]">
                 Professional photo editing and retouching services for e-commerce, fashion and enterprise clients worldwide. Quality is our #1 Priority.
               </p>
@@ -235,21 +237,18 @@ export default function Home() {
               }
 
               return (
-                 <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group flex flex-col">
+                 <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group" data-cursor="view">
                    {/* Interactive Before/After Slider */}
                    <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
                      <BeforeAfterSlider beforeImage={imgBefore} afterImage={imgAfter} label={service.title} />
                    </div>
 
                    {/* Content Container */}
-                   <div className="p-5 md:p-8 flex-grow flex flex-col">
+                   <div className="p-5 md:p-8">
                      <Link href={`/services/${slug}`} className="block">
                        <h3 className="text-xl font-extrabold text-[#011] mb-3 uppercase tracking-wide group-hover:text-[#EE3A39] transition-colors">{service.title}</h3>
                      </Link>
-                     <p className="text-[#626262] mb-8 leading-relaxed line-clamp-2">
-                       {service.shortDescription || "Get high-end precision post-production for volume commercial imagery."}
-                    </p>
-                     <div className="mt-auto pt-5 border-t border-gray-100 flex justify-between items-center text-sm font-bold text-[#011]">
+                     <div className="pt-5 border-t border-gray-100 flex justify-between items-center text-sm font-bold text-[#011]">
                        <Link href={`/services/${slug}`} className="text-[#EE3A39] hover:underline underline-offset-4 decoration-2 transition-all">Details</Link>
                        <Link href={`/order?service=${slug}`} className="text-[#EE3A39] flex items-center gap-1 -translate-x-2 group-hover:translate-x-0 transition-all opacity-0 group-hover:opacity-100 z-10 hover:underline underline-offset-4 decoration-2">
                          Order Now <ArrowRight size={14} />
@@ -358,9 +357,9 @@ export default function Home() {
               <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
                 80+ specialist editors. Multi-tier QC. 24-hour delivery. We've processed 500,000+ images so your team can focus on growing your business — not managing retouching.
               </p>
-              <Link href="/free-trial" className="inline-flex px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] hover:-translate-y-1 transition-all items-center gap-2">
+              <MagneticCTA href="/free-trial" className="inline-flex px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)] items-center gap-2">
                 Test Our Quality Free <ArrowRight size={14} />
-              </Link>
+              </MagneticCTA>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -386,7 +385,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
               Proven Results
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">What Clients Achieve With Us</h2>
+            <SplitH2 text="What Clients Achieve With Us" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4" />
             <p className="text-gray-400 font-bold text-base max-w-2xl mx-auto">Real outcomes from brands and studios that outsource their photo editing to BLACKFOX DIGITAL.</p>
           </div>
 
@@ -438,9 +437,9 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <Link href="/free-trial" className="inline-flex items-center gap-2 px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all group">
-              Get Your Free Sample Edits <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <MagneticCTA href="/free-trial" className="inline-flex items-center gap-2 px-8 py-4 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)]">
+              Get Your Free Sample Edits <ArrowRight size={14} />
+            </MagneticCTA>
           </div>
 
         </div>
@@ -451,7 +450,7 @@ export default function Home() {
         <div className="absolute left-[-20%] bottom-[-20%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16 md:mb-24 relative">
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
+            <SplitH2 text="What Our Clients Say" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5" />
           </div>
           
           <TestimonialSlider testimonials={homepageTestimonials} />
@@ -496,16 +495,14 @@ export default function Home() {
       <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">
-            10 Free Edits. No Credit Card. Results in 24 Hours.
-          </h2>
+          <SplitH2 text="10 Free Edits. No Credit Card. Results in 24 Hours." className="text-2xl sm:text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight" />
           <p className="text-base font-bold text-[#626262] mb-8 max-w-2xl mx-auto leading-relaxed">
             Send us your images and we'll show you the quality before you commit to anything — no contracts, no risk.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-            <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
-              Claim Your Free Trial <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <MagneticCTA href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-[0_10px_30px_rgba(238,58,57,0.3)] hover:shadow-[0_15px_50px_rgba(238,58,57,0.4)] flex items-center justify-center gap-2">
+              Claim Your Free Trial <ArrowRight size={14} />
+            </MagneticCTA>
             <Link href="/contact" className="px-10 py-5 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
               Get A Custom Quote <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>

@@ -133,28 +133,6 @@ export default function TakeFreeTrialPage() {
               </div>
             </div>
 
-            {/* Services eligible for free trial */}
-            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-white shadow-sm">
-              <h4 className="text-[10px] font-black text-[#011] tracking-[3px] mb-5 uppercase">Services You Can Trial</h4>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { label: "Background Removal", href: "/services/background-removal" },
-                  { label: "Clipping Path", href: "/services/clipping-path" },
-                  { label: "Ghost Mannequin", href: "/services/ghost-mannequin" },
-                  { label: "Photo Retouching", href: "/services/photo-retouching" },
-                  { label: "Color Correction", href: "/services/color-correction" },
-                  { label: "Image Masking", href: "/services/image-masking" },
-                ].map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className="px-4 py-2 rounded-xl bg-white border border-gray-100 text-[11px] font-black uppercase tracking-wider text-[#626262] hover:text-[#EE3A39] hover:border-[#EE3A39]/30 transition-all shadow-sm"
-                  >
-                    {s.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Embedded Form (SCROLLS) */}

@@ -9,6 +9,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import SplitH2 from '@/components/animations/SplitH2';
+import MagneticCTA from '@/components/animations/MagneticCTA';
 
 
 const BASE_URL = "https://theblackfoxstudio.com";
@@ -200,9 +202,9 @@ export default async function ServicePage({ params: paramsPromise }) {
               {heroSubtext}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/free-trial" className="bg-[#EE3A39] hover:bg-[#011] text-white px-8 py-4 rounded-2xl font-black shadow-[0_20px_40px_rgba(238,58,57,0.2)] hover:-translate-y-1 transition-all duration-500 text-[10px] tracking-[3px] uppercase inline-flex items-center gap-2 group">
-                Start Free Trial <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <MagneticCTA href="/free-trial" className="bg-[#EE3A39] text-white px-8 py-4 rounded-2xl font-black shadow-[0_20px_40px_rgba(238,58,57,0.2)] text-[10px] tracking-[3px] uppercase inline-flex items-center gap-2">
+                Start Free Trial <ArrowRight size={14} />
+              </MagneticCTA>
               <Link href="/get-quote" className="bg-white hover:bg-[#F8F8F8] border border-[#011] text-[#011] px-8 py-4 rounded-2xl font-black hover:-translate-y-1 transition-all duration-500 text-[10px] tracking-[3px] uppercase inline-flex shadow-sm items-center gap-2 group">
                 Get Quote <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0" />
               </Link>
@@ -241,7 +243,7 @@ export default async function ServicePage({ params: paramsPromise }) {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             {dbPortfolio.map((item, idx) => (
-              <div key={idx} className="relative w-full h-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white group transition-all duration-700 hover:scale-[1.01]">
+              <div key={idx} className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 bg-white group transition-all duration-700 hover:scale-[1.01]">
                 <BeforeAfterSlider 
                   label={`${title} Comparison ${idx+1}`} 
                   beforeImage={item.beforeImage} 
@@ -271,7 +273,7 @@ export default async function ServicePage({ params: paramsPromise }) {
               
               {/* Main Description */}
               <div>
-                <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">{h2Title}</h2>
+                <SplitH2 text={h2Title} className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]" />
                 <div 
                   className="prose prose-base md:prose-lg prose-headings:font-black prose-headings:text-[#011] text-[#626262] prose-p:leading-relaxed max-w-none text-justify font-bold"
                   dangerouslySetInnerHTML={{ __html: serviceDescription }}
@@ -451,7 +453,7 @@ export default async function ServicePage({ params: paramsPromise }) {
       <section className="py-24 bg-white border-y border-gray-100">
         <div className="container mx-auto px-6 md:px-12 max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase">{title} FAQ</h2>
+            <SplitH2 text={`${title} FAQ`} className="text-3xl md:text-5xl font-black mb-5 text-[#011] tracking-tighter uppercase" />
             <p className="text-[#626262] text-base font-bold leading-relaxed">Common questions from clients before their first order. If yours isn't here, email us — we reply fast.</p>
           </div>
           <Accordion type="single" collapsible className="w-full space-y-4">
@@ -474,7 +476,7 @@ export default async function ServicePage({ params: paramsPromise }) {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black text-[#011] mb-3 uppercase tracking-tighter">Related Services</h2>
+              <SplitH2 text="Related Services" className="text-3xl md:text-4xl font-black text-[#011] mb-3 uppercase tracking-tighter" />
               <p className="text-[#626262] text-base font-bold">Complement your workflow with these related services.</p>
             </div>
             <Link href="/services" className="hidden sm:flex text-[#EE3A39] font-black items-center gap-2 hover:text-[#011] transition-colors text-[10px] uppercase tracking-[3px]">
@@ -515,14 +517,14 @@ export default async function ServicePage({ params: paramsPromise }) {
           <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-inner">
              <Star className="text-white fill-white" size={32} />
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase">Try This Service Free</h2>
+          <SplitH2 text="Try This Service Free" className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-5 tracking-tighter uppercase" />
           <p className="text-base font-bold text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
             Send us 10 of your actual images. We'll edit them to our commercial standard and deliver within 24 hours. No credit card. No commitment.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/free-trial" className="bg-white text-[#EE3A39] px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center hover:bg-[#011] hover:text-white transition-all shadow-2xl hover:-translate-y-1">
+            <MagneticCTA href="/free-trial" className="bg-white text-[#EE3A39] px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center shadow-2xl" dataCursor="view">
               <Zap className="fill-current" size={16} /> Get 10 Free Edits
-            </Link>
+            </MagneticCTA>
             <Link href="/get-quote" className="bg-white/10 border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[3px] flex items-center gap-3 justify-center hover:bg-white/20 transition-all hover:-translate-y-1">
               Get a Custom Quote <ArrowRight size={14} />
             </Link>

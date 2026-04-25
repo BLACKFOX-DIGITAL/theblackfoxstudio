@@ -3,6 +3,7 @@ import { getFontFamily } from "@/utils/font";
 import React from "react";
 import { Compare } from "./ui/compare";
 import Link from "next/link";
+import MagneticCTA from "./animations/MagneticCTA";
 
 const GetStarted = ({ firstImage, secondImage, className, imageClass }) => {
   return (
@@ -40,12 +41,12 @@ const GetStarted = ({ firstImage, secondImage, className, imageClass }) => {
             {/* <Link className="btn-brand-primary  " href="#">
               GET A QUOTE
             </Link> */}
-            <Link className="btn-brand-primary  " href="/free-trial">
+            <MagneticCTA className="btn-brand-primary" href="/free-trial" dataCursor="start">
               FREE TRIAL
-            </Link>
-            <Link className="btn-brand-primary  " href="/contact">
+            </MagneticCTA>
+            <MagneticCTA className="btn-brand-primary" href="/contact" dataCursor="contact">
               CONTACT US
-            </Link>
+            </MagneticCTA>
           </div>
         </div>
       </div>

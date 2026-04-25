@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Scissors, Zap, Award, Sparkles } from "lucide-react";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSliderClient";
+import SplitH2 from "@/components/animations/SplitH2";
+import MagneticCTA from "@/components/animations/MagneticCTA";
 
 export const metadata = {
   title: "Photo Editing & Retouching Services — 20+ | BLACKFOX DIGITAL",
@@ -103,7 +105,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 max-w-[1400px]">
           
           <div className="mb-16 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] tracking-tight mb-4">20+ Professional Photo Editing Services — One Studio.</h2>
+            <SplitH2 text="20+ Professional Photo Editing Services — One Studio." className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] tracking-tight mb-4" />
             <p className="text-base md:text-xl text-[#626262] max-w-2xl mx-auto">
               20+ specialized editing services handled by dedicated specialist teams — no generalists, no shortcuts.
             </p>
@@ -129,7 +131,7 @@ export default function ServicesPage() {
                 }
 
                 return (
-                   <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] transition-all duration-500 overflow-hidden group flex flex-col">
+                   <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] transition-all duration-500 overflow-hidden group flex flex-col" data-cursor="view">
                      {/* Interactive Before/After Slider */}
                      <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
                        <BeforeAfterSlider beforeImage={imgBefore} afterImage={imgAfter} label={service.title} />
@@ -175,14 +177,14 @@ export default function ServicesPage() {
       <section className="py-24 bg-white border-t border-gray-200">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <Award size={48} className="mx-auto mb-6 text-[#EE3A39]" />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] mb-6 tracking-tight">Not sure where to start?</h2>
+          <SplitH2 text="Not sure where to start?" className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#011] mb-6 tracking-tight" />
           <p className="text-base md:text-xl text-[#626262] mb-10 leading-relaxed">
             Send us 10 images free — no credit card, no commitment. See the quality on your own files before you decide anything.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-bold rounded-2xl text-lg hover:bg-red-700 hover:-translate-y-1 transition-all shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
+            <MagneticCTA href="/free-trial" className="px-10 py-5 bg-[#EE3A39] text-white font-bold rounded-2xl text-lg shadow-[0_10px_20px_rgba(238,58,57,0.2)] hover:shadow-[0_15px_30px_rgba(238,58,57,0.3)]">
               Get 10 Free Edits
-            </Link>
+            </MagneticCTA>
             <Link href="/get-quote" className="px-10 py-5 bg-[#011] text-white font-bold rounded-2xl text-lg hover:-translate-y-1 transition-all shadow-xl flex items-center justify-center gap-2">
               Get a Custom Quote <ArrowRight size={18} />
             </Link>

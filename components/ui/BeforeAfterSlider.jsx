@@ -2,8 +2,10 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { jetbrainsClass } from '@/utils/font';
+import { cn } from '@/lib';
 
-export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Before & After" }) {
+export default function BeforeAfterSlider({ beforeImage, afterImage }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
 
@@ -17,19 +19,21 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Be
   const hasImages = beforeImage && afterImage;
 
   return (
-    <div 
-      className="relative w-full aspect-square rounded-2xl overflow-hidden cursor-ew-resize select-none bg-neutral-950 group shadow-2xl"
+    <div
+      className="relative w-full h-full overflow-hidden select-none bg-neutral-950 group"
       ref={containerRef}
+      data-cursor="none"
       onMouseMove={(e) => handleMove(e.clientX)}
       onTouchMove={(e) => e.touches[0] && handleMove(e.touches[0].clientX)}
+      style={{ cursor: "none" }}
     >
-      {/* 1. After Image (Base) */}
+      {/* After image (base) */}
       {hasImages ? (
-        <Image 
-          src={afterImage} 
-          alt="After" 
+        <Image
+          src={afterImage}
+          alt="After"
           fill
-          className="object-contain select-none pointer-events-none" 
+          className="object-contain select-none pointer-events-none"
           priority
           unoptimized
         />
@@ -39,15 +43,15 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Be
         </div>
       )}
 
-      {/* 2. Before Image (Overlay) */}
+      {/* Before image (clip overlay) */}
       {hasImages && (
-        <div 
+        <div
           className="absolute inset-0 w-full h-full overflow-hidden z-10 pointer-events-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <Image 
-            src={beforeImage} 
-            alt="Before" 
+          <Image
+            src={beforeImage}
+            alt="Before"
             fill
             className="object-contain select-none pointer-events-none"
             priority
@@ -56,29 +60,21 @@ export default function BeforeAfterSlider({ beforeImage, afterImage, label = "Be
         </div>
       )}
 
-      {/* 3. Slider UI */}
-      <div 
-        className="absolute top-0 bottom-0 w-0.5 bg-orange-500 z-20 pointer-events-none shadow-[0_0_15px_rgba(249,115,22,0.8)]"
-        style={{ left: `${sliderPosition}%` }}
+      {/* Divider — 3px brand red */}
+      <div
+        className="absolute top-0 bottom-0 z-20 pointer-events-none"
+        style={{ left: `${sliderPosition}%`, width: 3, background: "#EE3A39", transform: "translateX(-50%)" }}
       />
 
-      <div 
-        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(0,0,0,0.6)] border-2 border-white/50 z-30 transition-transform group-hover:scale-110 active:scale-95"
-        style={{ left: `${sliderPosition}%` }}
-      >
-        <div className="flex gap-0.5 items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </div>
-      </div>
-      
-      {/* 4. Label */}
-      <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-xl px-4 py-2 rounded-xl border border-white/10 text-white text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] z-40 pointer-events-none">
-        {label}
+
+      {/* Before / After corner labels */}
+      <div className="absolute inset-0 pointer-events-none z-40 flex justify-between p-3 items-start">
+        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
+          Before
+        </span>
+        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
+          After
+        </span>
       </div>
     </div>
   );

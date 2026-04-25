@@ -4,6 +4,7 @@ import {
   Lato,
   Mr_Dafoe,
   Bungee_Outline,
+  JetBrains_Mono,
 } from "next/font/google";
 
 const roboto = Roboto({
@@ -15,7 +16,7 @@ const roboto = Roboto({
 
 const sairaCondensed = Saira_Condensed({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -38,11 +39,12 @@ const bungeeOutline = Bungee_Outline({
   display: "swap",
 });
 
-/**
- * Get the font family class name.
- * @param {"roboto" | "saira-condensed" | "lato" | "mr-dafoe" | "bungee-outline"} value - The font family name.
- * @returns {string} The class name for the selected font family.
- */
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
 
 export const getFontFamily = (value) => {
   switch (value) {
@@ -56,7 +58,12 @@ export const getFontFamily = (value) => {
       return mrDafoe.className;
     case "bungee-outline":
       return bungeeOutline.className;
+    case "jetbrains":
+      return jetbrainsMono.className;
     default:
       return roboto.className;
   }
 };
+
+export const sairaCondensedClass = sairaCondensed.className;
+export const jetbrainsClass = jetbrainsMono.className;

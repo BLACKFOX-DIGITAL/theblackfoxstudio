@@ -160,3 +160,19 @@ ul.list_check li:not(:last-child)::after {
     scrollbar-width: none;
   }
 }
+
+/* ─── Custom Pen Cursor ─── */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button { cursor: none; }
+}
+
+/* ─── Split-text section h2 reveal (whileInView) ─── */
+.split-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  padding-right: 0.3em;
+}
+.split-word-inner {
+  display: inline-block;
+}

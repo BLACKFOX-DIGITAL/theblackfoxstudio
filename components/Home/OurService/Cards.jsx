@@ -67,36 +67,21 @@ const Cards = () => {
     },
   ];
 
-  const variants = {
-    enter: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.2 },
-    },
-    exit: {
-      opacity: 0,
-      transition: { staggerChildren: 0.05, staggerDirection: -1 },
-    },
-  };
-
   const cardVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <motion.div
-      variants={variants}
-      initial="hidden"
-      animate="visible"
-      className="mt-5 lg:mt-[2.083vw] grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-[1.042vw]"
-    >
+    <div className="mt-5 lg:mt-[2.083vw] grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-[1.042vw]">
       {data?.map((ele, ind) => (
         <motion.div
           key={`services-${ind}`}
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: (ind % 4) * 0.1 }}
         >
           <div className="  w-full">
             <CompareWrapper ele={ele} ind={ind} />
@@ -106,7 +91,7 @@ const Cards = () => {
           </p>
         </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
