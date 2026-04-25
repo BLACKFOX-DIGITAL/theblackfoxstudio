@@ -13,7 +13,7 @@ const Map = () => {
           scrolling="no"
           marginHeight="0"
           marginWidth="0"
-          src="https://maps.google.com/maps?width=600&height=500&hl=en&q=blackfox limited&t=&z=13&ie=UTF8&iwloc=B&output=embed"
+          src="https://maps.google.com/maps?width=600&height=500&hl=en&q=blackfox digital&t=&z=13&ie=UTF8&iwloc=B&output=embed"
           title="Google Map"
         ></iframe>
       </div>
