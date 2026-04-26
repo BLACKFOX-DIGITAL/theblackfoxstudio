@@ -20,7 +20,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
 
   return (
     <div
-      className="relative w-full h-full overflow-hidden select-none bg-neutral-950 group"
+      className="relative w-full h-full overflow-hidden select-none bg-white group"
       ref={containerRef}
       data-cursor="none"
       onMouseMove={(e) => handleMove(e.clientX)}
@@ -33,13 +33,14 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
           src={afterImage}
           alt="After"
           fill
-          className="object-contain select-none pointer-events-none"
+          className="object-cover select-none pointer-events-none"
+          style={{ objectFit: 'cover' }}
           priority
           unoptimized
         />
       ) : (
-        <div className="w-full h-full bg-[#111] flex items-center justify-center">
-          <span className="text-white/5 font-bold text-4xl">NO IMAGE</span>
+        <div className="w-full h-full bg-[#f8f8f8] flex items-center justify-center">
+          <span className="text-[#011]/5 font-bold text-4xl uppercase tracking-widest">No Image</span>
         </div>
       )}
 
@@ -53,7 +54,8 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
             src={beforeImage}
             alt="Before"
             fill
-            className="object-contain select-none pointer-events-none"
+            className="object-cover select-none pointer-events-none"
+            style={{ objectFit: 'cover' }}
             priority
             unoptimized
           />
@@ -69,10 +71,10 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
 
       {/* Before / After corner labels */}
       <div className="absolute inset-0 pointer-events-none z-40 flex justify-between p-3 items-start">
-        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
+        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded font-bold", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
           Before
         </span>
-        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
+        <span className={cn("text-[10px] tracking-[0.2em] uppercase text-white px-2.5 py-1 rounded font-bold", jetbrainsClass)} style={{ background: "rgba(0,0,0,0.6)" }}>
           After
         </span>
       </div>
