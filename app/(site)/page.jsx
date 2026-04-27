@@ -1,13 +1,10 @@
 import Hero from "@/components/Hero";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSliderClient";
-import { cn } from "@/lib";
 import { services } from "@/lib/mock-data";
-import Image from "next/image";
 import Link from "next/link";
 import TestimonialSlider from "@/components/ui/TestimonialSlider";
-import SplitH2 from "@/components/animations/SplitH2";
 import MagneticCTA from "@/components/animations/MagneticCTA";
-import { ArrowRight, CheckCircle2, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
+import { ArrowRight, CloudUpload, Eye, Zap, Image as ImageIcon, CheckCircle, Target, Award, Infinity, MessageSquare, Scissors, Layers } from "lucide-react";
 
 export const metadata = {
   title: "Outsource Photo Editing & Retouching Services | BLACKFOX DIGITAL",
@@ -41,11 +38,11 @@ export default function Home() {
     .sort((a, b) => featuredSlugs.indexOf(a.slug) - featuredSlugs.indexOf(b.slug));
 
   const workflowSteps = [
-    { title: "Upload Files", desc: "Clients upload their raw files/images securely on our FTP server or cloud drive.", icon: CloudUpload, img: "/upload.png" },
-    { title: "Processing", desc: "Our 24/7 expert team immediately downloads the images and starts the retouching pipeline.", icon: Zap, img: "/download.png" },
-    { title: "Quality Check", desc: "Editing is completed and moved to our rigorous multi-tier Quality Control division.", icon: Eye, img: "/retouching_done.png" },
-    { title: "Encrypted Delivery", desc: "Passed files are immediately uploaded back to your secure file transfer of choice.", icon: Infinity, img: "/free.png" },
-    { title: "Ready for Download", desc: "You are notified instantly when the flawless final images are ready.", icon: CheckCircle, img: "/retouch_done_download.png" },
+    { title: "Upload Files", desc: "Clients upload their raw files/images securely on our FTP server or cloud drive.", icon: CloudUpload },
+    { title: "Processing", desc: "Our 24/7 expert team immediately downloads the images and starts the retouching pipeline.", icon: Zap },
+    { title: "Quality Check", desc: "Editing is completed and moved to our rigorous multi-tier Quality Control division.", icon: Eye },
+    { title: "Encrypted Delivery", desc: "Passed files are immediately uploaded back to your secure file transfer of choice.", icon: Infinity },
+    { title: "Ready for Download", desc: "You are notified instantly when the flawless final images are ready.", icon: CheckCircle },
   ];
 
   const differences = [
@@ -151,11 +148,17 @@ export default function Home() {
       {/* 1.55. SOCIAL PROOF STRIP */}
       <section className="py-12 bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+              Client Voices
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-[#011]">Trusted by Brands Worldwide</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { text: "BLACKFOX DIGITAL transformed our entire Amazon product catalog. Turnaround was 24 hours and quality was exceptional.", author: "James R.", role: "E-Commerce Manager", loc: "United States" },
-              { text: "We process 2,000+ fashion images monthly. Their ghost mannequin work is the best we have found globally.", author: "Sophie M.", role: "Creative Director", loc: "United Kingdom" },
-              { text: "Reliable, fast and pixel-perfect every time. Our jewelry retouching has never looked better.", author: "Lars K.", role: "Brand Manager", loc: "Germany" },
+              { text: "We outsource all our background removal to BLACKFOX DIGITAL. 500+ images weekly, always delivered on time with zero errors.", author: "Michael T.", role: "Operations Director", loc: "Australia" },
+              { text: "The clipping path quality is outstanding. Sharp edges, clean paths — exactly what our catalog needs for print and web.", author: "Anna K.", role: "Art Director", loc: "Netherlands" },
+              { text: "Switched from our previous editing team to BLACKFOX DIGITAL and the difference in quality was immediately noticeable.", author: "David L.", role: "E-Commerce Manager", loc: "Canada" },
             ].map((t, i) => (
               <div key={i} className="flex gap-4 items-start p-4 md:p-6 bg-[#F8F8F8] rounded-2xl border border-gray-100">
                 <span className="text-[#EE3A39] text-2xl leading-none mt-0.5 flex-shrink-0">"</span>
@@ -175,7 +178,10 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
 
           <div className="text-center mb-16">
-            <SplitH2 text="Our Image Editing Workflow" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+              How It Works
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">Our Image Editing Workflow</h2>
             <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
               Our 5-step process is engineered for unmatched speed, security, and flawless execution.
             </p>
@@ -185,7 +191,7 @@ export default function Home() {
             <div className="hidden lg:block absolute top-[28px] left-[10%] right-[10%] h-[2px] bg-[#EE3A39]/20 z-0"></div>
 
             {workflowSteps.map((step, idx) => (
-              <div key={idx} className="relative z-10 bg-white p-6 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+              <div key={idx} className="relative z-10 bg-white p-6 rounded-[2rem] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center text-center">
                 <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#EE3A39] text-white font-bold flex items-center justify-center text-sm shadow-md border-2 border-white">
                   {idx + 1}
                 </div>
@@ -202,22 +208,25 @@ export default function Home() {
       </section>
 
       {/* 2. FEATURED SERVICES (DYNAMIC) */}
-      <section className="py-24 relative z-20 bg-white border-y border-gray-200">
+      <section className="pt-16 pb-24 relative z-20 bg-white border-y border-gray-200">
         <div className="container mx-auto px-4 max-w-[1400px]">
-          
-          <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+
+          <div className="mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
             <div className="max-w-2xl">
-              <SplitH2 text="Our Image Post-Production Services" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+                Our Services
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase text-[#011] tracking-tighter mb-4">Our Image Post-Production Services</h2>
               <p className="text-base font-bold text-[#626262]">
                 Professional photo editing and retouching services for e-commerce, fashion and enterprise clients worldwide. Quality is our #1 Priority.
               </p>
             </div>
-            <Link href="/services" className="px-6 py-2.5 bg-[#EE3A39]/10 text-[#EE3A39] font-black uppercase tracking-[3px] text-[10px] rounded-xl hover:bg-[#EE3A39] hover:text-white hover:-translate-y-1 transition-all flex items-center gap-2 whitespace-nowrap shadow-sm">
+            <Link href="/services" className="px-6 py-2.5 bg-[#EE3A39]/10 text-[#EE3A39] font-black uppercase tracking-[3px] text-[10px] rounded-2xl hover:bg-[#EE3A39] hover:text-white hover:-translate-y-1 transition-all flex items-center gap-2 whitespace-nowrap shadow-sm">
               View All Services <ArrowRight size={14} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dbServices.map((service) => {
               // Map DB slugs or titles to precise old image paths for the visual Wow factor
               const slug = service.slug || "";
@@ -237,18 +246,21 @@ export default function Home() {
               }
 
               return (
-                 <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group" data-cursor="view">
+                 <div key={service.id} className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(238,58,57,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden group flex flex-col h-full" data-cursor="view">
                    {/* Interactive Before/After Slider */}
-                   <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block">
+                   <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#F8F8F8] block shrink-0">
                      <BeforeAfterSlider beforeImage={imgBefore} afterImage={imgAfter} label={service.title} />
                    </div>
 
                    {/* Content Container */}
-                   <div className="p-5 md:p-8">
+                   <div className="p-5 md:p-8 flex flex-col flex-grow">
                      <Link href={`/services/${slug}`} className="block">
-                       <h3 className="text-xl font-extrabold text-[#011] mb-3 uppercase tracking-wide group-hover:text-[#EE3A39] transition-colors">{service.title}</h3>
+                       <h3 className="text-xl font-black text-[#011] mb-3 uppercase tracking-wide group-hover:text-[#EE3A39] transition-colors">{service.title}</h3>
                      </Link>
-                     <div className="pt-5 border-t border-gray-100 flex justify-between items-center text-sm font-bold text-[#011]">
+                     {service.shortDescription && (
+                       <p className="text-sm text-[#626262] leading-relaxed mb-4 line-clamp-2">{service.shortDescription}</p>
+                     )}
+                     <div className="pt-5 border-t border-gray-100 flex justify-between items-center text-sm font-bold text-[#011] mt-auto">
                        <Link href={`/services/${slug}`} className="text-[#EE3A39] hover:underline underline-offset-4 decoration-2 transition-all">Details</Link>
                        <Link href={`/order?service=${slug}`} className="text-[#EE3A39] flex items-center gap-1 -translate-x-2 group-hover:translate-x-0 transition-all opacity-0 group-hover:opacity-100 z-10 hover:underline underline-offset-4 decoration-2">
                          Order Now <ArrowRight size={14} />
@@ -291,7 +303,7 @@ export default function Home() {
                       </div>
                       <div>
                          <div className="flex items-center gap-2 mb-0.5">
-                            <h3 className="font-extrabold text-lg text-[#011] uppercase tracking-tight">{row.name}</h3>
+                            <h3 className="font-black text-lg text-[#011] uppercase tracking-tight">{row.name}</h3>
                             {row.popular && <span className="bg-[#EE3A39] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest">Popular</span>}
                             {row.bestValue && <span className="bg-[#011] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-widest">Best Value</span>}
                          </div>
@@ -327,13 +339,13 @@ export default function Home() {
       {/* 2.6. BULK ORDER BANNER */}
       <section className="py-12 bg-[#EE3A39] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[40%] h-full bg-white/5 skew-x-[-20deg] translate-x-1/2"></div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
               <h3 className="text-white text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tighter mb-2">Order 1000+ Images?</h3>
               <p className="text-white text-base font-bold">Get 20% Off on Bulk Orders across all photo editing categories.</p>
             </div>
-            <Link href="/contact" className="px-8 py-4 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:bg-white hover:text-[#011] hover:-translate-y-1 transition-all flex items-center gap-2">
+            <Link href="/get-quote" className="px-8 py-4 bg-[#011] text-white font-black uppercase tracking-[3px] text-[10px] rounded-2xl shadow-xl hover:bg-white hover:text-[#011] hover:-translate-y-1 transition-all flex items-center gap-2">
               Get Bulk Quote <ArrowRight size={14} />
             </Link>
           </div>
@@ -348,10 +360,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] border border-[#EE3A39]/20 rounded-full text-[10px] font-black mb-6 uppercase tracking-[3px]">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
                 Our Guarantee
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-[#011]">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-5 uppercase tracking-tighter text-[#011]">
                 Zero Revisions. Zero Surprises. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EE3A39] to-orange-500">Your Catalog, Delivered Perfect.</span>
               </h2>
               <p className="text-base font-bold text-[#626262] mb-10 leading-relaxed">
@@ -364,7 +376,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                {differences.map((diff, idx) => (
-                 <div key={idx} className="bg-[#F8F8F8] rounded-3xl p-5 md:p-8 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                 <div key={idx} className="bg-[#F8F8F8] rounded-[2rem] p-5 md:p-8 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <diff.icon size={32} className="text-[#EE3A39] mb-6" />
                     <h4 className="text-xl font-bold text-[#011] mb-3">{diff.title}</h4>
                     <p className="text-[#626262] leading-relaxed text-sm">{diff.desc}</p>
@@ -385,7 +397,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
               Proven Results
             </div>
-            <SplitH2 text="What Clients Achieve With Us" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4" />
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">What Clients Achieve With Us</h2>
             <p className="text-gray-400 font-bold text-base max-w-2xl mx-auto">Real outcomes from brands and studios that outsource their photo editing to BLACKFOX DIGITAL.</p>
           </div>
 
@@ -424,7 +436,7 @@ export default function Home() {
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[3px] text-[#EE3A39] mb-2">{item.segment}</p>
-                    <h4 className="text-xl font-extrabold text-white tracking-tight">{item.result}</h4>
+                    <h4 className="text-xl font-bold text-white tracking-tight">{item.result}</h4>
                   </div>
                   <div className="text-right flex-shrink-0">
                     <p className="text-2xl font-black text-[#EE3A39] tracking-tighter leading-tight">{item.stat}</p>
@@ -450,7 +462,13 @@ export default function Home() {
         <div className="absolute left-[-20%] bottom-[-20%] w-[50%] h-[50%] bg-[#EE3A39]/5 blur-[150px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16 md:mb-24 relative">
-            <SplitH2 text="What Our Clients Say" className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+              Client Reviews
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-5">What Our Clients Say</h2>
+            <p className="text-base font-bold text-[#626262] max-w-2xl mx-auto">
+              Real feedback from brands, studios, and e-commerce teams across 30+ countries.
+            </p>
           </div>
           
           <TestimonialSlider testimonials={homepageTestimonials} />
@@ -462,8 +480,11 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6 text-center md:text-left">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-[#011] mb-4">Resources & Insights</h2>
-              <p className="text-[#626262] font-bold text-base uppercase tracking-widest">Expert guides to help you optimize your visual content.</p>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+                Knowledge Base
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#011] mb-4">Resources & Insights</h2>
+              <p className="text-base font-bold text-[#626262]">Expert guides to help you optimize your visual content.</p>
             </div>
             <Link href="/blog" className="text-[#EE3A39] font-black uppercase tracking-[3px] text-[10px] flex items-center gap-2 group border-b border-transparent hover:border-[#EE3A39] transition-all">
               View All Articles <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -472,17 +493,18 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {[
-              { title: "How to Prepare Images for Amazon", tag: "Guide" },
-              { title: "Ghost Mannequin vs Flat Lay", tag: "Comparison" },
-              { title: "Why Background Removal Matters", tag: "Strategy" }
+              { title: "How to Prepare Images for Amazon", tag: "Guide", bg: "bg-[#011]", icon: ImageIcon, excerpt: "A step-by-step checklist to ensure your product photos meet Amazon's strict compliance standards every time." },
+              { title: "Ghost Mannequin vs Flat Lay", tag: "Comparison", bg: "bg-[#1a1a2e]", icon: Layers, excerpt: "Which technique is right for your fashion catalog? We break down cost, quality, and conversion impact." },
+              { title: "Why Background Removal Matters", tag: "Strategy", bg: "bg-[#EE3A39]", icon: Scissors, excerpt: "How clean, consistent product backgrounds drive trust and directly increase your add-to-cart rate." }
             ].map((post, i) => (
               <Link href="/blog" key={i} className="bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-sm group hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                <div className="aspect-[16/10] bg-gray-100 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-[#011]/20 group-hover:bg-transparent transition-colors z-10"></div>
+                <div className={`aspect-[16/10] ${post.bg} relative overflow-hidden flex items-center justify-center`}>
+                   <post.icon size={56} className="text-white/10" />
                    <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white text-[#EE3A39] text-[10px] font-black uppercase tracking-widest rounded-lg">{post.tag}</div>
                 </div>
                 <div className="p-5 md:p-8">
-                   <h4 className="text-xl font-bold text-[#011] mb-4 group-hover:text-[#EE3A39] transition-colors">{post.title}</h4>
+                   <h4 className="text-xl font-bold text-[#011] mb-3 group-hover:text-[#EE3A39] transition-colors">{post.title}</h4>
+                   <p className="text-sm text-[#626262] leading-relaxed mb-4">{post.excerpt}</p>
                    <span className="text-[#EE3A39] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">Read Story <ArrowRight size={14}/></span>
                 </div>
               </Link>
@@ -495,7 +517,10 @@ export default function Home() {
       <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#EE3A39]/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <SplitH2 text="10 Free Edits. No Credit Card. Results in 24 Hours." className="text-2xl sm:text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EE3A39]/10 text-[#EE3A39] rounded-full text-[10px] font-black mb-4 uppercase tracking-[3px]">
+            Free Trial
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl uppercase font-black text-[#011] mb-5 tracking-tighter leading-tight">10 Free Edits. No Credit Card. Results in 24 Hours.</h2>
           <p className="text-base font-bold text-[#626262] mb-8 max-w-2xl mx-auto leading-relaxed">
             Send us your images and we'll show you the quality before you commit to anything — no contracts, no risk.
           </p>

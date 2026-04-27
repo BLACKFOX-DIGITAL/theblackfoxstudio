@@ -7,13 +7,13 @@ export default function SplitH2({ text, className }) {
   return (
     <h2 className={className}>
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden pr-[0.3em]">
+        <span key={i} className="inline-block pr-[0.3em]">
           <motion.span
             className="inline-block"
-            initial={{ y: "110%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.9, delay: 0.05 + i * 0.08, ease: [0.7, 0, 0.3, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+            transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
           >
             {w}
           </motion.span>
