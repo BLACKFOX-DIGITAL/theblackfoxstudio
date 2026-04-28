@@ -179,6 +179,7 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
                 quality={100}
                 className="object-contain w-auto h-full pointer-events-none"
                 priority
+                unoptimized
               />
             </figure>
           </Link>

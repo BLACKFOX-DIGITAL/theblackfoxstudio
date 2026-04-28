@@ -22,7 +22,7 @@ const Footer = ({ dbSettings = {} }) => {
           {/* Brand & Socials */}
           <div className="space-y-6 lg:col-span-1">
             <Link href="/" className="inline-block">
-              <Image src={(dbSettings.logoUrl || "/logo.png") + "?v=2"} alt="BLACKFOX DIGITAL Logo" width={220} height={50} className="object-contain object-left h-[44px] w-auto pointer-events-none" />
+              <Image src={(dbSettings.logoUrl || "/logo.png") + "?v=2"} alt="BLACKFOX DIGITAL Logo" width={220} height={50} className="object-contain object-left h-[44px] w-auto pointer-events-none" unoptimized />
             </Link>
             <p className="text-[#626262] leading-relaxed text-sm max-w-sm">
               80+ specialist editors. 5,000+ images daily. Human-edited, commercial-grade post-production trusted by 500+ brands across 30 countries.
