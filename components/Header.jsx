@@ -54,6 +54,11 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
 
   const links = [
     {
+      name: "home",
+      url: "/",
+      curtain: "HOME",
+    },
+    {
       name: "our services",
       icon: <RiArrowDownSFill className="w-[16px] lg:size-[.833vw] " />,
       url: "/services",
