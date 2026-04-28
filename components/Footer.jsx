@@ -70,6 +70,7 @@ const Footer = ({ dbSettings = {} }) => {
             <h4 className="text-[#011] font-black text-xs uppercase tracking-[3px] mb-8">Company</h4>
             <ul className="space-y-3">
               {[
+                { name: "Home", url: "/" },
                 { name: "About Us", url: "/about" },
                 { name: "Portfolio", url: "/portfolio" },
                 { name: "Pricing", url: "/pricing" },

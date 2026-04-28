@@ -54,7 +54,7 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
 
   const links = [
     {
-      name: "home",
+      name: "HOME",
       url: "/",
       curtain: "HOME",
     },
