@@ -172,7 +172,7 @@ const Header = ({ dbServices = [], dbSettings = {} }) => {
           <Link href={`/`} className="flex items-center">
             <figure className="flex items-center h-[34px] sm:h-[44px] lg:h-[52px]">
               <Image
-                src={dbSettings.logoUrl || `/logo.png`}
+                src={(dbSettings.logoUrl || `/logo.png`) + '?v=2'}
                 alt={dbSettings.siteName || "BLACKFOX DIGITAL"}
                 width={400}
                 height={160}
